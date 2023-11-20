@@ -1,0 +1,129 @@
+##########################################
+## Tabs
+##########################################
+
+[tabs]
+[tabs.styles]
+
+# Style of active tab & current directory
+[tabs.styles.active]
+bg = "light_blue"
+fg = "black"
+bold = true
+
+# Style of inactive tabs
+[tabs.styles.inactive]
+
+# Style of the left/front tab scroll tag (when tabs overflow)
+[tabs.styles.scroll_front]
+fg = "yellow"
+bold = true
+
+# Style of the right/back tab scroll tag (when tabs overflow)
+[tabs.styles.scroll_back]
+fg = "yellow"
+bold = true
+
+# There are more style options and strings to configure
+# the tab-bar theme.
+
+##########################################
+## File List - Selections
+##########################################
+
+# Selected files (standard selection)
+[selection]
+fg = "light_yellow"
+bold = true
+
+# Files selected in current visual mode
+[visual_mode_selection]
+fg = "light_red"
+bold = true
+
+[selection.prefix]
+prefix = "  "
+size = 2
+
+##########################################
+## File List - System File Types
+##########################################
+
+# Basic style, used for regular files (and also device files and FIFOs)
+[regular]
+fg = "white"
+
+# For directories
+[directory]
+fg = "light_blue"
+bold = true
+
+# For symbolic links
+[link]
+fg = "cyan"
+bold = true
+
+# For socket files
+[socket]
+fg = "light_magenta"
+bold = true
+
+##########################################
+## File List - Exceptional Files
+##########################################
+
+# Files marked as executable
+[executable]
+fg = "light_green"
+bold = true
+
+# Invalid symbolic links (pointing to non-existing target)
+[link_invalid]
+fg = "red"
+bold = true
+
+##########################################
+## File list - Override style by extension
+##########################################
+# This sections allows to override the basic 
+# style with a specific style for the file's
+# extension.
+
+[ext]
+
+bmp.fg = "yellow"
+gif.fg = "yellow"
+heic.fg = "yellow"
+jpg.fg = "yellow"
+jpeg.fg = "yellow"
+pgm.fg = "yellow"
+png.fg = "yellow"
+ppm.fg = "yellow"
+svg.fg = "yellow"
+
+wav.fg = "magenta"
+flac.fg = "magenta"
+mp3.fg = "magenta"
+amr.fg = "magenta"
+
+avi.fg = "magenta"
+flv.fg = "magenta"
+m3u.fg = "magenta"
+m4a.fg = "magenta"
+m4v.fg = "magenta"
+mkv.fg = "magenta"
+mov.fg = "magenta"
+mp4.fg = "magenta"
+mpg.fg = "magenta"
+rmvb.fg = "magenta"
+webm.fg = "magenta"
+wmv.fg = "magenta"
+
+7z.fg = "red"
+bz2.fg = "red"
+gz.fg = "red"
+rar.fg = "red"
+tar.fg = "red"
+tgz.fg = "red"
+xz.fg = "red"
+zip.fg = "red"
