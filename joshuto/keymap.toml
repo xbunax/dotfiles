@@ -19,7 +19,7 @@ keymap = [
 
 
   { keys = ["Z"], commands = ["shell zsh"] },
-  { keys = ["alt+g"], commands = ["shell lazygit"] },
+  { keys = ["ctrl+g"], commands = ["shell lazygit"] },
 
   { keys = ["alt+1"], commands = ["tab_switch_index 1"] },
   { keys = ["alt+2"], commands = ["tab_switch_index 2"] },

@@ -28,10 +28,10 @@ vim.opt.smartcase = true -- but make it case sensitive if an uppercase is entere
 vim.o.background = "dark" -- or "light" for light mode
 vim.cmd([[colorscheme gruvbox]])
 
---vim.o.foldcolumn = '1' -- '0' is not bad
---vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
---vim.o.foldlevelstart = 1
---vim.o.foldenable = true
+vim.o.foldcolumn = '1' -- '0' is not bad
+vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevelstart = 99 
+vim.o.foldenable = true
 -- 启用当前行高亮，并设置颜色为深灰色
 vim.cmd('set cursorline')
 --vim.cmd('hi CursorLine cterm=NONE ctermbg=235 guibg=DarkGrey')

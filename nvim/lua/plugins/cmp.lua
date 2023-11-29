@@ -27,7 +27,6 @@ return
         -- "L3MON4D3/LuaSnip",
     },
 
-
     config = function()
         local cmp = require 'cmp'
         local lspkind = require("lspkind")
@@ -48,9 +47,9 @@ return
 
             mapping = {
                 -- 选择上一个
-                ['<C-k>'] = cmp.mapping.select_prev_item(),
+                ['<up>'] = cmp.mapping.select_prev_item(),
                 -- 选择下一个
-                ['<Tab>'] = cmp.mapping.select_next_item(),
+                ['<Down>'] = cmp.mapping.select_next_item(),
                 -- 出现补全
                 ['<A-.>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
                 -- 取消补全
@@ -60,7 +59,7 @@ return
                 }),
 
                 -- 确认使用某个补全项
-                ['<CR>'] = cmp.mapping.confirm({
+                ['<Tab>'] = cmp.mapping.confirm({
                     select = true,
                     behavior = cmp.ConfirmBehavior.Replace
                 }),
@@ -130,11 +129,11 @@ return
 
         local capabilities = require('cmp_nvim_lsp').default_capabilities()
         -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-        require('lspconfig')['pylsp'].setup {
-            capabilities = capabilities
-        }
-        require('lspconfig')['lua_ls'].setup {
-            capabilities = capabilities
-        }
+--        require('lspconfig')['pylsp'].setup {
+--            capabilities = capabilities
+--        }
+--        require('lspconfig')['lua_ls'].setup {
+--            capabilities = capabilities
+--        }
     end
 }

@@ -11,7 +11,7 @@ require('mason').setup({
 
 require('mason-lspconfig').setup({
     -- A list of servers to automatically install if they're not already installed
-    ensure_installed = { 'pylsp', 'gopls', 'lua_ls', 'bashls', 'rust_analyzer', 'texlab', 'matlab_ls' },
+    ensure_installed = { 'typst_lsp', 'pylsp', 'gopls', 'clangd', 'lua_ls', 'bashls', 'rust_analyzer', 'texlab', 'matlab_ls' },
 })
 
 -- Set different settings for different languages' LSP
@@ -121,4 +121,12 @@ lspconfig.matlab_ls.setup({
 
 lspconfig.texlab.setup({
     on_attach = on_attach,
+})
+
+lspconfig.typst_lsp.setup({
+    on_attach = on_attach,
+    settings = {
+        exportPdf = "onType" -- Choose onType, onSave or never.
+        -- serverPath = "" -- Normally, there is no need to uncomment it.
+    }
 })
