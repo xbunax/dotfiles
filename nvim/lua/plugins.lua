@@ -52,5 +52,6 @@ require("lazy").setup({
     require("plugins.lazygit"),
     require("plugins.multi-cursor"),
     require("plugins.typst"),
+ --   require("plugins.autosave"),
     --require("plugins.neotree"),
 })

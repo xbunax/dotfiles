@@ -35,4 +35,24 @@ vim.o.foldenable = true
 -- 启用当前行高亮，并设置颜色为深灰色
 vim.cmd('set cursorline')
 --vim.cmd('hi CursorLine cterm=NONE ctermbg=235 guibg=DarkGrey')
+--autosave
+-- if vim.opt.auto_save then
+--     vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
+--         pattern = { "*" },
+--         command = "silent! wall",
+--         nested = true,
+--     })
+-- end
+--
+-- vim.cmd[[
+-- autocmd InsertLeave * write
+-- ]]
+
+
+
+
+
+
+
+
 
