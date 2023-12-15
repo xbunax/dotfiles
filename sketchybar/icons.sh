@@ -13,6 +13,8 @@ BELL_DOT=􀝗
 WECHAT=󰘑
 QQ=󰘅
 
+#tempture
+TEMPTURE=󰔄
 
 # Git Icons
 GIT_ISSUE=􀍷
