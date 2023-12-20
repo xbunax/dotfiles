@@ -15,10 +15,10 @@ do
     space=$sid
     icon="${SPACE_ICONS[i]}"
     icon.padding_left=10
-    icon.padding_right=10
+    icon.padding_right=5
     padding_left=2
     padding_right=2
-    label.padding_right=20
+    label.padding_right=17
     icon.highlight_color=$RED
     label.color=$GREY
     label.highlight_color=$WHITE
