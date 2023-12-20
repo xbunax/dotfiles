@@ -111,9 +111,7 @@ lspconfig.rust_analyzer.setup({
     }
 })
 
-lspconfig.clangd.setup({
-    on_attach = on_attach,
-})
+lspconfig.clangd.setup({})
 
 lspconfig.matlab_ls.setup({
     on_attach = on_attach,

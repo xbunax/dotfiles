@@ -1,0 +1,33 @@
+#---------------------------------------------------#
+## 配置文件需要放置在 $HOME/.config/clash.meta/*.yaml
+
+## 这份文件是clashX的基础配置文件，请尽量新建配置文件进行修改。
+
+## 如果您不知道如何操作，请参阅
+## Clash Meta wiki  https://docs.metacubex.one
+## Clash Meta wiki  https://clash-meta.wiki
+## Clash Meta Github文档  https://github.com/MetaCubeX/Clash.Meta/blob/Alpha/README.md
+    
+#---------------------------------------------------#
+
+mode: rule
+log-level: warning
+ipv6: false
+
+
+proxies:
+
+proxy-groups:
+
+proxy-providers:
+
+rule-providers:
+
+
+rules:
+  - DOMAIN-SUFFIX,google.com,DIRECT
+  - DOMAIN-KEYWORD,google,DIRECT
+  - DOMAIN,google.com,DIRECT
+  - DOMAIN-SUFFIX,ad.com,REJECT
+  - GEOIP,CN,DIRECT
+  - MATCH,DIRECT

@@ -1,0 +1,1215 @@
+#---------------------------------------------------#
+## 上次更新于：2022-07-29 13:51:47
+#---------------------------------------------------#
+
+port: 7890
+socks-port: 7891
+redir-port: 7892
+allow-lan: false
+mode: rule
+log-level: silent
+external-controller: '127.0.0.1:9090'
+secret: ''
+proxies:
+  -
+    name: v1|香港01|MPTCP|★★★
+    type: ss
+    server: pqxsizjacntsmprcgi.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgsyjpmn2wqi34.sina.cn
+  -
+    name: v1|香港02|MPTCP|★★★
+    type: ss
+    server: pyqxwhbacn2cmmdtea.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgsytumn2wqi34.sina.cn
+  -
+    name: v1|香港03|MPTCP|★★★
+    type: ss
+    server: fv2ta2bacmzss6rufi.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgsyzxmn2wqi34.sina.cn
+  -
+    name: v1|香港04|MPTCP|★★★
+    type: ss
+    server: euzc4ajacmzsskrfhq.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgszrfmn2wqi34.sina.cn
+  -
+    name: v1|香港05|MPTCP|★★★
+    type: ss
+    server: e5yxc3jacn2csljrey.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgszrtmn2wqi34.sina.cn
+  -
+    name: v1|香港06|MPTCP|★★★
+    type: ss
+    server: pqyc4zbacmksmprlhq.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgsyjrmn2wqi34.sina.cn
+  -
+    name: v1|香港07|MPTCP|★★☆
+    type: ss
+    server: p4zci2zacn2cmmjfgi.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgsyj3mn2wqi34.sina.cn
+  -
+    name: v1|香港08|MPTCP|★★☆
+    type: ss
+    server: oexdagracnusmmzafi.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgsyrlmn2wqi34.sina.cn
+  -
+    name: v1|香港09|MPTCP|★★★
+    type: ss
+    server: erzso2jacnqsskrspi.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgszrgmn2wqi34.sina.cn
+  -
+    name: v1|香港10|MPTCP|★★★
+    type: ss
+    server: e53co3zacn3csljvpi.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgszrsmn2wqi34.sina.cn
+  -
+    name: v1|新加坡01|MPTCP|★★☆
+    type: ss
+    server: fbyx4zjacnwss6jrem.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgsyrymn2wqi34.sina.cn
+  -
+    name: v1|新加坡02|MPTCP|★★☆
+    type: ss
+    server: fauxc3jacmzss6d3ey.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgsy3smn2wqi34.sina.cn
+  -
+    name: v1|新加坡03|MPTCP|★★☆
+    type: ss
+    server: fnzswybacnzcs6bthe.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgsy3zmn2wqi34.sina.cn
+  -
+    name: v1|新加坡04|MPTCP|★★★
+    type: ss
+    server: eiqx4hzacnwssk3tem.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgszjymn2wqi34.sina.cn
+  -
+    name: v1|新加坡05|MPTCP|★★★
+    type: ss
+    server: eq5d2pjacnwcsljmoa.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgszrqmn2wqi34.sina.cn
+  -
+    name: v1|新加坡06|MPTCP|★★☆
+    type: ss
+    server: ob3xqoracnwsmmzxfu.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgsyromn2wqi34.sina.cn
+  -
+    name: v1|日本01|MPTCP|★★☆
+    type: ss
+    server: pq4xc6zacnxcmprmey.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgsyjtmn2wqi34.sina.cn
+  -
+    name: v1|日本02|MPTCP|★★☆
+    type: ss
+    server: faxco2bacnvss6bapi.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgsy3vmn2wqi34.sina.cn
+  -
+    name: v1|日本03|MPTCP|★★☆
+    type: ss
+    server: oe3tuzjacnwcmmzjpu.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgsyrnmn2wqi34.sina.cn
+  -
+    name: v1|日本04|MPTCP|★★☆
+    type: ss
+    server: euusiyracnwcskt3gi.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgszrdmn2wqi34.sina.cn
+  -
+    name: v1|日本05|MPTCP|★★☆
+    type: ss
+    server: eq2s4gracn2csljihq.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgszrrmn2wqi34.sina.cn
+  -
+    name: v1|日本06|MPTCP|★★☆
+    type: ss
+    server: p45s4ajacnwcmmjohq.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgsytqmn2wqi34.sina.cn
+  -
+    name: v1|美国01|MPTCP|★★★
+    type: ss
+    server: eaqs4hzacmecs4dthq.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgszjfmn2wqi34.sina.cn
+  -
+    name: v1|美国02|MPTCP|★★★
+    type: ss
+    server: p55cc2bacmecmpr2h4.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgsyjumn2wqi34.sina.cn
+  -
+    name: v1|美国03|MPTCP|★★★
+    type: ss
+    server: eatd2hbacmjss4dxoa.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgszjemn2wqi34.sina.cn
+  -
+    name: v1|美国04|MPTCP|★★★
+    type: ss
+    server: eiyhc2jacnvsskzley.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgsztsmn2wqi34.sina.cn
+  -
+    name: v1|美国05|MPTCP|★★★
+    type: ss
+    server: eqyhq2bacn3ssljlfu.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgszromn2wqi34.sina.cn
+  -
+    name: v1|香港01|原生|★★★
+    type: ss
+    server: p4utuzzacnusmml2pu.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgsyjzmn2wqi34.sina.cn
+  -
+    name: v1|香港02|原生|★★★
+    type: ss
+    server: furcw7racmkss6rzhe.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgsyzwmn2wqi34.sina.cn
+  -
+    name: v1|香港03|原生|★★★
+    type: ss
+    server: fnyduzbacnvss6bxpu.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgsy3ymn2wqi34.sina.cn
+  -
+    name: v1|香港04|原生|★★★
+    type: ss
+    server: ejztaybacnrcskbsfi.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgszjxmn2wqi34.sina.cn
+  -
+    name: v1|香港05|原生|★★★
+    type: ss
+    server: eqwciybacnvssljhgi.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgszrpmn2wqi34.sina.cn
+  -
+    name: v1|台湾01|原生|★★☆
+    type: ss
+    server: oeshwzbacnrcmm3wea.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgsyrjmn2wqi34.sina.cn
+  -
+    name: v1|台湾02|原生|★★☆
+    type: ss
+    server: fvzxwzbacntcs6rtea.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgsyzvmn2wqi34.sina.cn
+  -
+    name: v1|台湾03|原生|★★☆
+    type: ss
+    server: eixs42bacnqcskzchq.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgsztqmn2wqi34.sina.cn
+  -
+    name: v1|台湾04|原生|★★☆
+    type: ss
+    server: eqxx46zacnrcsljcem.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgszrmmn2wqi34.sina.cn
+  -
+    name: v1|新加坡01|原生|★★☆
+    type: ss
+    server: ee3cw6zacmecs4jjhe.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgszlzmn2wqi34.sina.cn
+  -
+    name: v1|新加坡02|原生|★★☆
+    type: ss
+    server: ee5tu2jacnuss4jnpu.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgszlymn2wqi34.sina.cn
+  -
+    name: v1|新加坡03|原生|★★☆
+    type: ss
+    server: ej2du6zacmecskb3pu.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgszjzmn2wqi34.sina.cn
+  -
+    name: v1|新加坡04|原生|★★☆
+    type: ss
+    server: eqvtu3racnscsllupu.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgszrnmn2wqi34.sina.cn
+  -
+    name: v1|美国01|原生|★★★
+    type: ss
+    server: enytu3jacmecs4bqpu.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgszjnmn2wqi34.sina.cn
+  -
+    name: v1|澳洲01|MPTCP|★☆☆
+    type: ss
+    server: fb3ci2bacn3ss6jwgi.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgsyr3mn2wqi34.sina.cn
+  -
+    name: v1|澳洲02|MPTCP|★☆☆
+    type: ss
+    server: ev3daajacn3cskzvfi.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgsztwmn2wqi34.sina.cn
+  -
+    name: v1|澳洲03|MPTCP|★☆☆
+    type: ss
+    server: eqtcwpjacnscsllqhe.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgszrkmn2wqi34.sina.cn
+  -
+    name: v1|澳洲04|MPTCP|★☆☆
+    type: ss
+    server: hawhw7jacnscsijhea.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgszzvmn2wqi34.sina.cn
+  -
+    name: v1|澳洲05|MPTCP|★☆☆
+    type: ss
+    server: hayschzacnwcsijeh4.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgszzumn2wqi34.sina.cn
+  -
+    name: v1|印度01|MPTCP|★☆☆
+    type: ss
+    server: eazxw7zacnwcs4bgea.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgszjjmn2wqi34.sina.cn
+  -
+    name: v1|俄罗斯01|MPTCP|★☆☆
+    type: ss
+    server: ea2ta7jacnuss4bpfi.k981.top
+    port: 57422
+    cipher: aes-128-gcm
+    password: 0b7cec34f34f
+    udp: false
+    plugin: obfs
+    plugin-opts:
+      mode: http
+      host: ug4yd4il5fapgszjlmn2wqi34.sina.cn
+proxy-groups:
+  -
+    name: 🐸速蛙云
+    type: select
+    proxies:
+      - v1|香港01|MPTCP|★★★
+      - v1|香港02|MPTCP|★★★
+      - v1|香港03|MPTCP|★★★
+      - v1|香港04|MPTCP|★★★
+      - v1|香港05|MPTCP|★★★
+      - v1|香港06|MPTCP|★★★
+      - v1|香港07|MPTCP|★★☆
+      - v1|香港08|MPTCP|★★☆
+      - v1|香港09|MPTCP|★★★
+      - v1|香港10|MPTCP|★★★
+      - v1|新加坡01|MPTCP|★★☆
+      - v1|新加坡02|MPTCP|★★☆
+      - v1|新加坡03|MPTCP|★★☆
+      - v1|新加坡04|MPTCP|★★★
+      - v1|新加坡05|MPTCP|★★★
+      - v1|新加坡06|MPTCP|★★☆
+      - v1|日本01|MPTCP|★★☆
+      - v1|日本02|MPTCP|★★☆
+      - v1|日本03|MPTCP|★★☆
+      - v1|日本04|MPTCP|★★☆
+      - v1|日本05|MPTCP|★★☆
+      - v1|日本06|MPTCP|★★☆
+      - v1|美国01|MPTCP|★★★
+      - v1|美国02|MPTCP|★★★
+      - v1|美国03|MPTCP|★★★
+      - v1|美国04|MPTCP|★★★
+      - v1|美国05|MPTCP|★★★
+      - v1|香港01|原生|★★★
+      - v1|香港02|原生|★★★
+      - v1|香港03|原生|★★★
+      - v1|香港04|原生|★★★
+      - v1|香港05|原生|★★★
+      - v1|台湾01|原生|★★☆
+      - v1|台湾02|原生|★★☆
+      - v1|台湾03|原生|★★☆
+      - v1|台湾04|原生|★★☆
+      - v1|新加坡01|原生|★★☆
+      - v1|新加坡02|原生|★★☆
+      - v1|新加坡03|原生|★★☆
+      - v1|新加坡04|原生|★★☆
+      - v1|美国01|原生|★★★
+      - v1|澳洲01|MPTCP|★☆☆
+      - v1|澳洲02|MPTCP|★☆☆
+      - v1|澳洲03|MPTCP|★☆☆
+      - v1|澳洲04|MPTCP|★☆☆
+      - v1|澳洲05|MPTCP|★☆☆
+      - v1|印度01|MPTCP|★☆☆
+      - v1|俄罗斯01|MPTCP|★☆☆
+  -
+    name: 🎬Netflix
+    type: select
+    proxies:
+      - v1|香港01|MPTCP|★★★
+      - v1|香港02|MPTCP|★★★
+      - v1|香港03|MPTCP|★★★
+      - v1|香港04|MPTCP|★★★
+      - v1|香港05|MPTCP|★★★
+      - v1|香港06|MPTCP|★★★
+      - v1|香港07|MPTCP|★★☆
+      - v1|香港08|MPTCP|★★☆
+      - v1|香港09|MPTCP|★★★
+      - v1|香港10|MPTCP|★★★
+      - v1|新加坡01|MPTCP|★★☆
+      - v1|新加坡02|MPTCP|★★☆
+      - v1|新加坡03|MPTCP|★★☆
+      - v1|新加坡04|MPTCP|★★★
+      - v1|新加坡05|MPTCP|★★★
+      - v1|新加坡06|MPTCP|★★☆
+      - v1|日本01|MPTCP|★★☆
+      - v1|日本02|MPTCP|★★☆
+      - v1|日本03|MPTCP|★★☆
+      - v1|日本04|MPTCP|★★☆
+      - v1|日本05|MPTCP|★★☆
+      - v1|日本06|MPTCP|★★☆
+      - v1|美国01|MPTCP|★★★
+      - v1|美国02|MPTCP|★★★
+      - v1|美国03|MPTCP|★★★
+      - v1|美国04|MPTCP|★★★
+      - v1|美国05|MPTCP|★★★
+      - v1|香港01|原生|★★★
+      - v1|香港02|原生|★★★
+      - v1|香港03|原生|★★★
+      - v1|香港04|原生|★★★
+      - v1|香港05|原生|★★★
+      - v1|台湾01|原生|★★☆
+      - v1|台湾02|原生|★★☆
+      - v1|台湾03|原生|★★☆
+      - v1|台湾04|原生|★★☆
+      - v1|新加坡01|原生|★★☆
+      - v1|新加坡02|原生|★★☆
+      - v1|新加坡03|原生|★★☆
+      - v1|新加坡04|原生|★★☆
+      - v1|美国01|原生|★★★
+      - v1|澳洲01|MPTCP|★☆☆
+      - v1|澳洲02|MPTCP|★☆☆
+      - v1|澳洲03|MPTCP|★☆☆
+      - v1|澳洲04|MPTCP|★☆☆
+      - v1|澳洲05|MPTCP|★☆☆
+      - v1|印度01|MPTCP|★☆☆
+      - v1|俄罗斯01|MPTCP|★☆☆
+  -
+    name: 🎞️Disney+
+    type: select
+    proxies:
+      - v1|香港01|MPTCP|★★★
+      - v1|香港02|MPTCP|★★★
+      - v1|香港03|MPTCP|★★★
+      - v1|香港04|MPTCP|★★★
+      - v1|香港05|MPTCP|★★★
+      - v1|香港06|MPTCP|★★★
+      - v1|香港07|MPTCP|★★☆
+      - v1|香港08|MPTCP|★★☆
+      - v1|香港09|MPTCP|★★★
+      - v1|香港10|MPTCP|★★★
+      - v1|新加坡01|MPTCP|★★☆
+      - v1|新加坡02|MPTCP|★★☆
+      - v1|新加坡03|MPTCP|★★☆
+      - v1|新加坡04|MPTCP|★★★
+      - v1|新加坡05|MPTCP|★★★
+      - v1|新加坡06|MPTCP|★★☆
+      - v1|日本01|MPTCP|★★☆
+      - v1|日本02|MPTCP|★★☆
+      - v1|日本03|MPTCP|★★☆
+      - v1|日本04|MPTCP|★★☆
+      - v1|日本05|MPTCP|★★☆
+      - v1|日本06|MPTCP|★★☆
+      - v1|美国01|MPTCP|★★★
+      - v1|美国02|MPTCP|★★★
+      - v1|美国03|MPTCP|★★★
+      - v1|美国04|MPTCP|★★★
+      - v1|美国05|MPTCP|★★★
+      - v1|香港01|原生|★★★
+      - v1|香港02|原生|★★★
+      - v1|香港03|原生|★★★
+      - v1|香港04|原生|★★★
+      - v1|香港05|原生|★★★
+      - v1|台湾01|原生|★★☆
+      - v1|台湾02|原生|★★☆
+      - v1|台湾03|原生|★★☆
+      - v1|台湾04|原生|★★☆
+      - v1|新加坡01|原生|★★☆
+      - v1|新加坡02|原生|★★☆
+      - v1|新加坡03|原生|★★☆
+      - v1|新加坡04|原生|★★☆
+      - v1|美国01|原生|★★★
+      - v1|澳洲01|MPTCP|★☆☆
+      - v1|澳洲02|MPTCP|★☆☆
+      - v1|澳洲03|MPTCP|★☆☆
+      - v1|澳洲04|MPTCP|★☆☆
+      - v1|澳洲05|MPTCP|★☆☆
+      - v1|印度01|MPTCP|★☆☆
+      - v1|俄罗斯01|MPTCP|★☆☆
+
+
+rules:
+  # 自定义规则
+  ## 您可以在此处插入您补充的自定义规则（请注意保持缩进）
+
+  # 🎬Netflix
+  - DOMAIN-SUFFIX,netflix.com,🎬Netflix
+  - DOMAIN-SUFFIX,netflix.net,🎬Netflix
+  - DOMAIN-SUFFIX,nflxext.com,🎬Netflix
+  - DOMAIN-SUFFIX,nflximg.com,🎬Netflix
+  - DOMAIN-SUFFIX,nflximg.net,🎬Netflix
+  - DOMAIN-SUFFIX,nflxso.net,🎬Netflix
+  - DOMAIN-SUFFIX,nflxvideo.net,🎬Netflix
+  - DOMAIN-SUFFIX,netflixdnstest0.com,🎬Netflix
+  - DOMAIN-SUFFIX,netflixdnstest1.com,🎬Netflix
+  - DOMAIN-SUFFIX,netflixdnstest2.com,🎬Netflix
+  - DOMAIN-SUFFIX,netflixdnstest3.com,🎬Netflix
+  - DOMAIN-SUFFIX,netflixdnstest4.com,🎬Netflix
+  - DOMAIN-SUFFIX,netflixdnstest5.com,🎬Netflix
+  - DOMAIN-SUFFIX,netflixdnstest6.com,🎬Netflix
+  - DOMAIN-SUFFIX,netflixdnstest7.com,🎬Netflix
+  - DOMAIN-SUFFIX,netflixdnstest8.com,🎬Netflix
+  - DOMAIN-SUFFIX,netflixdnstest9.com,🎬Netflix
+  - DOMAIN-SUFFIX,netflixdnstest10.com,🎬Netflix
+  - DOMAIN-SUFFIX,netflix.com.edgesuite.net,🎬Netflix
+  - DOMAIN-SUFFIX,us-west-2.amazonaws.com,🎬Netflix
+  - DOMAIN-KEYWORD,dualstack.apiproxy-,🎬Netflix
+  - DOMAIN-KEYWORD,apiproxy-device-prod-nlb-,🎬Netflix
+  - DOMAIN-KEYWORD,ichnaea-web-,🎬Netflix
+  - DOMAIN-KEYWORD,netflix,🎬Netflix
+  - IP-CIDR,8.41.4.0/24,🎬Netflix,no-resolve
+  - IP-CIDR,23.78.0.0/16,🎬Netflix,no-resolve
+  - IP-CIDR,23.246.0.0/18,🎬Netflix,no-resolve
+  - IP-CIDR,34.192.0.0/16,🎬Netflix,no-resolve
+  - IP-CIDR,34.208.0.0/12,🎬Netflix,no-resolve
+  - IP-CIDR,34.248.0.0/13,🎬Netflix,no-resolve
+  - IP-CIDR,35.160.0.0/13,🎬Netflix,no-resolve
+  - IP-CIDR,37.77.184.0/21,🎬Netflix,no-resolve
+  - IP-CIDR,38.72.126.0/24,🎬Netflix,no-resolve
+  - IP-CIDR,44.224.0.0/16,🎬Netflix,no-resolve
+  - IP-CIDR,44.230.0.0/16,🎬Netflix,no-resolve
+  - IP-CIDR,45.57.0.0/17,🎬Netflix,no-resolve
+  - IP-CIDR,52.0.0.0/15,🎬Netflix,no-resolve
+  - IP-CIDR,52.5.0.0/16,🎬Netflix,no-resolve
+  - IP-CIDR,52.7.0.0/16,🎬Netflix,no-resolve
+  - IP-CIDR,52.10.0.0/15,🎬Netflix,no-resolve
+  - IP-CIDR,52.12.0.0/15,🎬Netflix,no-resolve
+  - IP-CIDR,52.22.0.0/16,🎬Netflix,no-resolve
+  - IP-CIDR,52.24.0.0/14,🎬Netflix,no-resolve
+  - IP-CIDR,52.32.0.0/14,🎬Netflix,no-resolve
+  - IP-CIDR,52.40.0.0/14,🎬Netflix,no-resolve
+  - IP-CIDR,52.48.0.0/14,🎬Netflix,no-resolve
+  - IP-CIDR,52.54.0.0/16,🎬Netflix,no-resolve
+  - IP-CIDR,52.71.0.0/16,🎬Netflix,no-resolve
+  - IP-CIDR,52.72.0.0/16,🎬Netflix,no-resolve
+  - IP-CIDR,52.88.0.0/15,🎬Netflix,no-resolve
+  - IP-CIDR,54.0.0.0/16,🎬Netflix,no-resolve
+  - IP-CIDR,54.68.0.0/15,🎬Netflix,no-resolve
+  - IP-CIDR,54.74.0.0/15,🎬Netflix,no-resolve
+  - IP-CIDR,54.76.0.0/15,🎬Netflix,no-resolve
+  - IP-CIDR,54.85.0.0/16,🎬Netflix,no-resolve
+  - IP-CIDR,54.86.0.0/16,🎬Netflix,no-resolve
+  - IP-CIDR,54.148.0.0/15,🎬Netflix,no-resolve
+  - IP-CIDR,54.175.0.0/16,🎬Netflix,no-resolve
+  - IP-CIDR,54.186.0.0/15,🎬Netflix,no-resolve
+  - IP-CIDR,54.188.0.0/15,🎬Netflix,no-resolve
+  - IP-CIDR,54.213.0.0/16,🎬Netflix,no-resolve
+  - IP-CIDR,54.214.128.0/17,🎬Netflix,no-resolve
+  - IP-CIDR,64.120.128.0/17,🎬Netflix,no-resolve
+  - IP-CIDR,66.197.128.0/17,🎬Netflix,no-resolve
+  - IP-CIDR,69.53.224.0/19,🎬Netflix,no-resolve
+  - IP-CIDR,103.87.204.0/22,🎬Netflix,no-resolve
+  - IP-CIDR,108.175.32.0/20,🎬Netflix,no-resolve
+  - IP-CIDR,185.2.220.0/22,🎬Netflix,no-resolve
+  - IP-CIDR,185.9.188.0/22,🎬Netflix,no-resolve
+  - IP-CIDR,192.173.64.0/18,🎬Netflix,no-resolve
+  - IP-CIDR,198.38.96.0/19,🎬Netflix,no-resolve
+  - IP-CIDR,198.45.48.0/20,🎬Netflix,no-resolve
+  - IP-CIDR,203.75.84.0/24,🎬Netflix,no-resolve
+  - IP-CIDR,203.83.220.0/22,🎬Netflix,no-resolve
+  - IP-CIDR,203.116.0.0/16,🎬Netflix,no-resolve
+  - IP-CIDR,203.198.0.0/20,🎬Netflix,no-resolve
+  - IP-CIDR,203.198.80.0/21,🎬Netflix,no-resolve
+  - IP-CIDR,207.45.72.0/22,🎬Netflix,no-resolve
+  - IP-CIDR,208.75.76.0/22,🎬Netflix,no-resolve
+  - IP-CIDR,218.102.32.0/19,🎬Netflix,no-resolve
+  - IP-CIDR,219.76.0.0/17,🎬Netflix,no-resolve
+
+  # 🎞️Disney+
+  - DOMAIN-SUFFIX,disneyplus.com,🎞️Disney+
+  - DOMAIN-SUFFIX,disney-plus.net,🎞️Disney+
+  - DOMAIN-SUFFIX,disneystreaming.com,🎞️Disney+
+  - DOMAIN-SUFFIX,dssott.com,🎞️Disney+
+  - DOMAIN,playback-certs.bamgrid.com,🎞️Disney+
+  - DOMAIN,disney.api.edge.bamgrid.com,🎞️Disney+
+  - DOMAIN,disney.connections.edge.bamgrid.com,🎞️Disney+
+  - DOMAIN,disney.content.edge.bamgrid.com,🎞️Disney+
+  - DOMAIN,disney.playback.edge.bamgrid.com,🎞️Disney+
+  - DOMAIN,cdn.registerdisney.go.com,🎞️Disney+
+  - DOMAIN-SUFFIX,execute-api.us-east-1.amazonaws.com,🎞️Disney+
+
+  # Google play
+  - DOMAIN,services.googleapis.cn,DIRECT
+  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,DIRECT
+
+  # Apple
+  - DOMAIN,safebrowsing.urlsec.qq.com,DIRECT # 如果您并不信任此服务提供商或防止其下载消耗过多带宽资源，可以进入 Safari 设置，关闭 Fraudulent Website Warning 功能，并使用 REJECT 策略。
+  - DOMAIN,safebrowsing.googleapis.com,DIRECT # 如果您并不信任此服务提供商或防止其下载消耗过多带宽资源，可以进入 Safari 设置，关闭 Fraudulent Website Warning 功能，并使用 REJECT 策略。
+  - DOMAIN,developer.apple.com,🐸速蛙云
+  - DOMAIN-SUFFIX,digicert.com,🐸速蛙云
+  - DOMAIN,ocsp.apple.com,🐸速蛙云
+  - DOMAIN,ocsp.comodoca.com,🐸速蛙云
+  - DOMAIN,ocsp.usertrust.com,🐸速蛙云
+  - DOMAIN,ocsp.sectigo.com,🐸速蛙云
+  - DOMAIN,ocsp.verisign.net,🐸速蛙云
+  - DOMAIN-SUFFIX,apple-dns.net,🐸速蛙云
+  - DOMAIN,testflight.apple.com,🐸速蛙云
+  - DOMAIN,sandbox.itunes.apple.com,🐸速蛙云
+  - DOMAIN,itunes.apple.com,🐸速蛙云
+  - DOMAIN-SUFFIX,apps.apple.com,🐸速蛙云
+  - DOMAIN-SUFFIX,blobstore.apple.com,🐸速蛙云
+  - DOMAIN,cvws.icloud-content.com,🐸速蛙云
+  - DOMAIN-SUFFIX,mzstatic.com,DIRECT
+  - DOMAIN-SUFFIX,itunes.apple.com,DIRECT
+  - DOMAIN-SUFFIX,icloud.com,DIRECT
+  - DOMAIN-SUFFIX,icloud-content.com,DIRECT
+  - DOMAIN-SUFFIX,me.com,DIRECT
+  - DOMAIN-SUFFIX,aaplimg.com,DIRECT
+  - DOMAIN-SUFFIX,cdn20.com,DIRECT
+  - DOMAIN-SUFFIX,cdn-apple.com,DIRECT
+  - DOMAIN-SUFFIX,akadns.net,DIRECT
+  - DOMAIN-SUFFIX,akamaiedge.net,DIRECT
+  - DOMAIN-SUFFIX,edgekey.net,DIRECT
+  - DOMAIN-SUFFIX,mwcloudcdn.com,DIRECT
+  - DOMAIN-SUFFIX,mwcname.com,DIRECT
+  - DOMAIN-SUFFIX,apple.com,DIRECT
+  - DOMAIN-SUFFIX,apple-cloudkit.com,DIRECT
+  - DOMAIN-SUFFIX,apple-mapkit.com,DIRECT
+
+  # 抗 DNS 污染
+  - DOMAIN-KEYWORD,amazon,🐸速蛙云
+  - DOMAIN-KEYWORD,google,🐸速蛙云
+  - DOMAIN-KEYWORD,gmail,🐸速蛙云
+  - DOMAIN-KEYWORD,youtube,🐸速蛙云
+  - DOMAIN-KEYWORD,facebook,🐸速蛙云
+  - DOMAIN-SUFFIX,fb.me,🐸速蛙云
+  - DOMAIN-SUFFIX,fbcdn.net,🐸速蛙云
+  - DOMAIN-KEYWORD,twitter,🐸速蛙云
+  - DOMAIN-KEYWORD,instagram,🐸速蛙云
+  - DOMAIN-KEYWORD,dropbox,🐸速蛙云
+  - DOMAIN-SUFFIX,twimg.com,🐸速蛙云
+  - DOMAIN-KEYWORD,blogspot,🐸速蛙云
+  - DOMAIN-SUFFIX,youtu.be,🐸速蛙云
+  - DOMAIN-KEYWORD,whatsapp,🐸速蛙云
+  - DOMAIN-SUFFIX,geetest.com,🐸速蛙云
+
+  # 国外网站
+  - DOMAIN-SUFFIX,9to5mac.com,🐸速蛙云
+  - DOMAIN-SUFFIX,abpchina.org,🐸速蛙云
+  - DOMAIN-SUFFIX,adblockplus.org,🐸速蛙云
+  - DOMAIN-SUFFIX,adobe.com,🐸速蛙云
+  - DOMAIN-SUFFIX,akamaized.net,🐸速蛙云
+  - DOMAIN-SUFFIX,alfredapp.com,🐸速蛙云
+  - DOMAIN-SUFFIX,amplitude.com,🐸速蛙云
+  - DOMAIN-SUFFIX,ampproject.org,🐸速蛙云
+  - DOMAIN-SUFFIX,android.com,🐸速蛙云
+  - DOMAIN-SUFFIX,angularjs.org,🐸速蛙云
+  - DOMAIN-SUFFIX,aolcdn.com,🐸速蛙云
+  - DOMAIN-SUFFIX,apkpure.com,🐸速蛙云
+  - DOMAIN-SUFFIX,appledaily.com,🐸速蛙云
+  - DOMAIN-SUFFIX,appshopper.com,🐸速蛙云
+  - DOMAIN-SUFFIX,appspot.com,🐸速蛙云
+  - DOMAIN-SUFFIX,arcgis.com,🐸速蛙云
+  - DOMAIN-SUFFIX,archive.org,🐸速蛙云
+  - DOMAIN-SUFFIX,armorgames.com,🐸速蛙云
+  - DOMAIN-SUFFIX,aspnetcdn.com,🐸速蛙云
+  - DOMAIN-SUFFIX,att.com,🐸速蛙云
+  - DOMAIN-SUFFIX,awsstatic.com,🐸速蛙云
+  - DOMAIN-SUFFIX,azureedge.net,🐸速蛙云
+  - DOMAIN-SUFFIX,azurewebsites.net,🐸速蛙云
+  - DOMAIN-SUFFIX,bing.com,🐸速蛙云
+  - DOMAIN-SUFFIX,bintray.com,🐸速蛙云
+  - DOMAIN-SUFFIX,bit.com,🐸速蛙云
+  - DOMAIN-SUFFIX,bit.ly,🐸速蛙云
+  - DOMAIN-SUFFIX,bitbucket.org,🐸速蛙云
+  - DOMAIN-SUFFIX,bjango.com,🐸速蛙云
+  - DOMAIN-SUFFIX,bkrtx.com,🐸速蛙云
+  - DOMAIN-SUFFIX,blog.com,🐸速蛙云
+  - DOMAIN-SUFFIX,blogcdn.com,🐸速蛙云
+  - DOMAIN-SUFFIX,blogger.com,🐸速蛙云
+  - DOMAIN-SUFFIX,blogsmithmedia.com,🐸速蛙云
+  - DOMAIN-SUFFIX,blogspot.com,🐸速蛙云
+  - DOMAIN-SUFFIX,blogspot.hk,🐸速蛙云
+  - DOMAIN-SUFFIX,bloomberg.com,🐸速蛙云
+  - DOMAIN-SUFFIX,box.com,🐸速蛙云
+  - DOMAIN-SUFFIX,box.net,🐸速蛙云
+  - DOMAIN-SUFFIX,cachefly.net,🐸速蛙云
+  - DOMAIN-SUFFIX,chromium.org,🐸速蛙云
+  - DOMAIN-SUFFIX,cl.ly,🐸速蛙云
+  - DOMAIN-SUFFIX,cloudflare.com,🐸速蛙云
+  - DOMAIN-SUFFIX,cloudfront.net,🐸速蛙云
+  - DOMAIN-SUFFIX,cloudmagic.com,🐸速蛙云
+  - DOMAIN-SUFFIX,cmail19.com,🐸速蛙云
+  - DOMAIN-SUFFIX,cnet.com,🐸速蛙云
+  - DOMAIN-SUFFIX,cocoapods.org,🐸速蛙云
+  - DOMAIN-SUFFIX,comodoca.com,🐸速蛙云
+  - DOMAIN-SUFFIX,crashlytics.com,🐸速蛙云
+  - DOMAIN-SUFFIX,culturedcode.com,🐸速蛙云
+  - DOMAIN-SUFFIX,d.pr,🐸速蛙云
+  - DOMAIN-SUFFIX,danilo.to,🐸速蛙云
+  - DOMAIN-SUFFIX,dayone.me,🐸速蛙云
+  - DOMAIN-SUFFIX,db.tt,🐸速蛙云
+  - DOMAIN-SUFFIX,deskconnect.com,🐸速蛙云
+  - DOMAIN-SUFFIX,disq.us,🐸速蛙云
+  - DOMAIN-SUFFIX,disqus.com,🐸速蛙云
+  - DOMAIN-SUFFIX,disquscdn.com,🐸速蛙云
+  - DOMAIN-SUFFIX,dnsimple.com,🐸速蛙云
+  - DOMAIN-SUFFIX,docker.com,🐸速蛙云
+  - DOMAIN-SUFFIX,dribbble.com,🐸速蛙云
+  - DOMAIN-SUFFIX,droplr.com,🐸速蛙云
+  - DOMAIN-SUFFIX,duckduckgo.com,🐸速蛙云
+  - DOMAIN-SUFFIX,dueapp.com,🐸速蛙云
+  - DOMAIN-SUFFIX,dytt8.net,🐸速蛙云
+  - DOMAIN-SUFFIX,edgecastcdn.net,🐸速蛙云
+  - DOMAIN-SUFFIX,edgekey.net,🐸速蛙云
+  - DOMAIN-SUFFIX,edgesuite.net,🐸速蛙云
+  - DOMAIN-SUFFIX,engadget.com,🐸速蛙云
+  - DOMAIN-SUFFIX,entrust.net,🐸速蛙云
+  - DOMAIN-SUFFIX,eurekavpt.com,🐸速蛙云
+  - DOMAIN-SUFFIX,evernote.com,🐸速蛙云
+  - DOMAIN-SUFFIX,fabric.io,🐸速蛙云
+  - DOMAIN-SUFFIX,fast.com,🐸速蛙云
+  - DOMAIN-SUFFIX,fastly.net,🐸速蛙云
+  - DOMAIN-SUFFIX,fc2.com,🐸速蛙云
+  - DOMAIN-SUFFIX,feedburner.com,🐸速蛙云
+  - DOMAIN-SUFFIX,feedly.com,🐸速蛙云
+  - DOMAIN-SUFFIX,feedsportal.com,🐸速蛙云
+  - DOMAIN-SUFFIX,fiftythree.com,🐸速蛙云
+  - DOMAIN-SUFFIX,firebaseio.com,🐸速蛙云
+  - DOMAIN-SUFFIX,flexibits.com,🐸速蛙云
+  - DOMAIN-SUFFIX,flickr.com,🐸速蛙云
+  - DOMAIN-SUFFIX,flipboard.com,🐸速蛙云
+  - DOMAIN-SUFFIX,g.co,🐸速蛙云
+  - DOMAIN-SUFFIX,gabia.net,🐸速蛙云
+  - DOMAIN-SUFFIX,geni.us,🐸速蛙云
+  - DOMAIN-SUFFIX,gfx.ms,🐸速蛙云
+  - DOMAIN-SUFFIX,ggpht.com,🐸速蛙云
+  - DOMAIN-SUFFIX,ghostnoteapp.com,🐸速蛙云
+  - DOMAIN-SUFFIX,git.io,🐸速蛙云
+  - DOMAIN-KEYWORD,github,🐸速蛙云
+  - DOMAIN-SUFFIX,globalsign.com,🐸速蛙云
+  - DOMAIN-SUFFIX,gmodules.com,🐸速蛙云
+  - DOMAIN-SUFFIX,godaddy.com,🐸速蛙云
+  - DOMAIN-SUFFIX,golang.org,🐸速蛙云
+  - DOMAIN-SUFFIX,gongm.in,🐸速蛙云
+  - DOMAIN-SUFFIX,goo.gl,🐸速蛙云
+  - DOMAIN-SUFFIX,goodreaders.com,🐸速蛙云
+  - DOMAIN-SUFFIX,goodreads.com,🐸速蛙云
+  - DOMAIN-SUFFIX,gravatar.com,🐸速蛙云
+  - DOMAIN-SUFFIX,gstatic.com,🐸速蛙云
+  - DOMAIN-SUFFIX,gvt0.com,🐸速蛙云
+  - DOMAIN-SUFFIX,hockeyapp.net,🐸速蛙云
+  - DOMAIN-SUFFIX,hotmail.com,🐸速蛙云
+  - DOMAIN-SUFFIX,icons8.com,🐸速蛙云
+  - DOMAIN-SUFFIX,ifixit.com,🐸速蛙云
+  - DOMAIN-SUFFIX,ift.tt,🐸速蛙云
+  - DOMAIN-SUFFIX,ifttt.com,🐸速蛙云
+  - DOMAIN-SUFFIX,iherb.com,🐸速蛙云
+  - DOMAIN-SUFFIX,imageshack.us,🐸速蛙云
+  - DOMAIN-SUFFIX,img.ly,🐸速蛙云
+  - DOMAIN-SUFFIX,imgur.com,🐸速蛙云
+  - DOMAIN-SUFFIX,imore.com,🐸速蛙云
+  - DOMAIN-SUFFIX,instapaper.com,🐸速蛙云
+  - DOMAIN-SUFFIX,ipn.li,🐸速蛙云
+  - DOMAIN-SUFFIX,is.gd,🐸速蛙云
+  - DOMAIN-SUFFIX,issuu.com,🐸速蛙云
+  - DOMAIN-SUFFIX,itgonglun.com,🐸速蛙云
+  - DOMAIN-SUFFIX,itun.es,🐸速蛙云
+  - DOMAIN-SUFFIX,ixquick.com,🐸速蛙云
+  - DOMAIN-SUFFIX,j.mp,🐸速蛙云
+  - DOMAIN-SUFFIX,js.revsci.net,🐸速蛙云
+  - DOMAIN-SUFFIX,jshint.com,🐸速蛙云
+  - DOMAIN-SUFFIX,jtvnw.net,🐸速蛙云
+  - DOMAIN-SUFFIX,justgetflux.com,🐸速蛙云
+  - DOMAIN-SUFFIX,kat.cr,🐸速蛙云
+  - DOMAIN-SUFFIX,klip.me,🐸速蛙云
+  - DOMAIN-SUFFIX,libsyn.com,🐸速蛙云
+  - DOMAIN-SUFFIX,linode.com,🐸速蛙云
+  - DOMAIN-SUFFIX,lithium.com,🐸速蛙云
+  - DOMAIN-SUFFIX,littlehj.com,🐸速蛙云
+  - DOMAIN-SUFFIX,live.com,🐸速蛙云
+  - DOMAIN-SUFFIX,live.net,🐸速蛙云
+  - DOMAIN-SUFFIX,livefilestore.com,🐸速蛙云
+  - DOMAIN-SUFFIX,llnwd.net,🐸速蛙云
+  - DOMAIN-SUFFIX,macid.co,🐸速蛙云
+  - DOMAIN-SUFFIX,macromedia.com,🐸速蛙云
+  - DOMAIN-SUFFIX,macrumors.com,🐸速蛙云
+  - DOMAIN-SUFFIX,mashable.com,🐸速蛙云
+  - DOMAIN-SUFFIX,mathjax.org,🐸速蛙云
+  - DOMAIN-SUFFIX,medium.com,🐸速蛙云
+  - DOMAIN-SUFFIX,mega.co.nz,🐸速蛙云
+  - DOMAIN-SUFFIX,mega.nz,🐸速蛙云
+  - DOMAIN-SUFFIX,megaupload.com,🐸速蛙云
+  - DOMAIN-SUFFIX,microsofttranslator.com,🐸速蛙云
+  - DOMAIN-SUFFIX,mindnode.com,🐸速蛙云
+  - DOMAIN-SUFFIX,mobile01.com,🐸速蛙云
+  - DOMAIN-SUFFIX,modmyi.com,🐸速蛙云
+  - DOMAIN-SUFFIX,msedge.net,🐸速蛙云
+  - DOMAIN-SUFFIX,myfontastic.com,🐸速蛙云
+  - DOMAIN-SUFFIX,name.com,🐸速蛙云
+  - DOMAIN-SUFFIX,nextmedia.com,🐸速蛙云
+  - DOMAIN-SUFFIX,nsstatic.net,🐸速蛙云
+  - DOMAIN-SUFFIX,nssurge.com,🐸速蛙云
+  - DOMAIN-SUFFIX,nyt.com,🐸速蛙云
+  - DOMAIN-SUFFIX,nytimes.com,🐸速蛙云
+  - DOMAIN-SUFFIX,omnigroup.com,🐸速蛙云
+  - DOMAIN-SUFFIX,onedrive.com,🐸速蛙云
+  - DOMAIN-SUFFIX,onenote.com,🐸速蛙云
+  - DOMAIN-SUFFIX,ooyala.com,🐸速蛙云
+  - DOMAIN-SUFFIX,openvpn.net,🐸速蛙云
+  - DOMAIN-SUFFIX,openwrt.org,🐸速蛙云
+  - DOMAIN-SUFFIX,orkut.com,🐸速蛙云
+  - DOMAIN-SUFFIX,osxdaily.com,🐸速蛙云
+  - DOMAIN-SUFFIX,outlook.com,🐸速蛙云
+  - DOMAIN-SUFFIX,ow.ly,🐸速蛙云
+  - DOMAIN-SUFFIX,paddleapi.com,🐸速蛙云
+  - DOMAIN-SUFFIX,parallels.com,🐸速蛙云
+  - DOMAIN-SUFFIX,parse.com,🐸速蛙云
+  - DOMAIN-SUFFIX,pdfexpert.com,🐸速蛙云
+  - DOMAIN-SUFFIX,periscope.tv,🐸速蛙云
+  - DOMAIN-SUFFIX,pinboard.in,🐸速蛙云
+  - DOMAIN-SUFFIX,pinterest.com,🐸速蛙云
+  - DOMAIN-SUFFIX,pixelmator.com,🐸速蛙云
+  - DOMAIN-SUFFIX,pixiv.net,🐸速蛙云
+  - DOMAIN-SUFFIX,playpcesor.com,🐸速蛙云
+  - DOMAIN-SUFFIX,playstation.com,🐸速蛙云
+  - DOMAIN-SUFFIX,playstation.com.hk,🐸速蛙云
+  - DOMAIN-SUFFIX,playstation.net,🐸速蛙云
+  - DOMAIN-SUFFIX,playstationnetwork.com,🐸速蛙云
+  - DOMAIN-SUFFIX,pushwoosh.com,🐸速蛙云
+  - DOMAIN-SUFFIX,rime.im,🐸速蛙云
+  - DOMAIN-SUFFIX,servebom.com,🐸速蛙云
+  - DOMAIN-SUFFIX,sfx.ms,🐸速蛙云
+  - DOMAIN-SUFFIX,shadowsocks.org,🐸速蛙云
+  - DOMAIN-SUFFIX,sharethis.com,🐸速蛙云
+  - DOMAIN-SUFFIX,shazam.com,🐸速蛙云
+  - DOMAIN-SUFFIX,skype.com,🐸速蛙云
+  - DOMAIN-SUFFIX,smartdns🐸速蛙云.com,🐸速蛙云
+  - DOMAIN-SUFFIX,smartmailcloud.com,🐸速蛙云
+  - DOMAIN-SUFFIX,sndcdn.com,🐸速蛙云
+  - DOMAIN-SUFFIX,sony.com,🐸速蛙云
+  - DOMAIN-SUFFIX,soundcloud.com,🐸速蛙云
+  - DOMAIN-SUFFIX,sourceforge.net,🐸速蛙云
+  - DOMAIN-SUFFIX,spotify.com,🐸速蛙云
+  - DOMAIN-SUFFIX,squarespace.com,🐸速蛙云
+  - DOMAIN-SUFFIX,sstatic.net,🐸速蛙云
+  - DOMAIN-SUFFIX,st.luluku.pw,🐸速蛙云
+  - DOMAIN-SUFFIX,stackoverflow.com,🐸速蛙云
+  - DOMAIN-SUFFIX,startpage.com,🐸速蛙云
+  - DOMAIN-SUFFIX,staticflickr.com,🐸速蛙云
+  - DOMAIN-SUFFIX,steamcommunity.com,🐸速蛙云
+  - DOMAIN-SUFFIX,symauth.com,🐸速蛙云
+  - DOMAIN-SUFFIX,symcb.com,🐸速蛙云
+  - DOMAIN-SUFFIX,symcd.com,🐸速蛙云
+  - DOMAIN-SUFFIX,tapbots.com,🐸速蛙云
+  - DOMAIN-SUFFIX,tapbots.net,🐸速蛙云
+  - DOMAIN-SUFFIX,tdesktop.com,🐸速蛙云
+  - DOMAIN-SUFFIX,techcrunch.com,🐸速蛙云
+  - DOMAIN-SUFFIX,techsmith.com,🐸速蛙云
+  - DOMAIN-SUFFIX,thepiratebay.org,🐸速蛙云
+  - DOMAIN-SUFFIX,theverge.com,🐸速蛙云
+  - DOMAIN-SUFFIX,time.com,🐸速蛙云
+  - DOMAIN-SUFFIX,timeinc.net,🐸速蛙云
+  - DOMAIN-SUFFIX,tiny.cc,🐸速蛙云
+  - DOMAIN-SUFFIX,tinypic.com,🐸速蛙云
+  - DOMAIN-SUFFIX,tmblr.co,🐸速蛙云
+  - DOMAIN-SUFFIX,todoist.com,🐸速蛙云
+  - DOMAIN-SUFFIX,trello.com,🐸速蛙云
+  - DOMAIN-SUFFIX,trustasiassl.com,🐸速蛙云
+  - DOMAIN-SUFFIX,tumblr.co,🐸速蛙云
+  - DOMAIN-SUFFIX,tumblr.com,🐸速蛙云
+  - DOMAIN-SUFFIX,tweetdeck.com,🐸速蛙云
+  - DOMAIN-SUFFIX,tweetmarker.net,🐸速蛙云
+  - DOMAIN-SUFFIX,twitch.tv,🐸速蛙云
+  - DOMAIN-SUFFIX,txmblr.com,🐸速蛙云
+  - DOMAIN-SUFFIX,typekit.net,🐸速蛙云
+  - DOMAIN-SUFFIX,ubertags.com,🐸速蛙云
+  - DOMAIN-SUFFIX,ublock.org,🐸速蛙云
+  - DOMAIN-SUFFIX,ubnt.com,🐸速蛙云
+  - DOMAIN-SUFFIX,ulyssesapp.com,🐸速蛙云
+  - DOMAIN-SUFFIX,urchin.com,🐸速蛙云
+  - DOMAIN-SUFFIX,usertrust.com,🐸速蛙云
+  - DOMAIN-SUFFIX,v.gd,🐸速蛙云
+  - DOMAIN-SUFFIX,v2ex.com,🐸速蛙云
+  - DOMAIN-SUFFIX,vimeo.com,🐸速蛙云
+  - DOMAIN-SUFFIX,vimeocdn.com,🐸速蛙云
+  - DOMAIN-SUFFIX,vine.co,🐸速蛙云
+  - DOMAIN-SUFFIX,vivaldi.com,🐸速蛙云
+  - DOMAIN-SUFFIX,vox-cdn.com,🐸速蛙云
+  - DOMAIN-SUFFIX,vsco.co,🐸速蛙云
+  - DOMAIN-SUFFIX,vultr.com,🐸速蛙云
+  - DOMAIN-SUFFIX,w.org,🐸速蛙云
+  - DOMAIN-SUFFIX,w3schools.com,🐸速蛙云
+  - DOMAIN-SUFFIX,webtype.com,🐸速蛙云
+  - DOMAIN-SUFFIX,wikiwand.com,🐸速蛙云
+  - DOMAIN-SUFFIX,wikileaks.org,🐸速蛙云
+  - DOMAIN-SUFFIX,wikimedia.org,🐸速蛙云
+  - DOMAIN-SUFFIX,wikipedia.com,🐸速蛙云
+  - DOMAIN-SUFFIX,wikipedia.org,🐸速蛙云
+  - DOMAIN-SUFFIX,windows.com,🐸速蛙云
+  - DOMAIN-SUFFIX,windows.net,🐸速蛙云
+  - DOMAIN-SUFFIX,wire.com,🐸速蛙云
+  - DOMAIN-SUFFIX,wordpress.com,🐸速蛙云
+  - DOMAIN-SUFFIX,workflowy.com,🐸速蛙云
+  - DOMAIN-SUFFIX,wp.com,🐸速蛙云
+  - DOMAIN-SUFFIX,wsj.com,🐸速蛙云
+  - DOMAIN-SUFFIX,wsj.net,🐸速蛙云
+  - DOMAIN-SUFFIX,xda-developers.com,🐸速蛙云
+  - DOMAIN-SUFFIX,xeeno.com,🐸速蛙云
+  - DOMAIN-SUFFIX,xiti.com,🐸速蛙云
+  - DOMAIN-SUFFIX,yahoo.com,🐸速蛙云
+  - DOMAIN-SUFFIX,yimg.com,🐸速蛙云
+  - DOMAIN-SUFFIX,ying.com,🐸速蛙云
+  - DOMAIN-SUFFIX,yoyo.org,🐸速蛙云
+  - DOMAIN-SUFFIX,ytimg.com,🐸速蛙云
+
+  # Telegram
+  - DOMAIN-SUFFIX,telegra.ph,🐸速蛙云
+  - DOMAIN-SUFFIX,telegram.org,🐸速蛙云
+  - IP-CIDR,91.108.4.0/22,🐸速蛙云
+  - IP-CIDR,91.108.8.0/21,🐸速蛙云
+  - IP-CIDR,91.108.16.0/22,🐸速蛙云
+  - IP-CIDR,91.108.56.0/22,🐸速蛙云
+  - IP-CIDR,149.154.160.0/20,🐸速蛙云
+  - IP-CIDR6,2001:67c:4e8::/48,🐸速蛙云
+  - IP-CIDR6,2001:b28:f23d::/48,🐸速蛙云
+  - IP-CIDR6,2001:b28:f23f::/48,🐸速蛙云
+
+  # LAN
+  - DOMAIN,injections.adguard.org,DIRECT
+  - DOMAIN,local.adguard.org,DIRECT
+  - DOMAIN-SUFFIX,local,DIRECT
+
+  - IP-CIDR,0.0.0.0/8,DIRECT
+  - IP-CIDR,10.0.0.0/8,DIRECT
+  - IP-CIDR,17.0.0.0/8,DIRECT
+  - IP-CIDR,100.64.0.0/10,DIRECT
+  - IP-CIDR,127.0.0.0/8,DIRECT
+  - IP-CIDR,169.254.0.0/16,DIRECT
+  - IP-CIDR,172.16.0.0/12,DIRECT
+  - IP-CIDR,192.0.0.0/24,DIRECT
+  - IP-CIDR,192.0.2.0/24,DIRECT
+  - IP-CIDR,192.88.99.0/24,DIRECT
+  - IP-CIDR,192.168.0.0/16,DIRECT
+  - IP-CIDR,198.18.0.0/15,DIRECT
+  - IP-CIDR,198.51.100.0/24,DIRECT
+  - IP-CIDR,203.0.113.0/24,DIRECT
+  - IP-CIDR,224.0.0.0/4,DIRECT
+  - IP-CIDR,240.0.0.0/4,DIRECT
+  - IP-CIDR,255.255.255.255/32,DIRECT
+  - IP-CIDR6,::1/128,DIRECT
+  - IP-CIDR6,fe80::/10,DIRECT
+  - IP-CIDR6,fc00::/7,DIRECT
+  - IP-CIDR6,ff00::/8,DIRECT
+
+  # 最终规则
+  - GEOIP,CN,DIRECT
+  - MATCH,🐸速蛙云
