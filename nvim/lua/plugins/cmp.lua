@@ -47,19 +47,19 @@ return
 
             mapping = {
                 -- 选择上一个
-                ['<up>'] = cmp.mapping.select_prev_item(),
+                ['<C-k>'] = cmp.mapping.select_prev_item(),
                 -- 选择下一个
-                ['<Down>'] = cmp.mapping.select_next_item(),
+                ['<C-j>'] = cmp.mapping.select_next_item(),
                 -- 出现补全
-                ['<A-.>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+                ['<C-Spance>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
                 -- 取消补全
-                ['<A-,>'] = cmp.mapping({
+                ['<C-e>'] = cmp.mapping({
                     i = cmp.mapping.abort(),
                     c = cmp.mapping.close(),
                 }),
 
                 -- 确认使用某个补全项
-                ['<Tab>'] = cmp.mapping.confirm({
+                ['<CR>'] = cmp.mapping.confirm({
                     select = true,
                     behavior = cmp.ConfirmBehavior.Replace
                 }),

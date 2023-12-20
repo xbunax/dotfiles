@@ -49,7 +49,9 @@ vim.keymap.set('n', '{', '<cmd>lua scroll_up_and_center()<CR>', { noremap = true
 
 local runMyCommand = function()
     local fullpath = vim.fn.expand('%:p')
-    local command = "typst-preview " .. vim.fn.shellescape(fullpath) .. " --partial-rendering" .. " --hosting=127.0.0.1:8000"
+    local command = "typst-preview " ..
+        vim.fn.shellescape(fullpath) ..
+        " --partial-rendering"
     vim.fn.jobstart(command, {
         on_stdout = function(job_id, data, event)
             -- 处理标准输出
