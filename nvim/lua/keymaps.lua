@@ -1,6 +1,8 @@
 vim.api.nvim_set_keymap('n', 'Ff', ':SymbolsOutline<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'TT', ':NvimTreeFocus<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'TC', ':NvimTreeClose<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'RR', ':Lspsaga rename<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'FF', ':Lspsaga finder<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-q>', '<cmd>tabNext<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-a>', '<cmd>tabclose<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-s>', '<cmd>w!<CR>', { noremap = true, silent = true })
