@@ -1,3 +1,4 @@
 return {
-    'gcmt/wildfire.vim'
+    'gcmt/wildfire.vim',
+    event = "VeryLazy",
 }

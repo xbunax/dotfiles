@@ -1,5 +1,6 @@
 return {
-  'kaarmu/typst.vim',
-  ft = 'typst',
-  lazy=false,
+    'kaarmu/typst.vim',
+    event = "VeryLazy",
+    ft = 'typst',
+    lazy = false,
 }

@@ -16,6 +16,8 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappings are correct
 
 require("lazy").setup({
+    require("plugins.start-time"),
+    require("plugins.neodev"),
     require("plugins.gruvbox"),
     require("plugins.navbuddy"),
     require("plugins.mason"),

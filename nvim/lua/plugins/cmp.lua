@@ -26,7 +26,8 @@ return
         }
         -- "L3MON4D3/LuaSnip",
     },
-
+    -- lazy = true,
+    -- event = "InsertEnter",
     config = function()
         local cmp = require 'cmp'
         local lspkind = require("lspkind")
@@ -129,11 +130,12 @@ return
 
         local capabilities = require('cmp_nvim_lsp').default_capabilities()
         -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
---        require('lspconfig')['pylsp'].setup {
---            capabilities = capabilities
---        }
---        require('lspconfig')['lua_ls'].setup {
---            capabilities = capabilities
---        }
+        --        require('lspconfig')['pylsp'].setup {
+        --            capabilities = capabilities
+        --        }
+        --        require('lspconfig')['lua_ls'].setup {
+        --            capabilities = capabilities
+        --        }
     end
 }
+
