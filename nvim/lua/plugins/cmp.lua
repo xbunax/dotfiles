@@ -133,9 +133,23 @@ return
         --        require('lspconfig')['pylsp'].setup {
         --            capabilities = capabilities
         --        }
-        --        require('lspconfig')['lua_ls'].setup {
-        --            capabilities = capabilities
-        --        }
+        -- local nvim_lsp = require('lspconfig')
+        -- nvim_lsp["lua_ls"].setup {
+        --     capabilities = capabilities
+        -- }
+        -- nvim_lsp["pylsp"].setup {
+        --     capabilities = capabilities
+        -- }
+        -- nvim_lsp["bashls"].setup {
+        --     capabilities = capabilities
+        -- }
+        -- nvim_lsp["typst_lsp"].setup {
+        --     capabilities = capabilities
+        -- }
     end
-}
 
+    -- require('lspconfig')["pylsp"].setup {
+    --     capabilities = capabilities
+    -- }
+    -- end,
+}

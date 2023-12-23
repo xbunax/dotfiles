@@ -6,6 +6,7 @@ vim.api.nvim_set_keymap('n', 'FF', ':Lspsaga finder<CR>', { noremap = true, sile
 vim.api.nvim_set_keymap('n', '<C-q>', '<cmd>tabNext<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-a>', '<cmd>tabclose<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-s>', '<cmd>w!<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'qa', '<cmd>quitall<CR>', { noremap = true, silent = true })
 
 --fzf
 vim.keymap.set("n", "<c-P>", "<cmd>lua require('fzf-lua').files()<CR>", { silent = true })
@@ -83,3 +84,40 @@ end
 --     local handle = vim.loop.spawn(command, { args = args }, vim.schedule_wrap(on_exit))
 -- end
 vim.keymap.set('n', '<C-p>', runMyCommand, { noremap = true, silent = true })
+
+
+
+
+
+-- buffernext and bufferprev
+
+local bufferline = require('bufferline')
+
+-- Go to the next buffer
+vim.api.nvim_create_user_command(
+  'BufferNext',
+  function()
+    bufferline.cycle(1)
+  end,
+  { nargs = 0 }
+)
+
+-- Go to the previous buffer
+vim.api.nvim_create_user_command(
+  'BufferPrev',
+  function()
+    bufferline.cycle(-1)
+  end,
+  { nargs = 0 }
+)
+
+-- Key mappings for BufferNext and BufferPrev
+vim.keymap.set('n', '<c-q>', ':BufferNext<CR>', {noremap=true, silent = true })
+vim.keymap.set('n', '<c-p>', ':BufferPrev<CR>', {noremap=true, silent = true })
+
+
+
+
+
+
+
