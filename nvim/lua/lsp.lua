@@ -23,7 +23,10 @@ local lspconfig = require('lspconfig')
 
 -- Customized on_attach function
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-local opts = { noremap = true, silent = true }
+local opts = {
+    noremap = true,
+    silent = true,
+}
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
@@ -65,6 +68,8 @@ end
 -- How to add LSP for a specific language?
 -- 1. use `:Mason` to install corresponding LSP
 -- 2. add configuration below
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
 lspconfig.pylsp.setup({
     on_attach = on_attach,
 })
@@ -111,7 +116,14 @@ lspconfig.rust_analyzer.setup({
     }
 })
 
-lspconfig.clangd.setup({})
+lspconfig.clangd.setup({
+    -- function(_, opts)
+    --     opts.capabilities.offsetEncoding = { "utf-16" }
+    -- end,
+    capabilities = {
+        offsetEncoding = { "utf-16" }
+    }
+})
 
 lspconfig.matlab_ls.setup({
     on_attach = on_attach,
@@ -126,9 +138,11 @@ lspconfig.taplo.setup({
 })
 
 lspconfig.typst_lsp.setup({
+    capabilities = capabilities,
     on_attach = on_attach,
+    root_dir = function() return vim.fn.getcwd() end,
     settings = {
-        exportPdf = "onType" -- Choose onType, onSave or never.
-        -- serverPath = "" -- Normally, there is no need to uncomment it.
+        exportPdf = "onType",                                  -- Choose onType, onSave or never.
+        serverPath = "~/.local/share/nvim/mason/bin/typst-lsp" -- Normally, there is no need to uncomment it.
     }
 })

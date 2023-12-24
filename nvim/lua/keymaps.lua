@@ -95,27 +95,25 @@ local bufferline = require('bufferline')
 
 -- Go to the next buffer
 vim.api.nvim_create_user_command(
-  'BufferNext',
-  function()
-    bufferline.cycle(1)
-  end,
-  { nargs = 0 }
+    'BufferNext',
+    function()
+        bufferline.cycle(1)
+    end,
+    { nargs = 0 }
 )
 
 -- Go to the previous buffer
 vim.api.nvim_create_user_command(
-  'BufferPrev',
-  function()
-    bufferline.cycle(-1)
-  end,
-  { nargs = 0 }
+    'BufferPrev',
+    function()
+        bufferline.cycle(-1)
+    end,
+    { nargs = 0 }
 )
 
 -- Key mappings for BufferNext and BufferPrev
-vim.keymap.set('n', '<c-q>', ':BufferNext<CR>', {noremap=true, silent = true })
-vim.keymap.set('n', '<c-p>', ':BufferPrev<CR>', {noremap=true, silent = true })
-
-
+vim.keymap.set('n', '<c-q>', ':BufferNext<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<c-p>', ':BufferPrev<CR>', { noremap = true, silent = true })
 
 
 

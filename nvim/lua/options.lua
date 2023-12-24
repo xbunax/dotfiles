@@ -48,6 +48,11 @@ vim.cmd('set cursorline')
 -- autocmd InsertLeave * write
 -- ]]
 
+-- typst-preview
+-- vim.api.nvim_create_autocmd("CursorMoved", {
+--     pattern = "*.typ",
+--     command = "TypstPreviewFollowCursor"
+-- })
 
 
 
