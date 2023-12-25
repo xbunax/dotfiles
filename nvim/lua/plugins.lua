@@ -11,7 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-
+local fileType = vim.bo.filetype
 -- Example using a list of specs with the default options
 vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappings are correct
 
@@ -35,13 +35,14 @@ require("lazy").setup({
     require("plugins.telescope"),
     require("plugins.toggleterm"),
     require("plugins.scrollbar"),
-    require("plugins.symbols-outline"),
+    -- require("plugins.symbols-outline"),
     require("plugins.vim-illuminate"),
     require("plugins.bufferline"),
     require("plugins.lualine"),
     -- require("plugins.leap"),
     require("plugins.flash"),
-    require("plugins.wildfire"),
+    -- require("plugins.wildfire"),
+    require("plugins.wildfire-untree"),
     require("plugins.alternate"),
     require("plugins.nvim-tree"),
     require("plugins.lspsaga"),

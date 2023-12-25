@@ -11,7 +11,7 @@ require('mason').setup({
 
 require('mason-lspconfig').setup({
     -- A list of servers to automatically install if they're not already installed
-    ensure_installed = { 'taplo', 'typst_lsp', 'pylsp', 'gopls', 'clangd', 'lua_ls', 'bashls', 'rust_analyzer', 'texlab', 'matlab_ls' },
+    ensure_installed = { 'taplo', 'pylsp', 'clangd', 'lua_ls', 'bashls' },
 })
 
 -- Set different settings for different languages' LSP
