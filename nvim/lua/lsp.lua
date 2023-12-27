@@ -129,6 +129,10 @@ lspconfig.matlab_ls.setup({
     on_attach = on_attach,
 })
 
+lspconfig.yamlls.setup({
+    on_attach = on_attach,
+})
+
 lspconfig.texlab.setup({
     on_attach = on_attach,
 })
