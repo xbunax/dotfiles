@@ -2,7 +2,7 @@ vim.api.nvim_set_keymap('n', 'Ff', ':SymbolsOutline<CR>', { noremap = true, sile
 -- vim.api.nvim_set_keymap('n', 'TT', ':NvimTreeFocus<CR>', { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap("n", "nb", ":Navbuddy<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'RR', ':Lspsaga rename<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'FF', ':Lspsaga finder<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'FF', ':Lspsaga finder ref+def<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-q>', '<cmd>tabNext<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-a>', '<cmd>tabclose<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-s>', '<cmd>w!<CR>', { noremap = true, silent = true })
@@ -116,6 +116,21 @@ vim.keymap.set('n', '<c-q>', ':BufferNext<CR>', { noremap = true, silent = true 
 vim.keymap.set('n', '<c-p>', ':BufferPrev<CR>', { noremap = true, silent = true })
 
 
+-- <Alt>+ hjkl switch focus
 
+-- 在你的init.lua文件或相应的Lua配置文件中加入以下代码
+
+-- 定义一个函数来处理窗口焦点的切换
+-- local function alt_move(key)
+--   -- 使用vim.api.nvim_set_keymap来设置键位映射
+--   -- <A-key> 表示 Alt+key 的组合
+--   vim.keymap.set('n', '<M-' .. key .. '>', '<C-w>' .. key, { noremap = true, silent = true })
+-- end
+
+-- 分别为h, j, k, l设置映射
+-- alt_move('h')
+-- alt_move('j')
+-- alt_move('k')
+-- alt_move('l')
 
 

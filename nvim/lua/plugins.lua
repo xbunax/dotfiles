@@ -17,6 +17,7 @@ vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappin
 
 require("lazy").setup({
     require("plugins.start-time"),
+    require("plugins.dashboard"),
     require("plugins.neodev"),
     require("plugins.gruvbox"),
     require("plugins.navbuddy"),
@@ -47,7 +48,6 @@ require("lazy").setup({
     require("plugins.nvim-tree"),
     require("plugins.lspsaga"),
     require("plugins.markdown-pre"),
-    require("plugins.dashboard"),
     require("plugins.oil"),
     require("plugins.fzf-lua"),
     require("plugins.fzf"),
@@ -58,6 +58,7 @@ require("lazy").setup({
     require("plugins.typst-preview"),
     require("plugins.surround"),
     require("plugins.copilot"),
+    require("plugins.clangd-extensions"),
     -- require("plugins.colorizer"),
  --   require("plugins.autosave"),
     --require("plugins.neotree"),

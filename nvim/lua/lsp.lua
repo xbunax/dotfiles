@@ -120,6 +120,7 @@ lspconfig.clangd.setup({
     -- function(_, opts)
     --     opts.capabilities.offsetEncoding = { "utf-16" }
     -- end,
+
     capabilities = {
         offsetEncoding = { "utf-16" }
     }
