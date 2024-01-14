@@ -138,6 +138,29 @@ lspconfig.texlab.setup({
     on_attach = on_attach,
 })
 
+lspconfig.cmake.setup({
+    on_attach = on_attach,
+})
+
+lspconfig.swift_mesonls.setup({
+    on_attach = on_attach,
+    vim.api.nvim_create_autocmd("FileType", {
+ 	pattern = { "swift" },
+ 	callback = function()
+ 		local root_dir = vim.fs.dirname(vim.fs.find({
+ 			"Package.swift",
+ 			".git",
+ 		}, { upward = true })[1])
+ 		local client = vim.lsp.start({
+ 			name = "sourcekit-lsp",
+ 			cmd = { "sourcekit-lsp" },
+ 			root_dir = root_dir,
+ 		})
+ 		vim.lsp.buf_attach_client(0, client)
+ 	end,
+ })
+})
+
 lspconfig.taplo.setup({
     on_attach = on_attach,
 })
