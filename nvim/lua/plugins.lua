@@ -59,6 +59,7 @@ require("lazy").setup({
     require("plugins.surround"),
     require("plugins.copilot"),
     require("plugins.clangd-extensions"),
+    -- require("plugins.null-ls"),
     -- require("plugins.colorizer"),
  --   require("plugins.autosave"),
     --require("plugins.neotree"),

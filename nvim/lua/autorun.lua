@@ -13,7 +13,8 @@ end
 vim.api.nvim_create_autocmd("FileType",{
     pattern = "python",
     callback = function()
-        vim.keymap.set("n", "<F5>", runPython)
+        vim.keymap.set("n", "<F6>", runPython)
+        -- vim.api.nvim_set_keymap("n", "<F5>",":lua runPython()<CR>", {noremap = true, silent = true})
     end
 })
 
@@ -30,6 +31,6 @@ end
 vim.api.nvim_create_autocmd("FileType",{
     pattern = "swift",
     callback = function()
-        vim.keymap.set("n", "<F5>", runSwift)
+        vim.keymap.set("n", "<F6>", runSwift)
     end
 })
