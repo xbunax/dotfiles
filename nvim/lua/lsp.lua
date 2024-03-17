@@ -121,6 +121,7 @@ lspconfig.clangd.setup({
     --     opts.capabilities.offsetEncoding = { "utf-16" }
     -- end,
 
+    on_attach = on_attach,
     capabilities = {
         offsetEncoding = { "utf-16" }
     }

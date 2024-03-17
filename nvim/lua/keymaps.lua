@@ -3,8 +3,8 @@ vim.api.nvim_set_keymap('n', 'Ff', ':SymbolsOutline<CR>', { noremap = true, sile
 -- vim.api.nvim_set_keymap("n", "nb", ":Navbuddy<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'RR', ':Lspsaga rename<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'FF', ':Lspsaga finder ref+def<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-q>', '<cmd>tabNext<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-a>', '<cmd>tabclose<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-n>', '<cmd>tabNext<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-q>', '<cmd>tabclose<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-s>', '<cmd>w!<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'qa', '<cmd>quitall<CR>', { noremap = true, silent = true })
 

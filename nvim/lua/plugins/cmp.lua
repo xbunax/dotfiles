@@ -2,6 +2,7 @@ return
 {
     "hrsh7th/nvim-cmp",
     after = "SirVer/ultisnips",
+    event = "InsertEnter",
     dependencies = {
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
@@ -9,6 +10,7 @@ return
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-nvim-lua",
         "hrsh7th/cmp-calc",
+        "saadparwaiz1/cmp_luasnip",
         -- "andersevenrud/cmp-tmux",
         {
             "onsails/lspkind.nvim",
@@ -35,6 +37,7 @@ return
             snippet = {
                 -- REQUIRED - you must specify a snippet engine
                 expand = function(args)
+                    -- require('luasnip').lsp_expand(args.body)
                     --vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
                     -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
                     -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
@@ -46,30 +49,47 @@ return
                 -- documentation = cmp.config.window.bordered(),
             },
 
-            mapping = {
-                -- 选择上一个
-                ['<C-k>'] = cmp.mapping.select_prev_item(),
-                -- 选择下一个
-                ['<C-j>'] = cmp.mapping.select_next_item(),
-                -- 出现补全
-                ['<C-Spance>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-                -- 取消补全
-                ['<C-e>'] = cmp.mapping({
-                    i = cmp.mapping.abort(),
-                    c = cmp.mapping.close(),
-                }),
-
-                -- 确认使用某个补全项
-                ['<CR>'] = cmp.mapping.confirm({
+            mapping = cmp.mapping.preset.insert({
+                ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+                ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+                ["<C-J>"] = cmp.mapping.scroll_docs(-4),
+                ["<C-K>"] = cmp.mapping.scroll_docs(4),
+                ["<C-Space>"] = cmp.mapping.complete(),
+                ["<C-e>"] = cmp.mapping.abort(),
+                ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+                ["<S-CR>"] = cmp.mapping.confirm({
+                    behavior = cmp.ConfirmBehavior.Replace,
                     select = true,
-                    behavior = cmp.ConfirmBehavior.Replace
-                }),
-
-                -- 向上翻页
-                ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-                -- 向下翻页
-                ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-            },
+                }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+                ["<C-CR>"] = function(fallback)
+                    cmp.abort()
+                    fallback()
+                end,
+            }),
+            -- mapping = {
+            --     -- 选择上一个
+            --     ['<C-k>'] = cmp.mapping.select_prev_item(),
+            --     -- 选择下一个
+            --     ['<C-j>'] = cmp.mapping.select_next_item(),
+            --     -- 出现补全
+            --     ['<C-Spance>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+            --     -- 取消补全
+            --     ['<C-e>'] = cmp.mapping({
+            --         i = cmp.mapping.abort(),
+            --         c = cmp.mapping.close(),
+            --     }),
+            --
+            --     -- 确认使用某个补全项
+            --     ['<CR>'] = cmp.mapping.confirm({
+            --         select = true,
+            --         behavior = cmp.ConfirmBehavior.Replace
+            --     }),
+            --
+            --     -- 向上翻页
+            --     ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+            --     -- 向下翻页
+            --     ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+            -- },
             -- mapping = cmp.mapping.preset.insert({
             --     ['<C-b>'] = cmp.mapping.select_prev_item(),
             --     ['Tab'] = cmp.mapping.select_next_item(),
@@ -79,7 +99,8 @@ return
             -- }),
             sources = cmp.config.sources({
                 { name = 'nvim_lsp' },
-                { name = 'vsnip' },
+                -- { name = 'luasnip' },
+                { name = 'path' },
                 -- For vsnip users.
                 -- { name = 'luasnip' }, -- For luasnip users.
                 -- { name = 'ultisnips' }, -- For ultisnips users.
@@ -89,7 +110,7 @@ return
             })
         })
         formatting = {
-            fields = {"kind","abbr","menu"},
+            fields = { "kind", "abbr", "menu" },
             format = function(entry, vim_item)
                 -- fancy icons and a name of kind
                 vim_item.kind = require("lspkind").presets.default[vim_item.kind] .. " " .. vim_item.kind
@@ -108,8 +129,8 @@ return
             --     maxwidth = 50,         -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
             --     ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
 
-                -- The function below will be called before any actual modifications from lspkind
-                -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
+            -- The function below will be called before any actual modifications from lspkind
+            -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
 
         }
         -- Set configuration for specific filetype.
@@ -125,7 +146,9 @@ return
         cmp.setup.cmdline({ '/', '?' }, {
             mapping = cmp.mapping.preset.cmdline(),
             sources = {
-                { name = 'buffer' }
+                { name = 'buffer' }, {
+                name = 'path'
+            }
             }
         })
 
