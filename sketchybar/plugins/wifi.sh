@@ -2,7 +2,9 @@
 
 update() {
   source "$CONFIG_DIR/icons.sh"
-  INFO="$(/System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport -I | awk -F ' SSID: '  '/ SSID: / {print $2}')"
+  # INFO=$(sudo wdutil info | awk -F ': ' '/ SSID/{print $2}')
+  INFO=$(networksetup -getairportnetwork en0 | awk -F': ' '{print $2}')
+  # INFO="$(/System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport -I | awk -F ' SSID: '  '/ SSID: / {print $2}')"
   LABEL="$INFO ($(ipconfig getifaddr en0))"
   ICON="$([ -n "$INFO" ] && echo "$WIFI_CONNECTED" || echo "$WIFI_DISCONNECTED")"
 

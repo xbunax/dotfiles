@@ -20,7 +20,7 @@ launchctl unload -F /System/Library/LaunchAgents/com.apple.OSDUIHelper.plist > /
 
 # Setting up the general bar appearance of the bar
 bar=(
-  height=45
+  height=38
   # color=$BAR_COLOR
   # color=CCx0000000
   color=0xBFfffff
@@ -86,7 +86,7 @@ source "$ITEM_DIR/wifi.sh"
 source "$ITEM_DIR/battery.sh"
 source "$ITEM_DIR/wechat.sh"
 source "$ITEM_DIR/qq.sh"
-source "$ITEM_DIR/volume.sh"
+# source "$ITEM_DIR/volume.sh"
 source "$ITEM_DIR/tempture.sh"
 # source "$ITEM_DIR/netspeed.sh"
 source "$ITEM_DIR/cpu.sh"
