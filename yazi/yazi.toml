@@ -19,101 +19,101 @@ ueberzug_offset = [0, 0, 0, 0]
 
 [opener]
 edit = [
-    { exec = 'nvim "$@"', block = true, for = "unix" },
-    { exec = 'code "%*"', orphan = true, for = "windows" },
+  { exec = 'nvim "$@"', block = true, for = "unix" },
+  { exec = 'code "%*"', orphan = true, for = "windows" },
 ]
 open = [
-    { exec = 'xdg-open "$@"', desc = "Open", for = "linux" },
-    { exec = 'open "$@"', desc = "Open", for = "macos" },
-    { exec = 'start "%1"', orphan = true, desc = "Open", for = "windows" },
+  { exec = 'xdg-open "$@"', desc = "Open", for = "linux" },
+  { exec = 'open "$@"', desc = "Open", for = "macos" },
+  { exec = 'start "%1"', orphan = true, desc = "Open", for = "windows" },
 ]
 reveal = [
-    { exec = 'open -R "$1"', desc = "Reveal", for = "macos" },
-    { exec = 'explorer /select,%1', orphan = true, desc = "Reveal", for = "windows" },
-    { exec = '''exiftool "$1"; echo "Press enter to exit"; read''', block = true, desc = "Show EXIF", for = "unix" },
+  { exec = 'open -R "$1"', desc = "Reveal", for = "macos" },
+  { exec = 'explorer /select,%1', orphan = true, desc = "Reveal", for = "windows" },
+  { exec = '''exiftool "$1"; echo "Press enter to exit"; read''', block = true, desc = "Show EXIF", for = "unix" },
 ]
 extract = [
-    { exec = 'unar "$1"', desc = "Extract here", for = "unix" },
-    { exec = 'unar "%1"', desc = "Extract here", for = "windows" },
+  { exec = 'unar "$1"', desc = "Extract here", for = "unix" },
+  { exec = 'unar "%1"', desc = "Extract here", for = "windows" },
 ]
 play = [
-    { exec = 'mpv "$@"', orphan = true, for = "unix" },
-    { exec = 'mpv "%1"', orphan = true, for = "windows" },
-    { exec = '''mediainfo "$1"; echo "Press enter to exit"; read''', block = true, desc = "Show media info", for = "unix" },
+  { exec = 'mpv "$@"', orphan = true, for = "unix" },
+  { exec = 'mpv "%1"', orphan = true, for = "windows" },
+  { exec = '''mediainfo "$1"; echo "Press enter to exit"; read''', block = true, desc = "Show media info", for = "unix" },
 ]
 text = [{ exec = 'nvim "$@"', block = true }]
 
 [open]
 rules = [
-    { name = "*/", use = [
-        "edit",
-        "open",
-        "reveal",
-    ] },
+  { name = "*/", use = [
+    "edit",
+    "open",
+    "reveal",
+  ] },
 
-    { mime = "text/*", use = [
-        "edit",
-        "reveal",
-    ] },
-    { mime = "image/*", use = [
-        "open",
-        "reveal",
-    ] },
-    { mime = "video/*", use = [
-        "play",
-        "reveal",
-    ] },
-    { mime = "audio/*", use = [
-        "play",
-        "reveal",
-    ] },
-    { mime = "inode/x-empty", use = [
-        "edit",
-        "reveal",
-    ] },
+  { mime = "text/*", use = [
+    "edit",
+    "reveal",
+  ] },
+  { mime = "image/*", use = [
+    "open",
+    "reveal",
+  ] },
+  { mime = "video/*", use = [
+    "play",
+    "reveal",
+  ] },
+  { mime = "audio/*", use = [
+    "play",
+    "reveal",
+  ] },
+  { mime = "inode/x-empty", use = [
+    "edit",
+    "reveal",
+  ] },
 
-    { mime = "application/json", use = [
-        "edit",
-        "reveal",
-    ] },
-    { mime = "*/javascript", use = [
-        "edit",
-        "reveal",
-    ] },
+  { mime = "application/json", use = [
+    "edit",
+    "reveal",
+  ] },
+  { mime = "*/javascript", use = [
+    "edit",
+    "reveal",
+  ] },
 
-    { mime = "application/zip", use = [
-        "extract",
-        "reveal",
-    ] },
-    { mime = "application/gzip", use = [
-        "extract",
-        "reveal",
-    ] },
-    { mime = "application/x-tar", use = [
-        "extract",
-        "reveal",
-    ] },
-    { mime = "application/x-bzip", use = [
-        "extract",
-        "reveal",
-    ] },
-    { mime = "application/x-bzip2", use = [
-        "extract",
-        "reveal",
-    ] },
-    { mime = "application/x-7z-compressed", use = [
-        "extract",
-        "reveal",
-    ] },
-    { mime = "application/x-rar", use = [
-        "extract",
-        "reveal",
-    ] },
+  { mime = "application/zip", use = [
+    "extract",
+    "reveal",
+  ] },
+  { mime = "application/gzip", use = [
+    "extract",
+    "reveal",
+  ] },
+  { mime = "application/x-tar", use = [
+    "extract",
+    "reveal",
+  ] },
+  { mime = "application/x-bzip", use = [
+    "extract",
+    "reveal",
+  ] },
+  { mime = "application/x-bzip2", use = [
+    "extract",
+    "reveal",
+  ] },
+  { mime = "application/x-7z-compressed", use = [
+    "extract",
+    "reveal",
+  ] },
+  { mime = "application/x-rar", use = [
+    "extract",
+    "reveal",
+  ] },
 
-    { mime = "*", use = [
-        "open",
-        "reveal",
-    ] },
+  { mime = "*", use = [
+    "open",
+    "reveal",
+  ] },
 ]
 
 [tasks]

@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# 获取温度
-TEMPERATURE=$(/usr/local/bin/smctemp -c)
+# get temperature
+TEMPERATURE=$(~/.local/bin/smctemp -c)
 
-# 检查smctemp命令是否成功执行
+# check smctemp whether running well
 if [ $? -ne 0 ]; then
     echo "Error: Unable to get temperature."
     exit 1
 fi
 
-# 更新sketchybar显示
+# update sketchybar shown
 sketchybar --set $NAME temperature label="${TEMPERATURE}󰔄"
