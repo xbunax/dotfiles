@@ -13,12 +13,14 @@ return {
 	bar = {
 		bg = 0xBFffff,
 		border = 0xff494d64,
+		-- border = 0x801a1b26,
 	},
 	popup = {
 		bg = 0xc02c2e34,
 		border = 0xff7f8490,
 	},
-	-- bg1 = 0xbfffff,
+	-- bg1 = 0x001a1b26,
+	-- bg1 = 0x801a1b26,
 	-- bg2 = 0xff,
 	bg1 = 0xff363944,
 	bg2 = 0xff414550,
