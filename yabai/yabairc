@@ -18,8 +18,7 @@ yabai -m signal --add event=window_focused action="sketchybar --trigger window_f
 # /opt/homebrew/bin/yabai -m config window_opacity_duration 0.2
 #/opt/homebrew/bin/yabai -m config active_window_opacity 1.0
 #/opt/homebrew/bin/yabai -m config normal_window_opacity 0.95
-# /opt/homebrew/bin/yabai -m config window_animation_duration 0.3
-/opt/homebrew/bin/yabai -m config # insert_feedback_color      0xff9dd274
+# /opt/homebrew/bin/yabai -m config window_animation_duration 0.5
 /opt/homebrew/bin/yabai -m config split_ratio 0.50
 /opt/homebrew/bin/yabai -m config auto_balance off
 # /opt/homebrew/bin/yabai -m config auto_padding on
@@ -38,11 +37,13 @@ yabai -m signal --add event=window_focused action="sketchybar --trigger window_f
 /opt/homebrew/bin/yabai -m rule --add label="Finder" app="^Finder$" title="(Co(py|nnect)|Move|Info|Pref)" manage=off
 /opt/homebrew/bin/yabai -m rule --add label="Safari" app="^Safari$" title="^(General|(Tab|Password|Website|Extension)s|AutoFill|Se(arch|curity)|Privacy|Advance)$" manage=off
 /opt/homebrew/bin/yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
+/opt/homebrew/bin/yabai -m rule --add label="Wechat" app="^微信$" title="朋友圈" manage=off
+/opt/homebrew/bin/yabai -m rule --add label="Shadowrocket" app="^Shadowrocket$" title="Shadowrocket" manage=off
 /opt/homebrew/bin/yabai -m rule --add label="Select file to save to" app="^Inkscape$" title="Select file to save to" manage=off
-/opt/homebrew/bin/yabai -m rule --add app="^System Preferences$" manage=off
+# /opt/homebrew/bin/yabai -m rule --add app="^System Preferences$" manage=off
 /opt/homebrew/bin/yabai -m config layout bsp
 
-otherApp='^(IINA|访达|Calendar|日历|地图|System Preferences|朋友圈|系统设置|1Password 7|Android Studio|印象笔记)$'
+otherApp='^(IINA|访达|Calendar|日历|地图|System Preferences|朋友圈|小程序|Shadowrocket|Epson iProjection|系统设置|1Password 7|Android Studio|印象笔记)$'
 /opt/homebrew/bin/yabai -m rule --add app="${otherApp}" manage=off
 
 echo "yabai configuration loaded.."
