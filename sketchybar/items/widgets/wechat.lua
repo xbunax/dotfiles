@@ -14,24 +14,30 @@ local wechat = sbar.add("item", "widgets.wechat", {
 	update_freq = 8,
 })
 
-wechat:subscribe({ "routine", "system_woke" }, function()
+wechat:subscribe({ "routine", "power_source_change", "system_woke" }, function()
 	sbar.exec("lsappinfo -all list | grep wechat", function(wechat_notify)
 		local icon = "󰘑"
 		local label = ""
 
 		local notify_num = wechat_notify:match('"StatusLabel"=%{ "label"="?(.-)"? %}')
 
-		if notify_num == nil then
-			notify_num = ""
+		if notify_num == nil or notify_num == "" then
+			wechat:set({
+				icon = {
+					string = icon,
+					color = colors.white,
+				},
+				label = { drawing = false },
+			})
+		else
+			wechat:set({
+				icon = {
+					string = icon,
+					color = colors.white,
+				},
+				label = { string = notify_num .. label, drawing = true },
+			})
 		end
-
-		wechat:set({
-			icon = {
-				string = icon,
-				color = colors.white,
-			},
-			label = { string = notify_num .. label },
-		})
 	end)
 end)
 

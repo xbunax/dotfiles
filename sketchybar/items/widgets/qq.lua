@@ -12,6 +12,7 @@ local qq = sbar.add("item", "widgets.qq", {
 	},
 	label = { font = { family = settings.font.numbers } },
 	update_freq = 8,
+	drawing = true,
 })
 
 qq:subscribe({ "routine", "power_source_change", "system_woke" }, function()
@@ -21,13 +22,24 @@ qq:subscribe({ "routine", "power_source_change", "system_woke" }, function()
 
 		local notify_num = qq_notify:match('"StatusLabel"=%{ "label"="?(.-)"? %}')
 
-		qq:set({
-			icon = {
-				string = icon,
-				color = colors.white,
-			},
-			label = { string = notify_num .. label },
-		})
+		if notify_num == nil or notify_num == "" then
+			-- notify_num = "-"
+			qq:set({
+				icon = {
+					string = icon,
+					color = colors.white,
+				},
+				label = { string = notify_num .. label, drawing = false },
+			})
+		else
+			qq:set({
+				icon = {
+					string = icon,
+					color = colors.white,
+				},
+				label = { string = notify_num .. label },
+			})
+		end
 	end)
 end)
 

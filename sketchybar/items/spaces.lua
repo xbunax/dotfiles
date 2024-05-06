@@ -12,7 +12,7 @@ for i = 1, 10, 1 do
 			font = { family = settings.font.numbers },
 			string = i,
 			padding_left = 10,
-			padding_right = 8,
+			padding_right = 5,
 			color = colors.white,
 			highlight_color = colors.red,
 		},
@@ -132,7 +132,8 @@ space_window_observer:subscribe("space_windows_change", function(env)
 	end
 
 	if no_app then
-		icon_line = " —"
+		icon_line = " — "
+		-- icon_line = ""
 	end
 	sbar.animate("tanh", 10, function()
 		spaces[env.INFO.space]:set({ label = icon_line })
