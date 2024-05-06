@@ -23,7 +23,7 @@ local temp = sbar.add("graph", "widgets.temp", 42, {
 	},
 	--   icon = { string = icons.cpu },
 	label = {
-		string = "temp ??%",
+		string = "􀇬 ??󰔄",
 		font = {
 			family = settings.font.numbers,
 			style = settings.font.style_map["Bold"],
@@ -31,6 +31,7 @@ local temp = sbar.add("graph", "widgets.temp", 42, {
 		},
 		align = "right",
 		padding_right = 0,
+		-- padding_left = 2,
 		width = 0,
 		y_offset = 4,
 	},
@@ -80,7 +81,7 @@ local function updateTemperature()
 
 		temp:set({
 			graph = { color = color },
-			label = temperature .. "󰔄",
+			label = "􀇬 " .. temperature .. "󰔄",
 		})
 	end)
 end
