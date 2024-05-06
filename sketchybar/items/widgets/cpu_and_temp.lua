@@ -67,9 +67,9 @@ local function updateTemperature()
 		local temperature = tonumber(output)
 		temp:push({ temperature / 130. })
 
-		local color = colors.blue
-		if temperature > 30 then
-			if temperature < 60 then
+		local color = colors.green
+		if temperature > 50 then
+			if temperature < 70 then
 				color = colors.yellow
 			elseif temperature < 80 then
 				color = colors.orange
