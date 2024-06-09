@@ -1,0 +1,3 @@
+return {
+    'vimpostor/vim-tpipeline',
+}
