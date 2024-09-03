@@ -11,7 +11,7 @@ local qq = sbar.add("item", "widgets.qq", {
 		},
 	},
 	label = { font = { family = settings.font.numbers } },
-	update_freq = 8,
+	update_freq = 5,
 	drawing = true,
 })
 
@@ -29,7 +29,7 @@ qq:subscribe({ "routine", "power_source_change", "system_woke" }, function()
 					string = icon,
 					color = colors.white,
 				},
-				label = { string = notify_num .. label, drawing = false },
+				label = { drawing = false },
 			})
 		else
 			qq:set({
@@ -37,7 +37,7 @@ qq:subscribe({ "routine", "power_source_change", "system_woke" }, function()
 					string = icon,
 					color = colors.white,
 				},
-				label = { string = notify_num .. label },
+				label = { string = notify_num .. label, drawing = true },
 			})
 		end
 	end)

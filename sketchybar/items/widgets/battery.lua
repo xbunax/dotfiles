@@ -11,23 +11,9 @@ local battery = sbar.add("item", "widgets.battery", {
 		},
 	},
 	label = { font = { family = settings.font.numbers } },
-	update_freq = 180,
+	update_freq = 120,
 	popup = { align = "center" },
 })
-
--- local power = sbar.add("item", {
--- 	position = "popup." .. battery.name,
--- 	icon = {
--- 		string = "Power:",
--- 		width = 100,
--- 		align = "left",
--- 	},
--- 	label = {
--- 		string = "?? mW",
--- 		width = 100,
--- 		align = "right",
--- 	},
--- })
 
 local remaining_time = sbar.add("item", {
 	position = "popup." .. battery.name,
@@ -100,11 +86,6 @@ battery:subscribe("mouse.clicked", function(env)
 			local label = found and remaining .. "h" or "No estimate"
 			remaining_time:set({ label = label })
 		end)
-		-- sbar.exec("sudo powermetrics", function(power_info)
-		-- 	local power_wall = power_info:match("Combined Power (CPU + GPU + ANE): (%d+) mW")
-		-- 	local label = power_wall .. "mW" or "No charge"
-		-- 	power:set({ label = label })
-		-- end)
 	end
 end)
 

@@ -11,7 +11,7 @@ local wechat = sbar.add("item", "widgets.wechat", {
 		},
 	},
 	label = { font = { family = settings.font.numbers } },
-	update_freq = 8,
+	update_freq = 5,
 })
 
 wechat:subscribe({ "routine", "power_source_change", "system_woke" }, function()
