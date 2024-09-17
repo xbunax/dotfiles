@@ -76,6 +76,15 @@ return {
           outputPath = "$root/target/$dir/$name",
         },
       },
+      matlab_ls = {
+        single_file_support = false,
+        installPath = "/Applications/MATLAB_R2024a.app",
+        indexWorkspace = true,
+        telemetry = true,
+        root_dir = function()
+          return vim.fn.getcwd()
+        end,
+      },
     },
     -- you can do any additional lsp server setup here
     -- return true if you don't want this server to be setup with lspconfig

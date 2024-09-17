@@ -24,7 +24,7 @@ return {
         use_treesitter = true,
       },
       blank = {
-        enable = false,
+        enable = true,
       },
       line_num = {
         enable = true,

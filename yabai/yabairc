@@ -8,10 +8,11 @@ yabai -m signal --add event=window_focused action="sketchybar --trigger window_f
 
 # .. more yabai startup stuff
 /opt/homebrew/bin/yabai -m config external_bar all:35:0
+/opt/homebrew/bin/yabai -m config window_placement first_child
+/opt/homebrew/bin/yabai -m config layout bsp
 /opt/homebrew/bin/yabai -m config mouse_follows_focus on
 /opt/homebrew/bin/yabai -m config focus_follows_mouse off
 /opt/homebrew/bin/yabai -m config window_zoom_persist off
-/opt/homebrew/bin/yabai -m config window_placement second_child
 /opt/homebrew/bin/yabai -m config window_opacity off
 /opt/homebrew/bin/yabai -m config split_ratio 0.50
 /opt/homebrew/bin/yabai -m config auto_balance off
@@ -46,9 +47,8 @@ yabai -m signal --add event=window_focused action="sketchybar --trigger window_f
 /opt/homebrew/bin/yabai -m rule --add label="Select file to save to" app="^Inkscape$" title="Select file to save to" manage=off
 # /opt/homebrew/bin/yabai -m rule --add app="^System Preferences$" manage=off
 /opt/homebrew/bin/yabai -m rule --add app="(QQ|Wechat)" space=^2
-/opt/homebrew/bin/yabai -m config layout bsp
 
-otherApp='^(IINA|Tencent Lemon|Clash Verge|音乐|MotionPro| discover |ChatGPT|PlayCover|访达|Calendar|日历|地图|System Preferences|朋友圈|小程序|Downie 4|Shadowrocket| |照片|Epson iProjection|系统设置|1Password 7|Android Studio|印象笔记|MATLAB|CrossOver)$'
+otherApp='^(IINA|Tencent Lemon|Clash Verge|360安全云盘|arknights|音乐|MotionPro| discover |ChatGPT|PlayCover|访达|Calendar|日历|地图|System Preferences|朋友圈|小程序|Downie 4|Shadowrocket| |照片|Epson iProjection|系统设置|1Password 7|Android Studio|印象笔记|MATLAB|CrossOver)$'
 /opt/homebrew/bin/yabai -m rule --add app="${otherApp}" manage=off
 
 echo "yabai configuration loaded.."
