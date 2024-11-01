@@ -26,7 +26,11 @@ after-startup-command = [
 exec-on-workspace-change = [
   '/bin/bash',
   '-c',
-  '/opt/homebrew/opt/sketchybar/bin/sketchybar --trigger aerospace_workspace_change AEROSPACE_FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE AEROSPACE_PREV_WORKSPACE=$AEROSPACE_PREV_WORKSPACE',
+  '/opt/homebrew/opt/sketchybar/bin/sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
+]
+
+on-focus-changed = [
+  'exec-and-forget sketchybar --trigger aerospace_focus_change',
 ]
 # Start AeroSpace at login
 start-at-login = true
@@ -236,6 +240,7 @@ cmd-shift-l = ['join-with right', 'mode main']
 if.app-id = 'com.tencent.xinWeChat'
 run = 'move-node-to-workspace 2'
 
+
 [[on-window-detected]]
 if.app-id = 'com.tencent.qq'
 run = 'move-node-to-workspace 2'
@@ -253,10 +258,19 @@ if.app-id = 'com.microsoft.VSCode'
 run = 'move-node-to-workspace 4'
 
 
+[[on-window-detected]]
+if.app-id = 'com.tencent.xinWeChat'
+if.app-name-regex-substring = '^(朋友圈)$'
+run = 'layout floating'
 #
 #qq preview
 [[on-window-detected]]
 if.window-title-regex-substring = '^(?!QQ).*$'
+run = 'layout floating'
+
+
+[[on-window-detected]]
+if.window-title-regex-substring = '(Picture in Picture|Picture-in-Picture|画中画)'
 run = 'layout floating'
 #
 #
@@ -285,9 +299,6 @@ run = 'layout floating'
 # if.app-id = 'net.battle.app'
 # run = ['layout floating', 'move-node-to-workspace 5']
 #
-# [[on-window-detected]]
-# if.window-title-regex-substring = '(Picture in Picture|Picture-in-Picture|画中画)'
-# run = 'layout floating'
 #
 #
 # #bandizip
