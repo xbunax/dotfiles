@@ -91,8 +91,9 @@ for workspace_index = 1, max_workspaces do
 			color = colors.bg1,
 			border_width = 1,
 			height = 28,
-			border_color = colors.black,
+			border_color = colors.bg2,
 		},
+		click_script = "aerospace workspace " .. workspace_index,
 	})
 
 	workspaces[workspace_index] = workspace

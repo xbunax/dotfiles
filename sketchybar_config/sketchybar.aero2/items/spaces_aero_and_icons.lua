@@ -30,9 +30,9 @@ local function updateSpaceIcons(spaceId, workspaceName)
 				shouldDraw = true
 			end
 		end
+
 		if not appFound then
-			shouldDraw = true
-			icon_strip = "-"
+			shouldDraw = false
 		end
 
 		if spaces[spaceId] then
@@ -50,30 +50,53 @@ local function addWorkspaceItem(workspaceName, monitorId, isSelected)
 
 	if not spaces[spaceId] then
 		local space_item = sbar.add("item", spaceId, {
+			-- icon = {
+			--     font = { family = settings.font.numbers },
+			--     string = workspaceName,
+			--     padding_left = 10,
+			--     padding_right = 2,
+			--     color = colors.grey,
+			--     highlight_color = colors.yellow,
+			-- },
+			-- label = {
+			--     padding_right = 12,
+			--     color = colors.grey,
+			--     highlight_color = colors.yellow,
+			--     font = "sketchybar-app-font:Regular:12.0",
+			--     y_offset = -1,
+			-- },
+			-- padding_left = 2,
+			-- padding_right = 2,
+			-- background = {
+			--     color = colors.bg2,
+			--     border_width = 1,
+			--     height = 24,
+			--     border_color = colors.bg1,
+			--     corner_radius = 9,
 			icon = {
 				font = { family = settings.font.numbers },
-				string = workspaceName,
+				string = i,
 				padding_left = 10,
 				padding_right = 5,
 				color = colors.white,
 				highlight_color = colors.red,
 			},
 			label = {
-				padding_right = 12,
+				padding_right = 10,
 				color = colors.grey,
 				highlight_color = colors.white,
 				font = "sketchybar-app-font:Regular:16.0",
 				y_offset = -1,
 			},
-			padding_left = 2,
-			padding_right = 2,
+			padding_right = 1,
+			padding_left = 1,
 			background = {
 				color = colors.bg1,
 				border_width = 1,
-				height = 28,
+				height = 26,
 				border_color = colors.black,
-				corner_radius = 9,
 			},
+			popup = { background = { border_width = 5, border_color = colors.black } },
 			click_script = "aerospace workspace " .. workspaceName,
 			display = monitorId,
 		})
@@ -84,8 +107,7 @@ local function addWorkspaceItem(workspaceName, monitorId, isSelected)
 				color = colors.transparent,
 				border_color = colors.bg2,
 				height = 28,
-				border_width = 1.5,
-				corner_radius = 9,
+				border_width = 2,
 			},
 		})
 

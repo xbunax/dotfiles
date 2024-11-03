@@ -1,9 +1,8 @@
 require("items.apple")
--- require("items.spaces_aero_and_icons")
-require("items.spaces_aero")
+require("items.spaces_aero") --aerospace
 require("items.front_app")
 -- require("items.menus")
--- require("items.spaces")
+-- require("items.spaces") --yabai
 require("items.calendar")
 require("items.widgets")
 require("items.media")

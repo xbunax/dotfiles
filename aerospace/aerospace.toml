@@ -16,40 +16,34 @@
 # Run Sketchybar together with AeroSpace
 # sketchbar has a built-in detection of already running process,
 # so it won't be run twice on AeroSpace restart
-after-startup-command = [
-  # 'exec-and-forget /opt/homebrew/bin/sketchybar',
-  # 'exec-and-forget /opt/homebrew/bin/brew services stop sketchybar',
-  'exec-and-forget defaults write NSGlobalDomain _HIHideMenuBar -bool false',
-]
+# after-startup-command = [
+#     'exec-and-forget /opt/homebrew/bin/sketchybar',
+# ]
 
 # # Notify Sketchybar about workspace change
 exec-on-workspace-change = [
   '/bin/bash',
   '-c',
-  '/opt/homebrew/opt/sketchybar/bin/sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
+  '/opt/homebrew/bin/sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
 ]
 
 on-focus-changed = [
   'exec-and-forget sketchybar --trigger aerospace_focus_change',
+  'move-mouse window-lazy-center',
 ]
+
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 # Start AeroSpace at login
 start-at-login = true
-# exec-on-workspace-change = [
-#   '/bin/bash',
-#   '-c',
-#   'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
-# ]
+
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
-enable-normalization-flatten-containers = false
+enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
-# after-startup-command = [
-# 'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0'
-# 'exec-and-forget aerospace split vertical',
-# ]
-# See: https://nikitabobko.github.io/AeroSpace/guide# ayouts
+
+# See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
 # You can set 0 to disable the padding feature
-accordion-padding = 20
+accordion-padding = 0
 
 # Possible values: tiles|accordion
 default-root-container-layout = 'tiles'
@@ -73,10 +67,10 @@ key-mapping.preset = 'qwerty'
 [gaps]
 inner.horizontal = 10
 inner.vertical = 10
-outer.left = 10
-outer.bottom = [{ monitor.'^built-in retina display$' = 10 }, 10]
-outer.top = [{ monitor.'^built-in retina display$' = 5 }, 40]
-outer.right = 10
+outer.left = 5
+outer.bottom = [{ monitor.'^built-in retina display$' = 3 }, 10]
+outer.top = [{ monitor.'^built-in retina display$' = 8 }, 40]
+outer.right = 5
 
 # See https://nikitabobko.github.io/AeroSpace/guide#exec-env-vars
 [exec] # Again, you don't need to copy all config sections to your config.
@@ -111,55 +105,38 @@ alt-t = [
 # You can uncomment this line to open up terminal with alt + enter shortcut
 # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
 alt-k = ['exec-and-forget open /Applications/Kitty.app']
+alt-i = ['exec-and-forget open -a iTerm']
 alt-w = ['exec-and-forget open /Applications/WeChat.app']
 alt-q = ['exec-and-forget open /Applications/QQ.app']
 alt-a = ['exec-and-forget open /Applications/Arc.app']
 alt-f = ['exec-and-forget open -a Finder']
+alt-s = ['exec-and-forget open -a Spotify']
 alt-c = ['exec-and-forget open -a Visual\ Studio\ Code']
-
-alt-shift-enter = 'flatten-workspace-tree'
-alt-shift-s = 'split opposite'
-
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
 
-# See: https://nikitabobko.github.io/AeroSpace/commands#focus
-alt-shift-h = [
-  'focus left',
-  'move-mouse window-lazy-center',
-  'move-mouse monitor-lazy-center',
-]
-alt-shift-j = [
-  'focus down',
-  'move-mouse window-lazy-center',
-  'move-mouse monitor-lazy-center',
-]
-alt-shift-k = [
-  'focus up',
-  'move-mouse window-lazy-center',
-  'move-mouse monitor-lazy-center',
-]
-alt-shift-l = [
-  'focus right',
-  'move-mouse window-lazy-center',
-  'move-mouse monitor-lazy-center',
-]
+alt-shift-enter = 'flatten-workspace-tree'
 
 alt-shift-p = 'fullscreen'
+# See: https://nikitabobko.github.io/AeroSpace/commands#focus
+alt-shift-h = ['focus left']
+alt-shift-j = ['focus down']
+alt-shift-k = ['focus up']
+alt-shift-l = ['focus right']
+
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
-cmd-shift-h = ['move left', 'mode main']
-cmd-shift-j = ['move down', 'mode main']
-cmd-shift-k = ['move up', 'mode main']
-cmd-shift-l = ['move right', 'mode main']
+cmd-shift-h = 'move left'
+cmd-shift-j = 'move down'
+cmd-shift-k = 'move up'
+cmd-shift-l = 'move right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
 ctrl-shift-h = 'resize smart -50'
 ctrl-shift-l = 'resize smart +50'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-# alt-o = 'workspace 0'
 alt-1 = 'workspace 1'
 alt-2 = 'workspace 2'
 alt-3 = 'workspace 3'
@@ -172,7 +149,6 @@ alt-9 = 'workspace 9'
 alt-0 = 'workspace 10'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-# alt-cmd-o = ['move-node-to-workspace 0', 'workspace 0']
 alt-cmd-1 = ['move-node-to-workspace 1', 'workspace 1']
 alt-cmd-2 = ['move-node-to-workspace 2', 'workspace 2']
 alt-cmd-3 = ['move-node-to-workspace 3', 'workspace 3']
@@ -184,21 +160,13 @@ alt-cmd-8 = ['move-node-to-workspace 8', 'workspace 8']
 alt-cmd-9 = ['move-node-to-workspace 9', 'workspace 9']
 alt-cmd-0 = ['move-node-to-workspace 10', 'workspace 10']
 
-# alt-shift-d='move-node-to-monitor --wrap-around prev'
+alt-left = ['workspace prev']
+alt-right = ['workspace next']
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
-alt-tab = [
-  'workspace-back-and-forth',
-  'move-mouse window-lazy-center',
-  'move-mouse monitor-lazy-center',
-]
-
+alt-tab = 'workspace-back-and-forth'
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
-alt-shift-tab = [
-  'move-workspace-to-monitor --wrap-around next',
-  'move-mouse window-lazy-center',
-  'move-mouse monitor-lazy-center',
-]
+alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 cmd-shift-s = 'mode service'
@@ -231,23 +199,73 @@ cmd-shift-j = ['join-with down', 'mode main']
 cmd-shift-k = ['join-with up', 'mode main']
 cmd-shift-l = ['join-with right', 'mode main']
 
-# [[on-window-detected]]
-# if.app-id = 'com.tencent.xinWeChat'
-# if.window-title-regex-substring = '^(?!WeChat \(Chats\)|微信 \(聊天\)).*$'
-# run = 'layout floating'
-#
 [[on-window-detected]]
 if.app-id = 'com.tencent.xinWeChat'
-run = 'move-node-to-workspace 2'
-
+if.window-title-regex-substring = '^(?!WeChat \(Chats\)|微信 \(聊天\)).*$'
+run = 'layout floating'
 
 [[on-window-detected]]
 if.app-id = 'com.tencent.qq'
-run = 'move-node-to-workspace 2'
+if.window-title-regex-substring = '^(?!QQ).*$'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.360.cloudui'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Maps'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.MobileSMS'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.AppStore'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.colliderli.iina'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'com.codeweavers.CrossOver'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.window-title-regex-substring = '(Picture in Picture|Picture-in-Picture|画中画)'
+run = 'layout floating'
+
+#bandizip
+[[on-window-detected]]
+if.app-id = 'com.bandisoft.mac.bandizip'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = "com.electron.1zilc.fishing-funds"
+run = 'layout floating'
+
+
+[[on-window-detected]]
+if.window-title-regex-substring = '(MuMu|exe)'
+run = ['layout floating', 'move-node-to-workspace 5']
 
 [[on-window-detected]]
 if.app-id = 'company.thebrowser.Browser'
 run = 'move-node-to-workspace 1'
+
+[[on-window-detected]]
+if.app-id = 'com.tencent.xinWeChat'
+run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
+if.app-id = 'com.tencent.qq'
+run = 'move-node-to-workspace 2'
 
 [[on-window-detected]]
 if.app-id = 'net.kovidgoyal.kitty'
@@ -257,65 +275,6 @@ run = 'move-node-to-workspace 3'
 if.app-id = 'com.microsoft.VSCode'
 run = 'move-node-to-workspace 4'
 
-
-[[on-window-detected]]
-if.app-id = 'com.tencent.xinWeChat'
-if.app-name-regex-substring = '^(朋友圈)$'
-run = 'layout floating'
-#
-#qq preview
-[[on-window-detected]]
-if.window-title-regex-substring = '^(?!QQ).*$'
-run = 'layout floating'
-
-
-[[on-window-detected]]
-if.window-title-regex-substring = '(Picture in Picture|Picture-in-Picture|画中画)'
-run = 'layout floating'
-#
-#
-# #king of thieves
-# [[on-window-detected]]
-# # if.app-id = 'com.zeptolab.thieves.google'
-# if.window-title-regex-substring = 'King of Thieves'
-# run = 'layout floating'
-#
-# #IINA
-# [[on-window-detected]]
-# if.app-id = 'com.colliderli.iina'
-# run = ['layout floating', 'move-node-to-workspace 5']
-#
-# #Telegram
-# [[on-window-detected]]
-# if.app-id = 'ru.keepcoder.Telegram'
-# run = ['move-node-to-workspace 4']
-#
-# [[on-window-detected]]
-# if.app-id = 'com.codeweavers.CrossOver'
-# run = ['layout floating', 'move-node-to-workspace 5']
-#
-#
-# [[on-window-detected]]
-# if.app-id = 'net.battle.app'
-# run = ['layout floating', 'move-node-to-workspace 5']
-#
-#
-#
-# #bandizip
-# [[on-window-detected]]
-# if.app-id = 'com.bandisoft.mac.bandizip'
-# run = 'layout floating'
-#
-# [[on-window-detected]]
-# if.app-id = "com.electron.1zilc.fishing-funds"
-# run = 'layout floating'
-#
-#
-# [[on-window-detected]]
-# if.window-title-regex-substring = '(MuMu|exe)'
-# run = ['layout floating', 'move-node-to-workspace 5']
-#
-#
 # [[on-window-detected]]
 # if.window-title-regex-substring = '(不背|Zotero|Margin)'
 # run = ['move-node-to-workspace 3']

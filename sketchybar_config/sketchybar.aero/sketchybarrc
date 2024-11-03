@@ -1,0 +1,3 @@
+#!/Users/xbunax/Documents/code/lua-5.4.4/src/lua
+
+require("init")
