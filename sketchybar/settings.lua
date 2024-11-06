@@ -1,6 +1,6 @@
 return {
 	paddings = 3.5,
-	group_paddings = 5,
+	group_paddings = 4,
 
 	icons = "sf-symbols", -- alternatively available: NerdFont
 
@@ -18,5 +18,8 @@ return {
 	--     ["Heavy"] = "Bold",
 	--     ["Black"] = "ExtraBold",
 	--   },
-	-- },
+	wallpaper = {
+		path = os.getenv("HOME") .. "/.config/wallpapers",
+		scale = 0.09,
+	}, -- },
 }

@@ -1,14 +1,12 @@
-local icons = require("icons")
+-- local icons = require("icons")
 local colors = require("colors")
 local settings = require("settings")
+local app_icons = require("helpers.app_icons")
 
 local qq = sbar.add("item", "widgets.qq", {
 	position = "right",
 	icon = {
-		font = {
-			style = settings.font.style_map["Regular"],
-			size = 16.0,
-		},
+		font = "sketchybar-app-font:Regular:16.0",
 	},
 	label = { font = { family = settings.font.numbers } },
 	update_freq = 5,
@@ -17,13 +15,13 @@ local qq = sbar.add("item", "widgets.qq", {
 
 qq:subscribe({ "routine", "power_source_change", "system_woke" }, function()
 	sbar.exec("lsappinfo -all list | grep qq", function(qq_notify)
-		local icon = "󰘅"
+		-- local icon = "󰘅"
+		local icon = app_icons["QQ"]
 		local label = ""
 
 		local notify_num = qq_notify:match('"StatusLabel"=%{ "label"="?(.-)"? %}')
 
 		if notify_num == nil or notify_num == "" then
-			-- notify_num = "-"
 			qq:set({
 				icon = {
 					string = icon,
@@ -36,6 +34,7 @@ qq:subscribe({ "routine", "power_source_change", "system_woke" }, function()
 				icon = {
 					string = icon,
 					color = colors.white,
+					drawing = true,
 				},
 				label = { string = notify_num .. label, drawing = true },
 			})

@@ -206,7 +206,7 @@ return {
 	["zathura"] = ":pdf:",
 	["Obsidian"] = ":obsidian:",
 	["Thunderbird"] = ":thunderbird:",
-	-- ["PlayCover"] = ":playcover",
+	["PlayCover"] = ":playcover",
 	["Firefox"] = ":firefox:",
 	["WezTerm"] = ":wezterm:",
 	["default"] = ":default:",

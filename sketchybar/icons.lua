@@ -92,6 +92,9 @@ local icons = {
 			forward = "",
 			play_pause = "",
 		},
+		social_media = {
+			qq = "󰘅",
+		},
 	},
 }
 

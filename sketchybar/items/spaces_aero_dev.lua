@@ -5,6 +5,8 @@ local app_icons = require("helpers.app_icons")
 
 local max_workspaces = 10
 local query_workspaces = "aerospace list-workspaces --all --format '%{workspace}%{monitor-id}' --json"
+local query_monitor = "aerospace list-monitors --count"
+local workspace_monitor = {}
 
 -- Add padding to the left
 sbar.add("item", {
@@ -31,7 +33,6 @@ sbar.add("item", {
 })
 
 local workspaces = {}
-local workspace_monitor = {}
 
 local function updateWindows(workspace_index)
 	local get_windows =
@@ -69,19 +70,31 @@ local function updateWindows(workspace_index)
 	end)
 end
 
--- local function query_monitor(workspace_index)
--- 	local result = nil
--- 	sbar.exec(query_workspaces, function(workspaces_and_monitors)
--- 		for _, entry in ipairs(workspaces_and_monitors) do
--- 			local index = tonumber(entry.workspace)
--- 			local monitor_id = math.floor(entry["monitor-id"])
--- 			workspace_monitor[index] = monitor_id
--- 			result = workspace_monitor[workspace_index]
--- 			print(result)
--- 		end
--- 	end)
--- 	return result
--- end
+local function updateWorkspaceMonitor(workspace_index)
+	sbar.exec(query_workspaces, function(workspaces_and_monitors)
+		sbar.exec(query_monitor, function(monitor_number)
+			local monitor_id_map = {}
+			if tonumber(monitor_number) ~= 1 then
+				monitor_id_map = { [1] = 2, [2] = 1 } -- sketchybar monitor id is different from aerospace monitor id which is need to map monitor id
+			else
+				monitor_id_map = { [1] = 1, [2] = 2 }
+			end
+			for _, entry in ipairs(workspaces_and_monitors) do
+				local space_index = tonumber(entry.workspace)
+				local monitor_id = math.floor(entry["monitor-id"])
+				workspace_monitor[space_index] = monitor_id_map[monitor_id]
+			end
+			workspaces[workspace_index]:set({
+				display = workspace_monitor[workspace_index],
+			})
+			workspaces[tonumber(focused_workspace)]:set({
+				icon = { highlight = true },
+				label = { highlight = true },
+				background = { border_width = 2 },
+			})
+		end)
+	end)
+end
 
 for workspace_index = 1, max_workspaces do
 	local workspace = sbar.add("item", {
@@ -110,9 +123,6 @@ for workspace_index = 1, max_workspaces do
 			border_color = colors.bg2,
 		},
 		click_script = "aerospace workspace " .. workspace_index,
-		-- display = (workspace_index > 0 and workspace_index < 8 and 1)
-		-- 	or (workspace_index > 8 and workspace_index <= 10 and 2)
-		-- 	or nil,
 	})
 
 	workspaces[workspace_index] = workspace
@@ -136,8 +146,14 @@ for workspace_index = 1, max_workspaces do
 		updateWindows(workspace_index)
 	end)
 
+	workspace:subscribe("display_change", function()
+		updateWindows(workspace_index)
+		updateWorkspaceMonitor(workspace_index)
+	end)
+
 	-- initial setup
 	updateWindows(workspace_index)
+	updateWorkspaceMonitor(workspace_index)
 	sbar.exec("aerospace list-workspaces --focused", function(focused_workspace)
 		workspaces[tonumber(focused_workspace)]:set({
 			icon = { highlight = true },

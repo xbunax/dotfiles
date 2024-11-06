@@ -160,6 +160,9 @@ alt-cmd-8 = ['move-node-to-workspace 8', 'workspace 8']
 alt-cmd-9 = ['move-node-to-workspace 9', 'workspace 9']
 alt-cmd-0 = ['move-node-to-workspace 10', 'workspace 10']
 
+ctrl-cmd-j = ['move-workspace-to-monitor next']
+ctrl-cmd-k = ['move-workspace-to-monitor prev']
+
 alt-left = ['workspace prev']
 alt-right = ['workspace next']
 
@@ -174,16 +177,16 @@ cmd-shift-s = 'mode service'
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [workspace-to-monitor-force-assignment]
-1 = 'main'       # Monitor sequence number from left to right. 1-based indexing
-2 = 'main'       # Main monitor
-3 = 'main'       # Main monitor
-4 = 'main'       # Main monitor
-5 = 'main'       # Main monitor
-6 = 'main'       # Non-main monitor in case when there are only two monitors
-7 = 'main'       # Non-main monitor in case when there are only two monitors
-8 = 'main'       # Non-main monitor in case when there are only two monitors
-9 = 'main'       # Non-main monitor in case when there are only two monitors
-10 = 'secondary' # Non-main monitor in case when there are only two monitors
+1 = 'main' # Monitor sequence number from left to right. 1-based indexing
+2 = 'main' # Main monitor
+3 = 'main' # Main monitor
+4 = 'main' # Main monitor
+5 = 'main' # Main monitor
+6 = 'main' # Main monitor
+# 7 = 'main'                # Main monitor
+# 8 = 'main'                # Main monitor
+# 9 = ['secondary', 'main'] # Main monitor
+# 10 = 'secondary'          # Non-main monitor in case when there are only two monitors
 [mode.service.binding]
 esc = ['reload-config', 'mode main']
 r = ['flatten-workspace-tree', 'mode main'] # reset layout
@@ -230,6 +233,10 @@ if.app-id = 'com.apple.AppStore'
 run = 'layout floating'
 
 [[on-window-detected]]
+if.app-id = 'com.apple.iCal'
+run = 'layout floating'
+
+[[on-window-detected]]
 if.app-id = 'com.colliderli.iina'
 run = ['layout floating']
 
@@ -257,6 +264,7 @@ run = ['layout floating', 'move-node-to-workspace 5']
 
 [[on-window-detected]]
 if.app-id = 'company.thebrowser.Browser'
+if.during-aerospace-startup = true
 run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
@@ -273,6 +281,7 @@ run = 'move-node-to-workspace 3'
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.VSCode'
+if.during-aerospace-startup = true
 run = 'move-node-to-workspace 4'
 
 # [[on-window-detected]]
