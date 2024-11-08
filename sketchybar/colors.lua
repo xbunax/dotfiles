@@ -12,8 +12,10 @@ return {
 
 	bar = {
 		bg = 0xBFffff,
-		border = 0xff494d64,
-		-- border = 0x801a1b26,
+		-- bg = 0x829b9b9b,
+		border = 0x66494d64,
+		-- border = 0xff494d66,
+		-- border = 0x801a1b27,
 	},
 	popup = {
 		bg = 0xc02c2e34,
@@ -24,6 +26,10 @@ return {
 	-- bg2 = 0xff,
 	bg1 = 0xff363944,
 	bg2 = 0xff414550,
+	bg3 = 0x754a4a4a,
+	-- bg3 = 0xc02c2e34,
+	transparency = 0.5,
+	blur_radius = 50,
 
 	with_alpha = function(color, alpha)
 		if alpha > 1.0 or alpha < 0.0 then

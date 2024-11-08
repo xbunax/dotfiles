@@ -1,4 +1,5 @@
 require("items.apple")
+require("items.wallpaper")
 -- require("items.spaces_aero") --aerospace
 require("items.spaces_aero_dev") --aerospace
 require("items.front_app")

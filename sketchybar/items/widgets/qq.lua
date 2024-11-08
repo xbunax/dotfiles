@@ -7,6 +7,7 @@ local qq = sbar.add("item", "widgets.qq", {
 	position = "right",
 	icon = {
 		font = "sketchybar-app-font:Regular:16.0",
+		-- color = colors.black,
 	},
 	label = { font = { family = settings.font.numbers } },
 	update_freq = 5,
@@ -47,7 +48,7 @@ qq:subscribe("mouse.clicked", function(env)
 end)
 
 sbar.add("bracket", "widgets.qq.bracket", { qq.name }, {
-	background = { color = colors.bg1 },
+	background = { color = colors.bg3 },
 })
 
 sbar.add("item", "widgets.qq.padding", {

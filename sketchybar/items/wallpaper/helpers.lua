@@ -1,7 +1,7 @@
 local colors = require("colors")
 
-local components = require("items.widgets.wallpaper.components")
-local globals = require("items.widgets.wallpaper.globals")
+local components = require("items.wallpaper.components")
+local globals = require("items.wallpaper.globals")
 
 local helpers = {}
 

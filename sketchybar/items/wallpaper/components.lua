@@ -1,24 +1,25 @@
 local colors = require("colors")
 local settings = require("settings")
-local globals = require("items.widgets.wallpaper.globals")
+local globals = require("items.wallpaper.globals")
 
 local components = {}
 
 components.bgAnchor = sbar.add("item", "widgets.background.bgAnchor", {
-	position = "right",
+	position = "left",
 	width = 0,
 	icon = {
-		padding_right = 4,
-		string = "􀵪",
+		padding_right = 0,
+		-- string = "􀵪",
+		string = "􀏆",
 		color = colors.with_alpha(colors.bg2, 0),
 		font = {
 			style = settings.font.style_map["Regular"],
-			size = 20.0,
+			size = 15.0,
 		},
 	},
 	update_freq = 180,
 	popup = {
-		align = "center",
+		align = "left",
 		background = {
 			drawing = true,
 		},
@@ -26,25 +27,27 @@ components.bgAnchor = sbar.add("item", "widgets.background.bgAnchor", {
 })
 
 components.bg = sbar.add("item", "widgets.background", {
-	position = "right",
+	position = "left",
 	icon = {
-		padding_right = 4,
-		string = "􀵪",
+		padding_right = 0,
+		-- string = "􁂯",
+		string = "􀏆",
+		-- string = "􀵪",
 		font = {
 			style = settings.font.style_map["Regular"],
-			size = 20.0,
+			size = 15.0,
 		},
 	},
 	update_freq = 180,
 	popup = {
-		align = "center",
+		align = "left",
 	},
 })
 
 sbar.add("bracket", "widgets.background.bracket", { components.bg.name }, {
 	background = {
 		color = colors.with_alpha(colors.bg2, colors.transparency),
-		border_color = colors.black,
+		border_color = colors.bg2,
 	},
 })
 
@@ -57,7 +60,7 @@ components.previewAnchor = sbar.add("item", "widgets.background.previewAnchor", 
 	position = "popup." .. components.bgAnchor.name,
 	label = { string = "" },
 	popup = {
-		align = "left",
+		align = "right",
 		drawing = true,
 	},
 })

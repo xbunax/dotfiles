@@ -25,7 +25,7 @@ local cal = sbar.add("item", {
 	padding_left = 1,
 	padding_right = 1,
 	background = {
-		color = colors.bg2,
+		color = colors.bg3,
 		border_color = colors.black,
 		border_width = 1,
 	},

@@ -18,6 +18,7 @@ local temp = sbar.add("graph", "widgets.temp", 42, {
 	background = {
 		height = 22,
 		color = { alpha = 0 },
+		-- color = colors.with_alpha(colors.bg1, colors.transparency),
 		border_color = { alpha = 0 },
 		drawing = true,
 	},
@@ -35,6 +36,7 @@ local temp = sbar.add("graph", "widgets.temp", 42, {
 		width = 0,
 		y_offset = 4,
 	},
+	blur_radius = colors.blur_radius,
 	padding_right = settings.paddings + 6,
 })
 
@@ -44,6 +46,7 @@ local cpu = sbar.add("graph", "widgets.cpu", 42, {
 	background = {
 		height = 22,
 		color = { alpha = 0 },
+		-- color = colors.with_alpha(colors.bg1, colors.transparency),
 		border_color = { alpha = 0 },
 		drawing = true,
 	},
@@ -115,7 +118,11 @@ end)
 
 -- Background around the cpu item
 sbar.add("bracket", "widgets.cpu.bracket", { cpu.name, temp.name }, {
-	background = { color = colors.bg1 },
+	background = { color = colors.bg3 },
+
+	-- background = {
+	-- 	color = colors.with_alpha(colors.bg1, colors.transparency),
+	-- },
 })
 
 -- Background around the cpu item

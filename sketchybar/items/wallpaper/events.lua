@@ -1,6 +1,6 @@
-local globals = require("items.widgets.wallpaper.globals")
-local helpers = require("items.widgets.wallpaper.helpers")
-local components = require("items.widgets.wallpaper.components")
+local globals = require("items.wallpaper.globals")
+local helpers = require("items.wallpaper.helpers")
+local components = require("items.wallpaper.components")
 
 -- Key events
 sbar.add("event", "request_bg")
@@ -29,18 +29,16 @@ end)
 
 local function setWallpaper()
 	-- Get number of spaces
-	local handle = io.popen("echo $(yabai -m query --spaces --display) | jq length $1")
-	local result = handle:read("*a")
-	handle:close()
+	-- local handle = io.popen("echo $(yabai -m query --spaces --display) | jq length $1")
+	-- local result = handle:read("*a")
+	-- handle:close()
 
 	-- Cycle through spaces setting wallpaper for each
-	local cmd = [[osascript -e "tell application \"System Events\" to tell every desktop to set picture to \"]]
+	local cmd = [[osascript -e "tell application \"System Events\" to set picture of every desktop to \"]]
 		.. globals.selectedFilePath
-		.. [[\" as POSIX file" && ~/.config/skhd/snippets/space_cycle_next.sh]]
+		.. [[\" as POSIX file"]]
 
-	for i = 1, result do
-		os.execute(cmd)
-	end
+	os.execute(cmd)
 end
 
 components.bg:subscribe("select_bg", function(env)
@@ -49,10 +47,10 @@ components.bg:subscribe("select_bg", function(env)
 		helpers.entryToggle(tbl, true, true)
 
 		globals.depth = globals.depth + 1
-
+		print(globals.lockedFilePath)
 		if globals.lockedFilePath then
 			globals.depth = globals.depth - 1 < 1 and 1 or globals.depth - 1
-			sbar.exec('skhd -k "ctrl - b"')
+			-- sbar.exec('skhd -k "ctrl - b"')
 			setWallpaper()
 		end
 	else
@@ -65,8 +63,8 @@ components.bg:subscribe("select_bg", function(env)
 
 			-- Unset highlight
 			helpers.entryToggle(tbl, false, true)
-		else
-			sbar.exec('skhd -k "ctrl - b"')
+			-- else
+			-- sbar.exec('skhd -k "ctrl - b"')
 		end
 	end
 end)

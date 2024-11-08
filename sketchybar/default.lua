@@ -29,7 +29,7 @@ sbar.default({
 		height = 28,
 		corner_radius = 9,
 		border_width = 2,
-		border_color = colors.bg2,
+		-- border_color = colors.bg2,
 		image = {
 			corner_radius = 9,
 			border_color = colors.grey,
@@ -46,6 +46,7 @@ sbar.default({
 		},
 		blur_radius = 20,
 	},
+	blur_radius = 20,
 	padding_left = 4,
 	padding_right = 4,
 	scroll_texts = true,

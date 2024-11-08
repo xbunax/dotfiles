@@ -21,7 +21,8 @@ sbar.add("item", {
 		drawing = false,
 	},
 	background = {
-		color = colors.bg1,
+		-- color = colors.bg1,
+		color = colors.with_alpha(colors.bg1, colors.transparency),
 		border_width = 1,
 		height = 28,
 		border_color = colors.black,
@@ -87,11 +88,6 @@ local function updateWorkspaceMonitor(workspace_index)
 			workspaces[workspace_index]:set({
 				display = workspace_monitor[workspace_index],
 			})
-			workspaces[tonumber(focused_workspace)]:set({
-				icon = { highlight = true },
-				label = { highlight = true },
-				background = { border_width = 2 },
-			})
 		end)
 	end)
 end
@@ -117,7 +113,10 @@ for workspace_index = 1, max_workspaces do
 		padding_right = 2,
 		padding_left = 2,
 		background = {
-			color = colors.bg1,
+			color = colors.bg3,
+			-- blur_radius = colors.blur_radius,
+			-- color = { alpha = 1.0 },
+			-- color = colors.with_alpha(colors.bg1, 0.3),
 			border_width = 1,
 			height = 28,
 			border_color = colors.bg2,
@@ -136,7 +135,7 @@ for workspace_index = 1, max_workspaces do
 				icon = { highlight = is_focused },
 				label = { highlight = is_focused },
 				background = {
-					border_width = is_focused and 2 or 0,
+					border_width = is_focused and 2 or 1,
 				},
 			})
 		end)
