@@ -9,7 +9,7 @@ options=(
   active_color=0xff81969e
   inactive_color=0xff414550
   # background_color=0xff81969e
-  blacklist="Safari,iPhone Mirroring,Steam Helper,Microsoft PowerPoint"
+  blacklist="sketchybar,Safari,iPhone Mirroring,Steam Helper"
   blur_radius=1
 )
 

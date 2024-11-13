@@ -208,6 +208,7 @@ return {
 	["Thunderbird"] = ":thunderbird:",
 	["PlayCover"] = ":playcover",
 	["Firefox"] = ":firefox:",
+	["Zen Browser"] = ":firefox:",
 	["WezTerm"] = ":wezterm:",
 	["default"] = ":default:",
 }

@@ -21,15 +21,17 @@ return {
 		bg = 0xc02c2e34,
 		border = 0xff7f8490,
 	},
-	-- bg1 = 0x001a1b26,
-	-- bg1 = 0x801a1b26,
+	-- bg1 = 0xff363944,
+	-- bg2 = 0xff414550,
 	-- bg2 = 0xff,
 	bg1 = 0xff363944,
 	bg2 = 0xff414550,
-	bg3 = 0x754a4a4a,
+	bg3 = 0x99363944,
+	-- bg3 = 0xff414550,
+	-- bg3 = 0x754a4a4a,
 	-- bg3 = 0xc02c2e34,
 	transparency = 0.5,
-	blur_radius = 50,
+	blur_radius = 20,
 
 	with_alpha = function(color, alpha)
 		if alpha > 1.0 or alpha < 0.0 then

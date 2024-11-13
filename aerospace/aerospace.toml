@@ -114,6 +114,9 @@ alt-f = ['exec-and-forget open -a Finder']
 alt-s = ['exec-and-forget open -a Spotify']
 alt-c = ['exec-and-forget open -a Visual\ Studio\ Code']
 
+cmd-shift-backspace = [
+  'exec-and-forget /opt/homebrew/bin/sketchybar --trigger request_bg REQUEST_BG=false',
+]
 cmd-shift-w = [
   'exec-and-forget /opt/homebrew/bin/sketchybar --trigger request_bg REQUEST_BG=true',
 ]
@@ -126,12 +129,17 @@ cmd-shift-up = [
   'exec-and-forget /opt/homebrew/bin/sketchybar --trigger cycle_bg CYCLE=prev',
 ]
 
-cmd-shift-enter = [
+cmd-shift-right = [
   'exec-and-forget /opt/homebrew/bin/sketchybar --trigger select_bg SELECT=true',
 ]
 
-cmd-shift-backspace = [
-  'exec-and-forget /opt/homebrew/bin/sketchybar --trigger request_bg REQUEST_BG=false',
+
+cmd-shift-left = [
+  'exec-and-forget /opt/homebrew/bin/sketchybar --trigger select_bg SELECT=false',
+]
+
+cmd-shift-enter = [
+  'exec-and-forget /opt/homebrew/bin/sketchybar --trigger select_bg SELECT=true',
 ]
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
@@ -139,6 +147,7 @@ alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
 
 alt-shift-enter = 'flatten-workspace-tree'
+ctrl-w = 'close'
 
 alt-shift-p = 'fullscreen'
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
@@ -181,7 +190,7 @@ alt-cmd-8 = ['move-node-to-workspace 8', 'workspace 8']
 alt-cmd-9 = ['move-node-to-workspace 9', 'workspace 9']
 alt-cmd-0 = ['move-node-to-workspace 10', 'workspace 10']
 
-ctrl-cmd-c = ['move-workspace-to-monitor --wrap-around next']
+alt-cmd-c = ['move-workspace-to-monitor --wrap-around next']
 
 
 alt-left = ['workspace prev']
@@ -262,6 +271,10 @@ if.app-id = 'com.apple.iCal'
 run = 'layout floating'
 
 [[on-window-detected]]
+if.app-id = 'io.github.clash-verge-rev.clash-verge-rev'
+run = ['layout floating']
+
+[[on-window-detected]]
 if.app-id = 'com.colliderli.iina'
 run = ['layout floating']
 
@@ -273,7 +286,6 @@ run = ['layout floating']
 if.window-title-regex-substring = '(Picture in Picture|Picture-in-Picture|画中画)'
 run = 'layout floating'
 
-#bandizip
 [[on-window-detected]]
 if.app-id = 'com.bandisoft.mac.bandizip'
 run = 'layout floating'

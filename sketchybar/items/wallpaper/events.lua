@@ -43,6 +43,20 @@ end
 
 components.bg:subscribe("select_bg", function(env)
 	if env.SELECT == "true" then
+		components.bgAnchor:set({
+			icon = {
+				string = "􀏆",
+				-- drawing = true,
+			},
+			drawing = true,
+		})
+		components.bg:set({
+			icon = {
+				string = "􀏆",
+				-- drawing = true,
+			},
+			drawing = true,
+		})
 		local tbl = helpers.getFocusedEntryTbl()
 		helpers.entryToggle(tbl, true, true)
 

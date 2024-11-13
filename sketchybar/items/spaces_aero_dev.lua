@@ -21,7 +21,6 @@ sbar.add("item", {
 		drawing = false,
 	},
 	background = {
-		-- color = colors.bg1,
 		color = colors.with_alpha(colors.bg1, colors.transparency),
 		border_width = 1,
 		height = 28,
@@ -137,6 +136,7 @@ for workspace_index = 1, max_workspaces do
 				background = {
 					border_width = is_focused and 2 or 1,
 				},
+				blur_radius = 30,
 			})
 		end)
 	end)
