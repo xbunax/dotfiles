@@ -1,6 +1,7 @@
 return {
   "chomosuke/typst-preview.nvim",
-  lazy = false, -- or ft = 'typst'
+  -- lazy = false, -- or ft = 'typst'
+  ft = "typst",
   version = "0.3.*",
   build = function()
     require("typst-preview").update()

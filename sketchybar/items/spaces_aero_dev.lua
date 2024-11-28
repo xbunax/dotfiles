@@ -37,38 +37,93 @@ local workspaces = {}
 local function updateWindows(workspace_index)
 	local get_windows =
 		string.format("aerospace list-windows --workspace %s --format '%%{app-name}' --json", workspace_index)
+	local get_focus_workspaces = "aerospace list-workspaces --focused"
 	sbar.exec(get_windows, function(open_windows)
-		local icon_line = ""
-		local no_app = true
-		for i, open_window in ipairs(open_windows) do
-			no_app = false
-			local app = open_window["app-name"]
-			local lookup = app_icons[app]
-			local icon = ((lookup == nil) and app_icons["default"] or lookup)
-			icon_line = icon_line .. " " .. icon
-		end
-		sbar.animate("tanh", 10, function()
-			if no_app then
-				workspaces[workspace_index]:set({
-					icon = { drawing = false },
-					label = { drawing = false },
-					background = { drawing = false },
-					padding_right = 0,
-					padding_left = 0,
-				})
-				return
+		sbar.exec(get_focus_workspaces, function(focused_workspace)
+			local icon_line = ""
+			local no_app = true
+			for i, open_window in ipairs(open_windows) do
+				no_app = false
+				local app = open_window["app-name"]
+				local lookup = app_icons[app]
+				local icon = ((lookup == nil) and app_icons["default"] or lookup)
+				icon_line = icon_line .. " " .. icon
 			end
+			sbar.animate("tanh", 10, function()
+				if no_app and workspace_index ~= tonumber(focused_workspace) then
+					workspaces[workspace_index]:set({
+						icon = { drawing = false },
+						label = { drawing = false },
+						background = { drawing = false },
+						padding_right = 0,
+						padding_left = 0,
+					})
+					return
+				end
+				if no_app and workspace_index == tonumber(focused_workspace) then
+					icon_line = " —"
+					workspaces[workspace_index]:set({
+						icon = { drawing = true },
+						label = {
+							string = icon_line,
+							drawing = true,
+							-- padding_right = 20,
+							font = "sketchybar-app-font:Regular:16.0",
+							y_offset = -1,
+						},
+						background = { drawing = true },
+						padding_right = 1,
+						padding_left = 1,
+					})
+				end
 
-			workspaces[workspace_index]:set({
-				icon = { drawing = true },
-				label = { drawing = true, string = icon_line },
-				background = { drawing = true },
-				padding_right = 1,
-				padding_left = 1,
-			})
+				workspaces[workspace_index]:set({
+					icon = { drawing = true },
+					label = { drawing = true, string = icon_line },
+					background = { drawing = true },
+					padding_right = 1,
+					padding_left = 1,
+				})
+			end)
 		end)
 	end)
 end
+
+-- local function updateWindows(workspace_index)
+-- 	local get_windows =
+-- 		string.format("aerospace list-windows --workspace %s --format '%%{app-name}' --json", workspace_index)
+-- 	sbar.exec(get_windows, function(open_windows)
+-- 		local icon_line = ""
+-- 		local no_app = true
+-- 		for i, open_window in ipairs(open_windows) do
+-- 			no_app = false
+-- 			local app = open_window["app-name"]
+-- 			local lookup = app_icons[app]
+-- 			local icon = ((lookup == nil) and app_icons["default"] or lookup)
+-- 			icon_line = icon_line .. " " .. icon
+-- 		end
+-- 		sbar.animate("tanh", 10, function()
+-- 			if no_app then
+-- 				workspaces[workspace_index]:set({
+-- 					icon = { drawing = false },
+-- 					label = { drawing = false },
+-- 					background = { drawing = false },
+-- 					padding_right = 0,
+-- 					padding_left = 0,
+-- 				})
+-- 				return
+-- 			end
+--
+-- 			workspaces[workspace_index]:set({
+-- 				icon = { drawing = true },
+-- 				label = { drawing = true, string = icon_line },
+-- 				background = { drawing = true },
+-- 				padding_right = 1,
+-- 				padding_left = 1,
+-- 			})
+-- 		end)
+-- 	end)
+-- end
 
 local function updateWorkspaceMonitor(workspace_index)
 	sbar.exec(query_workspaces, function(workspaces_and_monitors)
@@ -113,9 +168,6 @@ for workspace_index = 1, max_workspaces do
 		padding_left = 2,
 		background = {
 			color = colors.bg3,
-			-- blur_radius = colors.blur_radius,
-			-- color = { alpha = 1.0 },
-			-- color = colors.with_alpha(colors.bg1, 0.3),
 			border_width = 1,
 			height = 28,
 			border_color = colors.bg2,

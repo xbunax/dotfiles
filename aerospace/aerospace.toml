@@ -199,7 +199,7 @@ alt-right = ['workspace next']
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
-alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+alt-shift-tab = 'focus-monitor --wrap-around next'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 cmd-shift-s = 'mode service'
@@ -216,7 +216,7 @@ cmd-shift-s = 'mode service'
 # 7 = 'main'                # Main monitor
 # 8 = 'main'                # Main monitor
 # 9 = ['secondary', 'main'] # Main monitor
-# 10 = 'secondary'          # Non-main monitor in case when there are only two monitors
+# 10 = ['main','secondary']          # Non-main monitor in case when there are only two monitors
 [mode.service.binding]
 esc = ['reload-config', 'mode main']
 r = ['flatten-workspace-tree', 'mode main'] # reset layout
@@ -268,6 +268,14 @@ run = 'layout floating'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.iCal'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.weather'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.reminders'
 run = 'layout floating'
 
 [[on-window-detected]]
