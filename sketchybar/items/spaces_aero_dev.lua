@@ -37,53 +37,87 @@ local workspaces = {}
 local function updateWindows(workspace_index)
 	local get_windows =
 		string.format("aerospace list-windows --workspace %s --format '%%{app-name}' --json", workspace_index)
+	local query_visible_workspaces =
+		"aerospace list-workspaces --visible --monitor all --format '%{workspace}%{monitor-id}' --json"
 	local get_focus_workspaces = "aerospace list-workspaces --focused"
 	sbar.exec(get_windows, function(open_windows)
-		sbar.exec(get_focus_workspaces, function(focused_workspace)
-			local icon_line = ""
-			local no_app = true
-			for i, open_window in ipairs(open_windows) do
-				no_app = false
-				local app = open_window["app-name"]
-				local lookup = app_icons[app]
-				local icon = ((lookup == nil) and app_icons["default"] or lookup)
-				icon_line = icon_line .. " " .. icon
-			end
-			sbar.animate("tanh", 10, function()
-				if no_app and workspace_index ~= tonumber(focused_workspace) then
-					workspaces[workspace_index]:set({
-						icon = { drawing = false },
-						label = { drawing = false },
-						background = { drawing = false },
-						padding_right = 0,
-						padding_left = 0,
-					})
-					return
-				end
-				if no_app and workspace_index == tonumber(focused_workspace) then
-					icon_line = " —"
-					workspaces[workspace_index]:set({
-						icon = { drawing = true },
-						label = {
-							string = icon_line,
-							drawing = true,
-							-- padding_right = 20,
-							font = "sketchybar-app-font:Regular:16.0",
-							y_offset = -1,
-						},
-						background = { drawing = true },
-						padding_right = 1,
-						padding_left = 1,
-					})
-				end
+		sbar.exec(get_focus_workspaces, function(focused_workspaces)
+			sbar.exec(query_visible_workspaces, function(visible_workspaces)
+				sbar.exec(query_monitor, function(monitor_number)
+					local monitor_id_map = {}
+					if tonumber(monitor_number) ~= 1 then
+						monitor_id_map = { [1] = 2, [2] = 1 } -- sketchybar monitor id is different from aerospace monitor id which is need to map monitor id
+					else
+						monitor_id_map = { [1] = 1, [2] = 2 }
+					end
+					local icon_line = ""
+					local no_app = true
+					for i, open_window in ipairs(open_windows) do
+						no_app = false
+						local app = open_window["app-name"]
+						local lookup = app_icons[app]
+						local icon = ((lookup == nil) and app_icons["default"] or lookup)
+						icon_line = icon_line .. " " .. icon
+					end
 
-				workspaces[workspace_index]:set({
-					icon = { drawing = true },
-					label = { drawing = true, string = icon_line },
-					background = { drawing = true },
-					padding_right = 1,
-					padding_left = 1,
-				})
+					sbar.animate("tanh", 10, function()
+						for i, visible_workspace in ipairs(visible_workspaces) do
+							if no_app and workspace_index == tonumber(visible_workspace["workspace"]) then
+								local monitor_id = monitor_id_map[visible_workspace["monitor-id"]]
+								icon_line = " —"
+								workspaces[workspace_index]:set({
+									icon = { drawing = true },
+									label = {
+										string = icon_line,
+										drawing = true,
+										-- padding_right = 20,
+										font = "sketchybar-app-font:Regular:16.0",
+										y_offset = -1,
+									},
+									background = { drawing = true },
+									padding_right = 1,
+									padding_left = 1,
+									display = monitor_id,
+								})
+								return
+							end
+						end
+						if no_app and workspace_index ~= tonumber(focused_workspaces) then
+							workspaces[workspace_index]:set({
+								icon = { drawing = false },
+								label = { drawing = false },
+								background = { drawing = false },
+								padding_right = 0,
+								padding_left = 0,
+							})
+							return
+						end
+						if no_app and workspace_index == tonumber(focused_workspaces) then
+							icon_line = " —"
+							workspaces[workspace_index]:set({
+								icon = { drawing = true },
+								label = {
+									string = icon_line,
+									drawing = true,
+									-- padding_right = 20,
+									font = "sketchybar-app-font:Regular:16.0",
+									y_offset = -1,
+								},
+								background = { drawing = true },
+								padding_right = 1,
+								padding_left = 1,
+							})
+						end
+
+						workspaces[workspace_index]:set({
+							icon = { drawing = true },
+							label = { drawing = true, string = icon_line },
+							background = { drawing = true },
+							padding_right = 1,
+							padding_left = 1,
+						})
+					end)
+				end)
 			end)
 		end)
 	end)
@@ -154,8 +188,8 @@ for workspace_index = 1, max_workspaces do
 			drawing = false,
 			font = { family = settings.font.numbers },
 			string = workspace_index,
-			padding_left = 10,
-			padding_right = 5,
+			padding_left = 8,
+			padding_right = 3,
 		},
 		label = {
 			padding_right = 12,
@@ -198,13 +232,13 @@ for workspace_index = 1, max_workspaces do
 	end)
 
 	workspace:subscribe("display_change", function()
-		updateWindows(workspace_index)
 		updateWorkspaceMonitor(workspace_index)
+		updateWindows(workspace_index)
 	end)
 
 	-- initial setup
-	updateWindows(workspace_index)
 	updateWorkspaceMonitor(workspace_index)
+	updateWindows(workspace_index)
 	sbar.exec("aerospace list-workspaces --focused", function(focused_workspace)
 		workspaces[tonumber(focused_workspace)]:set({
 			icon = { highlight = true },
