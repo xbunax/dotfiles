@@ -143,11 +143,11 @@ cmd-shift-enter = [
 ]
 
 shift-ctrl-s=[
-    'exec-and-forget /opt/homebrew/bin/aerospace list-windows --all --format "%{window-id}%{workspace}%{app-bundle-id}" --json >~/.config/aerospace/scripts/layout.json'
+    'exec-and-forget /opt/homebrew/bin/aerospace list-windows --all --format "%{window-id}%{workspace}%{app-bundle-id}" --json > ~/.config/aerospace/scripts/layout.json && osascript -e "display notification \"layout save\" with title \"success\""'
 ]
 
 shift-ctrl-r=[
-    'exec-and-forget ~/.config/aerospace/scripts/recovery_layout.py'
+    'exec-and-forget ~/.config/aerospace/scripts/recovery_layout.sh'
 ]
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-slash = 'layout tiles horizontal vertical'
@@ -186,6 +186,19 @@ alt-9 = 'workspace 9'
 alt-0 = 'workspace 10'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
+ctrl-cmd-1 = ['exec-and-forget ~/.config/aerospace/scripts/switch_workspaces.sh 1']
+ctrl-cmd-2 = ['exec-and-forget ~/.config/aerospace/scripts/switch_workspaces.sh 2']
+ctrl-cmd-3 = ['exec-and-forget ~/.config/aerospace/scripts/switch_workspaces.sh 3']
+ctrl-cmd-4 = ['exec-and-forget ~/.config/aerospace/scripts/switch_workspaces.sh 4']
+ctrl-cmd-5 = ['exec-and-forget ~/.config/aerospace/scripts/switch_workspaces.sh 5']
+ctrl-cmd-6 = ['exec-and-forget ~/.config/aerospace/scripts/switch_workspaces.sh 6']
+ctrl-cmd-7 = ['exec-and-forget ~/.config/aerospace/scripts/switch_workspaces.sh 7']
+ctrl-cmd-8 = ['exec-and-forget ~/.config/aerospace/scripts/switch_workspaces.sh 8']
+ctrl-cmd-9 = ['exec-and-forget ~/.config/aerospace/scripts/switch_workspaces.sh 9']
+ctrl-cmd-0 = ['exec-and-forget ~/.config/aerospace/scripts/switch_workspaces.sh 10']
+
+alt-cmd-c = ['move-workspace-to-monitor --wrap-around next']
+
 alt-cmd-1 = ['move-node-to-workspace 1', 'workspace 1']
 alt-cmd-2 = ['move-node-to-workspace 2', 'workspace 2']
 alt-cmd-3 = ['move-node-to-workspace 3', 'workspace 3']
@@ -196,9 +209,6 @@ alt-cmd-7 = ['move-node-to-workspace 7', 'workspace 7']
 alt-cmd-8 = ['move-node-to-workspace 8', 'workspace 8']
 alt-cmd-9 = ['move-node-to-workspace 9', 'workspace 9']
 alt-cmd-0 = ['move-node-to-workspace 10', 'workspace 10']
-
-alt-cmd-c = ['move-workspace-to-monitor --wrap-around next']
-
 
 alt-left = ['workspace prev']
 alt-right = ['workspace next']
