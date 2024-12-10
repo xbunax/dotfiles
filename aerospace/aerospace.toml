@@ -104,15 +104,15 @@ alt-t = [
 
 # You can uncomment this line to open up terminal with alt + enter shortcut
 # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
-alt-k = ['exec-and-forget open /Applications/Kitty.app']
-alt-z = ['exec-and-forget open -a Zotero']
-alt-i = ['exec-and-forget open -a iTerm']
-alt-w = ['exec-and-forget open /Applications/WeChat.app']
-alt-q = ['exec-and-forget open /Applications/QQ.app']
-alt-a = ['exec-and-forget open /Applications/Arc.app']
-alt-f = ['exec-and-forget open -a Finder']
-alt-s = ['exec-and-forget open -a Spotify']
-alt-c = ['exec-and-forget open -a Visual\ Studio\ Code']
+# alt-k = ['exec-and-forget open /Applications/Kitty.app']
+# alt-z = ['exec-and-forget open -a Zotero']
+# alt-i = ['exec-and-forget open -a iTerm']
+# alt-w = ['exec-and-forget open /Applications/WeChat.app']
+# alt-q = ['exec-and-forget open /Applications/QQ.app']
+# alt-a = ['exec-and-forget open /Applications/Arc.app']
+# alt-f = ['exec-and-forget open -a Finder']
+# alt-s = ['exec-and-forget open -a Spotify']
+# alt-c = ['exec-and-forget open -a Visual\ Studio\ Code']
 
 cmd-shift-backspace = [
   'exec-and-forget /opt/homebrew/bin/sketchybar --trigger request_bg REQUEST_BG=false',
@@ -142,6 +142,13 @@ cmd-shift-enter = [
   'exec-and-forget /opt/homebrew/bin/sketchybar --trigger select_bg SELECT=true',
 ]
 
+shift-ctrl-s=[
+    'exec-and-forget /opt/homebrew/bin/aerospace list-windows --all --format "%{window-id}%{workspace}%{app-bundle-id}" --json >~/.config/aerospace/scripts/layout.json'
+]
+
+shift-ctrl-r=[
+    'exec-and-forget ~/.config/aerospace/scripts/recovery_layout.py'
+]
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
@@ -216,7 +223,7 @@ cmd-shift-s = 'mode service'
 # 7 = 'main'                # Main monitor
 # 8 = 'main'                # Main monitor
 # 9 = ['secondary', 'main'] # Main monitor
-# 10 = ['main','secondary']          # Non-main monitor in case when there are only two monitors
+10 = ['secondary','main']          # Non-main monitor in case when there are only two monitors
 [mode.service.binding]
 esc = ['reload-config', 'mode main']
 r = ['flatten-workspace-tree', 'mode main'] # reset layout
@@ -240,6 +247,11 @@ run = 'layout floating'
 [[on-window-detected]]
 if.app-id = 'com.tencent.qq'
 if.window-title-regex-substring = '^(?!QQ).*$'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'org.blenderfoundation.blender '
+if.window-title-regex-substring = '^(?!Blender).*$'
 run = 'layout floating'
 
 [[on-window-detected]]
