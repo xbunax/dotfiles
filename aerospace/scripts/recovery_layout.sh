@@ -1,8 +1,9 @@
 #!/bin/bash
 
-layout_file="/Users/xbunax/.config/aerospace/scripts/layout.json"
+layout_file=~/.config/aerospace/scripts/layout.json
 
 if [[ ! -f "$layout_file" ]]; then
+  echo none
   exit 1
 fi
 
