@@ -1,30 +1,15 @@
-# Place a copy of this config to ~/.aerospace.toml
-# After that, you can edit ~/.aerospace.toml to your liking
+after-login-command = [
+  'exec-and-forget ~/.config/aerospace/scripts/pin_window.sh $AEROSPACE_PREV_WORKSPACE $AEROSPACE_FOCUSED_WORKSPACE',
+]
 
-# It's not neceesary to copy all keys to your config.
-# If the key is missing in your config, "default-config.toml" will serve as a fallback
-
-# You can use it to add commands that run after login to macOS user session.
-# 'start-at-login' needs to be 'true' for 'after-login-command' to work
-# Available commands: https://nikitabobko.github.io/AeroSpace/commands
-# after-login-command = []
-
-# You can use it to add commands that run after AeroSpace startup.
-# 'after-startup-command' is run after 'after-login-command'
-# Available commands : https://nikitabobko.github.io/AeroSpace/commands
-# after-startup-command = []
-# Run Sketchybar together with AeroSpace
-# sketchbar has a built-in detection of already running process,
-# so it won't be run twice on AeroSpace restart
-# after-startup-command = [
-#     'exec-and-forget /opt/homebrew/bin/sketchybar',
-# ]
-
-# # Notify Sketchybar about workspace change
 exec-on-workspace-change = [
   '/bin/bash',
   '-c',
   '/opt/homebrew/bin/sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
+  # '~/.config/aerospace/scripts/pin_window.sh $AEROSPACE_PREV_WORKSPACE $AEROSPACE_FOCUSED_WORKSPACE',
+]
+after-startup-command = [
+  'exec-and-forget ~/.config/aerospace/scripts/bsp_tiling.sh',
 ]
 
 on-focus-changed = [
@@ -72,21 +57,26 @@ outer.bottom = [{ monitor.'^built-in retina display$' = 3 }, 5]
 outer.top = [{ monitor.'^built-in retina display$' = 8 }, 40]
 outer.right = 5
 
-# See https://nikitabobko.github.io/AeroSpace/guide#exec-env-vars
 [exec] # Again, you don't need to copy all config sections to your config.
 inherit-env-vars = true # If you don't touch "exec" section,
 [exec.env-vars] # it will fallback to "default-config.toml"
 PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
+XDG_CONFIG_HOME = '${HOME}/.config'
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 # 'main' binding mode must be always presented
 [mode.main.binding]
 
-alt-t = [
+alt-t=[
+  'exec-and-forget ~/.config/aerospace/scripts/center_window.sh'
+]
+shift-alt-f = [
   'layout floating tiling',
   'mode main',
-] # Toggle between floating and tiling layout
+] 
+
+# Toggle between floating and tiling layout
 # All possible keys:
 # - Letters.        a, b, c, ..., z
 # - Numbers.        0, 1, 2, ..., 9
@@ -163,11 +153,15 @@ alt-shift-j = ['focus down']
 alt-shift-k = ['focus up']
 alt-shift-l = ['focus right']
 
+# alt-shift-h = ['exec-and-forget aerospace focus left || aerospace focus-monitor left']
+# alt-shift-j = ['exec-and-forget aerospace focus down || aerospace focus-monitor down']
+# alt-shift-k = ['exec-and-forget aerospace focus up || aerospace focus-monitor up']
+# alt-shift-l = ['exec-and-forget aerospace focus right || aerospace focus-monitor right']
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
-cmd-shift-h = 'move left'
-cmd-shift-j = 'move down'
-cmd-shift-k = 'move up'
-cmd-shift-l = 'move right'
+cmd-shift-h = ['move left']
+cmd-shift-j = ['move down']
+cmd-shift-k = ['move up']
+cmd-shift-l = ['move right']
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
 ctrl-shift-h = 'resize smart -50'
@@ -197,7 +191,6 @@ ctrl-cmd-8 = ['exec-and-forget ~/.config/aerospace/scripts/switch_workspaces.sh 
 ctrl-cmd-9 = ['exec-and-forget ~/.config/aerospace/scripts/switch_workspaces.sh 9']
 ctrl-cmd-0 = ['exec-and-forget ~/.config/aerospace/scripts/switch_workspaces.sh 10']
 
-alt-cmd-c = ['move-workspace-to-monitor --wrap-around next']
 
 alt-cmd-1 = ['move-node-to-workspace 1', 'workspace 1']
 alt-cmd-2 = ['move-node-to-workspace 2', 'workspace 2']
@@ -212,17 +205,13 @@ alt-cmd-0 = ['move-node-to-workspace 10', 'workspace 10']
 
 alt-left = ['workspace prev']
 alt-right = ['workspace next']
+alt-cmd-c = ['move-workspace-to-monitor --wrap-around next']
 
-# See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
-# See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
 alt-shift-tab = 'focus-monitor --wrap-around next'
 
-# See: https://nikitabobko.github.io/AeroSpace/commands#mode
 cmd-shift-s = 'mode service'
 
-# 'service' binding mode declaration.
-# See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [workspace-to-monitor-force-assignment]
 1 = 'main' # Monitor sequence number from left to right. 1-based indexing
 2 = 'main' # Main monitor
@@ -234,20 +223,40 @@ cmd-shift-s = 'mode service'
 # 8 = 'main'                # Main monitor
 # 9 = ['secondary', 'main'] # Main monitor
 10 = ['secondary','main']          # Non-main monitor in case when there are only two monitors
+
+[mode.floating.binding]
+alt-t = [
+    'exec-and-forget ~/.config/aerospace/scripts/center_window.sh',
+    'mode main'
+]
+alt-shift-semicolon = 'mode service'
+esc = 'mode main'
+
+h = 'exec-and-forget ~/.config/aerospace/scripts/move-floating.sh -32 0'
+j = 'exec-and-forget ~/.config/aerospace/scripts/move-floating.sh 0 32'
+k = 'exec-and-forget ~/.config/aerospace/scripts/move-floating.sh 0 -32'
+l = 'exec-and-forget ~/.config/aerospace/scripts/move-floating.sh 32 0'
+
+shift-h = 'exec-and-forget ~/.config/aerospace/scripts/resize-floating-centered.sh -128 0'
+shift-j = 'exec-and-forget ~/.config/aerospace/scripts/resize-floating-centered.sh 0 -128'
+shift-k = 'exec-and-forget ~/.config/aerospace/scripts/resize-floating-centered.sh 0 128'
+shift-l = 'exec-and-forget ~/.config/aerospace/scripts/resize-floating-centered.sh 128 0'
+
 [mode.service.binding]
 esc = ['reload-config', 'mode main']
-r = ['flatten-workspace-tree', 'mode main'] # reset layout
-#s = ['layout sticky tiling', 'mode main'] # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
-f = [
-  'layout floating tiling',
-  'mode main',
-] # Toggle between floating and tiling layout
+# r = ['flatten-workspace-tree', 'mode main'] # reset layout
+
+# f = [
+#   'layout floating tiling',
+#   'mode main',
+# ] # Toggle between floating and tiling layout
 backspace = ['close-all-windows-but-current', 'mode main']
 
 cmd-shift-h = ['join-with left', 'mode main']
 cmd-shift-j = ['join-with down', 'mode main']
 cmd-shift-k = ['join-with up', 'mode main']
 cmd-shift-l = ['join-with right', 'mode main']
+
 
 [[on-window-detected]]
 if.app-id = 'com.tencent.xinWeChat'
