@@ -10,6 +10,11 @@ return {
 	grey = 0xff7f8490,
 	transparent = 0x00000000,
 
+	aerospace_label_color = 0xffe2e2e3,
+	aerospace_label_highlight_color = 0xff9ed072,
+	aerospace_icon_highlight_color = 0xffe7c664,
+	front_app_color = 0xff181819,
+
 	bar = {
 		bg = 0xBFffff,
 		-- bg = 0x829b9b9b,

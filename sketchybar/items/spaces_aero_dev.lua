@@ -4,8 +4,8 @@ local settings = require("settings")
 local app_icons = require("helpers.app_icons")
 
 local max_workspaces = 10
-local query_workspaces = "aerospace list-workspaces --all --format '%{workspace}%{monitor-id}' --json"
-local query_monitor = "aerospace list-monitors --count"
+local query_workspaces =
+	"aerospace list-workspaces --all --format '%{workspace}%{monitor-appkit-nsscreen-screens-id}' --json"
 local workspace_monitor = {}
 
 -- Add padding to the left
@@ -38,61 +38,25 @@ local function updateWindows(workspace_index)
 	local get_windows =
 		string.format("aerospace list-windows --workspace %s --format '%%{app-name}' --json", workspace_index)
 	local query_visible_workspaces =
-		"aerospace list-workspaces --visible --monitor all --format '%{workspace}%{monitor-id}' --json"
+		"aerospace list-workspaces --visible --monitor all --format '%{workspace}%{monitor-appkit-nsscreen-screens-id}' --json"
 	local get_focus_workspaces = "aerospace list-workspaces --focused"
 	sbar.exec(get_windows, function(open_windows)
 		sbar.exec(get_focus_workspaces, function(focused_workspaces)
 			sbar.exec(query_visible_workspaces, function(visible_workspaces)
-				sbar.exec(query_monitor, function(monitor_number)
-					local monitor_id_map = {}
-					if tonumber(monitor_number) ~= 1 then
-						monitor_id_map = { [1] = 2, [2] = 1 } -- sketchybar monitor id is different from aerospace monitor id which is need to map monitor id
-					else
-						monitor_id_map = { [1] = 1, [2] = 2 }
-					end
-					local icon_line = ""
-					local no_app = true
-					for i, open_window in ipairs(open_windows) do
-						no_app = false
-						local app = open_window["app-name"]
-						local lookup = app_icons[app]
-						local icon = ((lookup == nil) and app_icons["default"] or lookup)
-						icon_line = icon_line .. " " .. icon
-					end
+				local icon_line = ""
+				local no_app = true
+				for i, open_window in ipairs(open_windows) do
+					no_app = false
+					local app = open_window["app-name"]
+					local lookup = app_icons[app]
+					local icon = ((lookup == nil) and app_icons["Default"] or lookup)
+					icon_line = icon_line .. " " .. icon
+				end
 
-					sbar.animate("tanh", 10, function()
-						for i, visible_workspace in ipairs(visible_workspaces) do
-							if no_app and workspace_index == tonumber(visible_workspace["workspace"]) then
-								local monitor_id = monitor_id_map[visible_workspace["monitor-id"]]
-								icon_line = " —"
-								workspaces[workspace_index]:set({
-									icon = { drawing = true },
-									label = {
-										string = icon_line,
-										drawing = true,
-										-- padding_right = 20,
-										font = "sketchybar-app-font:Regular:16.0",
-										y_offset = -1,
-									},
-									background = { drawing = true },
-									padding_right = 1,
-									padding_left = 1,
-									display = monitor_id,
-								})
-								return
-							end
-						end
-						if no_app and workspace_index ~= tonumber(focused_workspaces) then
-							workspaces[workspace_index]:set({
-								icon = { drawing = false },
-								label = { drawing = false },
-								background = { drawing = false },
-								padding_right = 0,
-								padding_left = 0,
-							})
-							return
-						end
-						if no_app and workspace_index == tonumber(focused_workspaces) then
+				sbar.animate("tanh", 10, function()
+					for i, visible_workspace in ipairs(visible_workspaces) do
+						if no_app and workspace_index == tonumber(visible_workspace["workspace"]) then
+							local monitor_id = visible_workspace["monitor-appkit-nsscreen-screens-id"]
 							icon_line = " —"
 							workspaces[workspace_index]:set({
 								icon = { drawing = true },
@@ -106,77 +70,61 @@ local function updateWindows(workspace_index)
 								background = { drawing = true },
 								padding_right = 1,
 								padding_left = 1,
+								display = monitor_id,
 							})
+							return
 						end
-
+					end
+					if no_app and workspace_index ~= tonumber(focused_workspaces) then
+						workspaces[workspace_index]:set({
+							icon = { drawing = false },
+							label = { drawing = false },
+							background = { drawing = false },
+							padding_right = 0,
+							padding_left = 0,
+						})
+						return
+					end
+					if no_app and workspace_index == tonumber(focused_workspaces) then
+						icon_line = " —"
 						workspaces[workspace_index]:set({
 							icon = { drawing = true },
-							label = { drawing = true, string = icon_line },
+							label = {
+								string = icon_line,
+								drawing = true,
+								-- padding_right = 20,
+								font = "sketchybar-app-font:Regular:16.0",
+								y_offset = -1,
+							},
 							background = { drawing = true },
 							padding_right = 1,
 							padding_left = 1,
 						})
-					end)
+					end
+
+					workspaces[workspace_index]:set({
+						icon = { drawing = true },
+						label = { drawing = true, string = icon_line },
+						background = { drawing = true },
+						padding_right = 1,
+						padding_left = 1,
+					})
 				end)
 			end)
 		end)
 	end)
 end
 
--- local function updateWindows(workspace_index)
--- 	local get_windows =
--- 		string.format("aerospace list-windows --workspace %s --format '%%{app-name}' --json", workspace_index)
--- 	sbar.exec(get_windows, function(open_windows)
--- 		local icon_line = ""
--- 		local no_app = true
--- 		for i, open_window in ipairs(open_windows) do
--- 			no_app = false
--- 			local app = open_window["app-name"]
--- 			local lookup = app_icons[app]
--- 			local icon = ((lookup == nil) and app_icons["default"] or lookup)
--- 			icon_line = icon_line .. " " .. icon
--- 		end
--- 		sbar.animate("tanh", 10, function()
--- 			if no_app then
--- 				workspaces[workspace_index]:set({
--- 					icon = { drawing = false },
--- 					label = { drawing = false },
--- 					background = { drawing = false },
--- 					padding_right = 0,
--- 					padding_left = 0,
--- 				})
--- 				return
--- 			end
---
--- 			workspaces[workspace_index]:set({
--- 				icon = { drawing = true },
--- 				label = { drawing = true, string = icon_line },
--- 				background = { drawing = true },
--- 				padding_right = 1,
--- 				padding_left = 1,
--- 			})
--- 		end)
--- 	end)
--- end
-
 local function updateWorkspaceMonitor(workspace_index)
 	sbar.exec(query_workspaces, function(workspaces_and_monitors)
-		sbar.exec(query_monitor, function(monitor_number)
-			local monitor_id_map = {}
-			if tonumber(monitor_number) ~= 1 then
-				monitor_id_map = { [1] = 2, [2] = 1 } -- sketchybar monitor id is different from aerospace monitor id which is need to map monitor id
-			else
-				monitor_id_map = { [1] = 1, [2] = 2 }
-			end
-			for _, entry in ipairs(workspaces_and_monitors) do
-				local space_index = tonumber(entry.workspace)
-				local monitor_id = math.floor(entry["monitor-id"])
-				workspace_monitor[space_index] = monitor_id_map[monitor_id]
-			end
-			workspaces[workspace_index]:set({
-				display = workspace_monitor[workspace_index],
-			})
-		end)
+		for _, entry in ipairs(workspaces_and_monitors) do
+			local space_index = tonumber(entry.workspace)
+			local monitor_id = math.floor(entry["monitor-appkit-nsscreen-screens-id"])
+			workspace_monitor[space_index] = monitor_id
+		end
+		workspaces[workspace_index]:set({
+			display = workspace_monitor[workspace_index],
+		})
 	end)
 end
 
@@ -184,17 +132,19 @@ for workspace_index = 1, max_workspaces do
 	local workspace = sbar.add("item", {
 		icon = {
 			color = colors.white,
-			highlight_color = colors.red,
+			-- highlight_color = colors.red,
+			highlight_color = colors.aerospace_icon_highlight_color,
 			drawing = false,
 			font = { family = settings.font.numbers },
 			string = workspace_index,
-			padding_left = 8,
-			padding_right = 3,
+			padding_left = 10,
+			padding_right = 5,
 		},
 		label = {
-			padding_right = 12,
-			color = colors.grey,
-			highlight_color = colors.white,
+			padding_right = 10,
+			-- color = colors.grey,
+			color = colors.aerospace_label_color,
+			highlight_color = colors.aerospace_label_highlight_color,
 			font = "sketchybar-app-font:Regular:16.0",
 			y_offset = -1,
 		},

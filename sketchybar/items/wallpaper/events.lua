@@ -37,6 +37,7 @@ local function setWallpaper()
 	local cmd = [[osascript -e "tell application \"System Events\" to set picture of every desktop to \"]]
 		.. globals.selectedFilePath
 		.. [[\" as POSIX file"]]
+		.. "&& ~/.config/sketchybar/helpers/custom_bar_themes"
 
 	os.execute(cmd)
 end
