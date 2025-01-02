@@ -11,8 +11,9 @@ sbar.exec("killall cpu_load >/dev/null; $CONFIG_DIR/helpers/event_providers/cpu_
 
 --While the average (it seems wrong) is:
 -- /Applications/Stats.app/Contents/Resources/smc list -t | grep "Tp.a" | awk '{sum += $2; count++} END {print sum/count}'
+local M = {}
 
-local temp = sbar.add("graph", "widgets.temp", 42, {
+M.temp = sbar.add("graph", "widgets.temp", 42, {
 	position = "right",
 	graph = { color = colors.blue },
 	background = {
@@ -40,7 +41,7 @@ local temp = sbar.add("graph", "widgets.temp", 42, {
 	padding_right = settings.paddings + 6,
 })
 
-local cpu = sbar.add("graph", "widgets.cpu", 42, {
+M.cpu = sbar.add("graph", "widgets.cpu", 42, {
 	position = "right",
 	graph = { color = colors.blue },
 	background = {
@@ -69,7 +70,7 @@ local cpu = sbar.add("graph", "widgets.cpu", 42, {
 local function updateTemperature()
 	sbar.exec("/Users/xbunax/.local/bin/smctemp -c", function(output)
 		local temperature = tonumber(output)
-		temp:push({ temperature / 130. })
+		M.temp:push({ temperature / 130. })
 
 		local color = colors.green
 		if temperature > 50 then
@@ -82,17 +83,17 @@ local function updateTemperature()
 			end
 		end
 
-		temp:set({
+		M.temp:set({
 			graph = { color = color },
 			label = "􀇬 " .. temperature .. "󰔄",
 		})
 	end)
 end
 
-cpu:subscribe("cpu_update", function(env)
+M.cpu:subscribe("cpu_update", function(env)
 	--   -- Also available: env.user_load, env.sys_load
 	local load = tonumber(env.total_load)
-	cpu:push({ load / 100. })
+	M.cpu:push({ load / 100. })
 
 	local color = colors.blue
 	if load > 30 then
@@ -105,28 +106,30 @@ cpu:subscribe("cpu_update", function(env)
 		end
 	end
 
-	cpu:set({
+	M.cpu:set({
 		graph = { color = color },
 		label = "cpu " .. env.total_load .. "%",
 	})
 	updateTemperature()
 end)
 
-cpu:subscribe("mouse.clicked", function(env)
+M.cpu:subscribe("mouse.clicked", function(env)
 	sbar.exec("open -a 'Activity Monitor'")
 end)
 
 -- Background around the cpu item
-sbar.add("bracket", "widgets.cpu.bracket", { cpu.name, temp.name }, {
-	background = { color = colors.bg3 },
+-- sbar.add("bracket", "widgets.cpu.bracket", { cpu.name, temp.name }, {
+-- background = { color = colors.bg3 },
 
-	-- background = {
-	-- 	color = colors.with_alpha(colors.bg1, colors.transparency),
-	-- },
-})
+-- background = {
+-- 	color = colors.with_alpha(colors.bg1, colors.transparency),
+-- },
+-- })
 
 -- Background around the cpu item
 sbar.add("item", "widgets.cpu.padding", {
 	position = "right",
 	width = settings.group_paddings,
 })
+
+return M

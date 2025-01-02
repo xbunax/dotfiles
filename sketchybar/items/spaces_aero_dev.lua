@@ -1,6 +1,7 @@
 -- items/aerospace.lua
 local colors = require("colors")
 local settings = require("settings")
+local icons = require("icons")
 local app_icons = require("helpers.app_icons")
 
 local max_workspaces = 10
@@ -21,10 +22,11 @@ sbar.add("item", {
 		drawing = false,
 	},
 	background = {
-		color = colors.with_alpha(colors.bg1, colors.transparency),
-		border_width = 1,
+		-- color = colors.with_alpha(colors.bg1, colors.transparency),
+		color = colors.bg3,
+		border_width = 0,
 		height = 28,
-		border_color = colors.black,
+		border_color = colors.bg3,
 		corner_radius = 9,
 		drawing = false,
 	},
@@ -53,7 +55,7 @@ local function updateWindows(workspace_index)
 					icon_line = icon_line .. " " .. icon
 				end
 
-				sbar.animate("tanh", 10, function()
+				sbar.animate("sin", 15, function()
 					for i, visible_workspace in ipairs(visible_workspaces) do
 						if no_app and workspace_index == tonumber(visible_workspace["workspace"]) then
 							local monitor_id = visible_workspace["monitor-appkit-nsscreen-screens-id"]
@@ -75,6 +77,7 @@ local function updateWindows(workspace_index)
 							return
 						end
 					end
+
 					if no_app and workspace_index ~= tonumber(focused_workspaces) then
 						workspaces[workspace_index]:set({
 							icon = { drawing = false },
@@ -132,6 +135,7 @@ for workspace_index = 1, max_workspaces do
 	local workspace = sbar.add("item", {
 		icon = {
 			color = colors.white,
+			-- color = colors.black,
 			-- highlight_color = colors.red,
 			highlight_color = colors.aerospace_icon_highlight_color,
 			drawing = false,
@@ -151,10 +155,10 @@ for workspace_index = 1, max_workspaces do
 		padding_right = 2,
 		padding_left = 2,
 		background = {
-			color = colors.bg3,
-			border_width = 1,
+			-- color = colors.bg3,
+			border_width = 0,
 			height = 28,
-			border_color = colors.bg2,
+			border_color = colors.aerospace_border_color,
 		},
 		click_script = "aerospace workspace " .. workspace_index,
 	})
@@ -165,14 +169,14 @@ for workspace_index = 1, max_workspaces do
 		local focused_workspace = tonumber(env.FOCUSED_WORKSPACE)
 		local is_focused = focused_workspace == workspace_index
 
-		sbar.animate("tanh", 10, function()
+		sbar.animate("circ", 15, function()
 			workspace:set({
 				icon = { highlight = is_focused },
 				label = { highlight = is_focused },
 				background = {
-					border_width = is_focused and 2 or 1,
+					border_width = is_focused and 1 or 0,
 				},
-				blur_radius = 30,
+				blur_radius = 20,
 			})
 		end)
 	end)
@@ -189,11 +193,16 @@ for workspace_index = 1, max_workspaces do
 	-- initial setup
 	updateWorkspaceMonitor(workspace_index)
 	updateWindows(workspace_index)
+
 	sbar.exec("aerospace list-workspaces --focused", function(focused_workspace)
-		workspaces[tonumber(focused_workspace)]:set({
-			icon = { highlight = true },
-			label = { highlight = true },
-			background = { border_width = 2 },
-		})
+		sbar.animate("sin", 15, function()
+			workspaces[tonumber(focused_workspace)]:set({
+				icon = { highlight = true },
+				label = { highlight = true },
+				background = { border_width = 1 },
+			})
+		end)
 	end)
 end
+
+return workspaces

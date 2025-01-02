@@ -26,9 +26,9 @@ sbar.default({
 		padding_right = settings.paddings,
 	},
 	background = {
-		height = 28,
+		height = 30,
 		corner_radius = 9,
-		border_width = 2,
+		border_width = 1,
 		border_color = colors.bg2,
 		image = {
 			corner_radius = 9,
@@ -46,7 +46,7 @@ sbar.default({
 		},
 		blur_radius = 20,
 	},
-	blur_radius = 20,
+	blur_radius = 40,
 	padding_left = 4,
 	padding_right = 4,
 	scroll_texts = true,

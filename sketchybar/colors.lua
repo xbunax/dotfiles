@@ -11,14 +11,16 @@ return {
 	transparent = 0x00000000,
 
 	aerospace_label_color = 0xffe2e2e3,
+	aerospace_border_color = 0xff181819,
 	aerospace_label_highlight_color = 0xff9ed072,
 	aerospace_icon_highlight_color = 0xffe7c664,
 	front_app_color = 0xff181819,
 
 	bar = {
 		bg = 0xBFffff,
-		-- bg = 0x829b9b9b,
+		-- bg = 0xFF1e1e2e,
 		border = 0x66494d64,
+		-- border = 0xff9ed072,
 		-- border = 0xff494d66,
 		-- border = 0x801a1b27,
 	},
@@ -26,15 +28,9 @@ return {
 		bg = 0xc02c2e34,
 		border = 0xff7f8490,
 	},
-	-- bg1 = 0xff363944,
-	-- bg2 = 0xff414550,
-	-- bg2 = 0xff,
 	bg1 = 0xff363944,
 	bg2 = 0xff414550,
 	bg3 = 0x99363944,
-	-- bg3 = 0xff414550,
-	-- bg3 = 0x754a4a4a,
-	-- bg3 = 0xc02c2e34,
 	transparency = 0.5,
 	blur_radius = 20,
 

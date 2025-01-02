@@ -8,7 +8,7 @@ local icons = {
 		gear = "􀍟",
 		cpu = "􀫥",
 		clipboard = "􀉄",
-
+		control_center = "􀜊",
 		switch = {
 			on = "􁏮",
 			off = "􁏯",
@@ -19,6 +19,17 @@ local icons = {
 			_33 = "􀊥",
 			_10 = "􀊡",
 			_0 = "􀊣",
+		},
+
+		weather = {
+			sunny = "􀆭",
+			partly = "􀇔",
+			cloudy = "􀇂",
+			rainy = "􀇆",
+			snowy = "􀇎",
+			clear = "􀇀",
+			foggy = "􀇊",
+			stormy = "􀇞",
 		},
 		battery = {
 			_100 = "􀛨",

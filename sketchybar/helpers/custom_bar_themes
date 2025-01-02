@@ -1,5 +1,12 @@
 #!/bin/bash
 
+BACKGROUND_TRANSPARENT="0x99363944"
+BACKGROUND_DARK="0xff363944"
+# BACKGROUND_DARK="0x903c3e4f"
+
+AEROSPACE_BORDER_DARK_COLOR="0xffe2e2e3"
+AEROSPACE_BORDER_LIGHT_COLOR="0xff181819"
+
 AEROSPACE_LABEL_DARK_COLOR="0xff7f8490"
 AEROSPACE_LABEL_LIGHT_COLOR="0xffe2e2e3"
 
@@ -17,7 +24,7 @@ COLOR_FILE="${XDG_CONFIG_HOME}/sketchybar/colors.lua"
 
 capture_wallpaper_color() {
   STATUSBAR_IMG="statusbar.png"
-  screencapture -R0,0,1440,22 $STATUSBAR_IMG
+  screencapture -R0,0,720,22 $STATUSBAR_IMG
 
   AVERAGE_COLOR=$(magick $STATUSBAR_IMG -resize 1x1 txt:- | grep -oE "#[A-Fa-f0-9]{6}")
   local hex="$AVERAGE_COLOR"
@@ -39,6 +46,7 @@ check_color() {
 
   escaped_key=$(echo "$key" | sed 's/[]\/$*.^[]/\\&/g')
   current_value=$(awk -F' = ' -v key="$escaped_key" '$0 ~ key {print $2}' "$COLOR_FILE" | tr -d ' ,')
+  echo $current_value
 
   if [[ "$current_value" == "$expected_value" ]]; then
     return 0
@@ -52,6 +60,7 @@ change_colorscheme() {
     if ! check_color "aerospace_label_color" "$AEROSPACE_LABEL_LIGHT_COLOR"; then
       sed -i '' -E \
         -e "s/(aerospace_label_color = )0x[0-9a-fA-F]+,/\1$AEROSPACE_LABEL_LIGHT_COLOR,/" \
+        -e "s/(aerospace_border_color = )0x[0-9a-fA-F]+,/\1$AEROSPACE_BORDER_LIGHT_COLOR,/" \
         -e "s/(aerospace_label_highlight_color = )0x[0-9a-fA-F]+,/\1$AEROSPACE_LABEL_HIGHLIGHT_LIGHT,/" \
         -e "s/(aerospace_icon_highlight_color = )0x[0-9a-fA-F]+,/\1$AEROSPACE_ICON_HIGHLIGHT_LIGHT,/" \
         -e "s/(front_app_color = )0x[0-9a-fA-F]+,/\1$FRONT_APP_LIGHT_COLOR,/" \
@@ -59,11 +68,13 @@ change_colorscheme() {
       /opt/homebrew/bin/sketchybar --reload
     else
       echo "already change"
+      exit 1
     fi
   elif [[ "$1" == "dark" ]]; then
     if ! check_color "aerospace_label_color" "$AEROSPACE_LABEL_DARK_COLOR"; then
       sed -i '' -E \
         -e "s/(aerospace_label_color = )0x[0-9a-fA-F]+,/\1$AEROSPACE_LABEL_DARK_COLOR,/" \
+        -e "s/(aerospace_border_color = )0x[0-9a-fA-F]+,/\1$AEROSPACE_BORDER_DARK_COLOR,/" \
         -e "s/(aerospace_label_highlight_color = )0x[0-9a-fA-F]+,/\1$AEROSPACE_LABEL_HIGHLIGHT_DARK,/" \
         -e "s/(aerospace_icon_highlight_color = )0x[0-9a-fA-F]+,/\1$AEROSPACE_ICON_HIGHLIGHT_DARK,/" \
         -e "s/(front_app_color = )0x[0-9a-fA-F]+,/\1$FRONT_APP_DARK_COLOR,/" \
@@ -71,9 +82,38 @@ change_colorscheme() {
       /opt/homebrew/bin/sketchybar --reload
     else
       echo "already change"
+      exit 1
     fi
   else
     echo "Usage: $0 {light|dark}"
+  fi
+}
+
+change_background() {
+  if [[ "$1" == "blur" ]]; then
+    if ! check_color "bg3" "$BACKGROUND_TRANSPARENT"; then
+      sed -i '' -E \
+        -e "s/(bg3 = )0x[0-9a-fA-F]+,/\1$BACKGROUND_TRANSPARENT,/" \
+        -e "s/(aerospace_border_color = )0x[0-9a-fA-F]+,/\1$AEROSPACE_BORDER_LIGHT_COLOR,/" \
+        "$COLOR_FILE"
+      /opt/homebrew/bin/sketchybar --reload
+    else
+      echo "already change"
+      exit 1
+    fi
+  elif [[ "$1" == "black" ]]; then
+    if ! check_color "bg3" "$BACKGROUND_DARK"; then
+      sed -i '' -E \
+        -e "s/(bg3 = )0x[0-9a-fA-F]+,/\1$BACKGROUND_DARK,/" \
+        -e "s/(aerospace_border_color = )0x[0-9a-fA-F]+,/\1$AEROSPACE_BORDER_DARK_COLOR,/" \
+        "$COLOR_FILE"
+      /opt/homebrew/bin/sketchybar --reload
+    else
+      echo "already change"
+      exit 1
+    fi
+  else
+    echo "Usage: $0 {blur|black}"
   fi
 }
 
@@ -81,5 +121,10 @@ if [ $# -eq 0 ]; then
   LIGHT_OR_DARK=$(capture_wallpaper_color)
   change_colorscheme "$LIGHT_OR_DARK"
 else
-  change_colorscheme "$1"
+  if [[ "$1" == "light" || "$1" == "dark" ]]; then
+    change_colorscheme "$1"
+  fi
+  if [[ "$1" == "blur" || "$1" == "black" ]]; then
+    change_background "$1"
+  fi
 fi

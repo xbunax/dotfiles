@@ -7,10 +7,10 @@ local settings = require("settings")
 sbar.exec(
 	"killall network_load >/dev/null; $CONFIG_DIR/helpers/event_providers/network_load/bin/network_load en0 network_update 2.0"
 )
-
+local M = {}
 local popup_width = 250
 
-local wifi_up = sbar.add("item", "widgets.wifi1", {
+M.wifi_up = sbar.add("item", "widgets.wifi1", {
 	position = "right",
 	padding_left = -5,
 	width = 0,
@@ -34,7 +34,7 @@ local wifi_up = sbar.add("item", "widgets.wifi1", {
 	y_offset = 4,
 })
 
-local wifi_down = sbar.add("item", "widgets.wifi2", {
+M.wifi_down = sbar.add("item", "widgets.wifi2", {
 	position = "right",
 	padding_left = -5,
 	icon = {
@@ -57,18 +57,18 @@ local wifi_down = sbar.add("item", "widgets.wifi2", {
 	y_offset = -4,
 })
 
-local wifi = sbar.add("item", "widgets.wifi.padding", {
+M.wifi = sbar.add("item", "widgets.wifi.padding", {
 	position = "right",
 	label = { drawing = false },
 })
 
 -- Background around the item
 local wifi_bracket = sbar.add("bracket", "widgets.wifi.bracket", {
-	wifi.name,
-	wifi_up.name,
-	wifi_down.name,
+	M.wifi.name,
+	M.wifi_up.name,
+	M.wifi_down.name,
 }, {
-	background = { color = colors.bg3 },
+	-- background = { color = colors.bg3 },
 	popup = { align = "center", height = 30 },
 })
 
@@ -156,17 +156,17 @@ local router = sbar.add("item", {
 
 sbar.add("item", { position = "right", width = settings.group_paddings })
 
-wifi_up:subscribe("network_update", function(env)
+M.wifi_up:subscribe("network_update", function(env)
 	local up_color = (env.upload == "000 Bps") and colors.grey or colors.red
 	local down_color = (env.download == "000 Bps") and colors.grey or colors.blue
-	wifi_up:set({
+	M.wifi_up:set({
 		icon = { color = up_color },
 		label = {
 			string = env.upload,
 			color = up_color,
 		},
 	})
-	wifi_down:set({
+	M.wifi_down:set({
 		icon = { color = down_color },
 		label = {
 			string = env.download,
@@ -175,10 +175,10 @@ wifi_up:subscribe("network_update", function(env)
 	})
 end)
 
-wifi:subscribe({ "wifi_change", "system_woke" }, function(env)
+M.wifi:subscribe({ "wifi_change", "system_woke" }, function(env)
 	sbar.exec("ipconfig getifaddr en0", function(ip)
 		local connected = not (ip == "")
-		wifi:set({
+		M.wifi:set({
 			icon = {
 				string = connected and icons.wifi.connected or icons.wifi.disconnected,
 				color = connected and colors.white or colors.red,
@@ -215,10 +215,10 @@ local function toggle_details()
 	end
 end
 
-wifi_up:subscribe("mouse.clicked", toggle_details)
-wifi_down:subscribe("mouse.clicked", toggle_details)
-wifi:subscribe("mouse.clicked", toggle_details)
-wifi:subscribe("mouse.exited.global", hide_details)
+M.wifi_up:subscribe("mouse.clicked", toggle_details)
+M.wifi_down:subscribe("mouse.clicked", toggle_details)
+M.wifi:subscribe("mouse.clicked", toggle_details)
+M.wifi:subscribe("mouse.exited.global", hide_details)
 
 local function copy_label_to_clipboard(env)
 	local label = sbar.query(env.NAME).label.value
@@ -234,3 +234,5 @@ hostname:subscribe("mouse.clicked", copy_label_to_clipboard)
 ip:subscribe("mouse.clicked", copy_label_to_clipboard)
 mask:subscribe("mouse.clicked", copy_label_to_clipboard)
 router:subscribe("mouse.clicked", copy_label_to_clipboard)
+
+return M

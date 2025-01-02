@@ -1,0 +1,87 @@
+#!/bin/bash
+
+AEROSPACE_LABEL_DARK_COLOR="0xff7f8490"
+AEROSPACE_LABEL_LIGHT_COLOR="0xffe2e2e3"
+
+AEROSPACE_LABEL_HIGHLIGHT_DARK="0xffe2e2e3"
+AEROSPACE_LABEL_HIGHLIGHT_LIGHT="0xff9ed072"
+
+AEROSPACE_ICON_HIGHLIGHT_DARK="0xfffc5d7c"
+AEROSPACE_ICON_HIGHLIGHT_LIGHT="0xffe7c664"
+
+FRONT_APP_LIGHT_COLOR="0xff181819"
+FRONT_APP_DARK_COLOR="0xffe2e2e3"
+
+XDG_CONFIG_HOME=~/.config
+COLOR_FILE="${XDG_CONFIG_HOME}/sketchybar/colors.lua"
+
+capture_wallpaper_color() {
+  STATUSBAR_IMG="statusbar.png"
+  screencapture -R0,0,720,22 $STATUSBAR_IMG
+
+  AVERAGE_COLOR=$(magick $STATUSBAR_IMG -resize 1x1 txt:- | grep -oE "#[A-Fa-f0-9]{6}")
+  local hex="$AVERAGE_COLOR"
+  local r=$((0x${hex:1:2}))
+  local g=$((0x${hex:3:2}))
+  local b=$((0x${hex:5:2}))
+  local brightness=$(((r + g + b) / 3))
+  if [ $brightness -ge 128 ]; then
+    echo "light"
+  else
+    echo "dark"
+  fi
+  rm "$STATUSBAR_IMG"
+}
+
+check_color() {
+  local key="$1"
+  local expected_value="$2"
+
+  escaped_key=$(echo "$key" | sed 's/[]\/$*.^[]/\\&/g')
+  current_value=$(awk -F' = ' -v key="$escaped_key" '$0 ~ key {print $2}' "$COLOR_FILE" | tr -d ' ,')
+
+  if [[ "$current_value" == "$expected_value" ]]; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+change_colorscheme() {
+  if [[ "$1" == "light" ]]; then
+    if ! check_color "aerospace_label_color" "$AEROSPACE_LABEL_LIGHT_COLOR"; then
+      sed -i '' -E \
+        -e "s/(aerospace_label_color = )0x[0-9a-fA-F]+,/\1$AEROSPACE_LABEL_LIGHT_COLOR,/" \
+        -e "s/(aerospace_label_highlight_color = )0x[0-9a-fA-F]+,/\1$AEROSPACE_LABEL_HIGHLIGHT_LIGHT,/" \
+        -e "s/(aerospace_icon_highlight_color = )0x[0-9a-fA-F]+,/\1$AEROSPACE_ICON_HIGHLIGHT_LIGHT,/" \
+        -e "s/(front_app_color = )0x[0-9a-fA-F]+,/\1$FRONT_APP_LIGHT_COLOR,/" \
+        "$COLOR_FILE"
+      /opt/homebrew/bin/sketchybar --reload
+    else
+      echo "already change"
+      exit 1
+    fi
+  elif [[ "$1" == "dark" ]]; then
+    if ! check_color "aerospace_label_color" "$AEROSPACE_LABEL_DARK_COLOR"; then
+      sed -i '' -E \
+        -e "s/(aerospace_label_color = )0x[0-9a-fA-F]+,/\1$AEROSPACE_LABEL_DARK_COLOR,/" \
+        -e "s/(aerospace_label_highlight_color = )0x[0-9a-fA-F]+,/\1$AEROSPACE_LABEL_HIGHLIGHT_DARK,/" \
+        -e "s/(aerospace_icon_highlight_color = )0x[0-9a-fA-F]+,/\1$AEROSPACE_ICON_HIGHLIGHT_DARK,/" \
+        -e "s/(front_app_color = )0x[0-9a-fA-F]+,/\1$FRONT_APP_DARK_COLOR,/" \
+        "$COLOR_FILE"
+      /opt/homebrew/bin/sketchybar --reload
+    else
+      echo "already change"
+      exit 1
+    fi
+  else
+    echo "Usage: $0 {light|dark}"
+  fi
+}
+
+if [ $# -eq 0 ]; then
+  LIGHT_OR_DARK=$(capture_wallpaper_color)
+  change_colorscheme "$LIGHT_OR_DARK"
+else
+  change_colorscheme "$1"
+fi

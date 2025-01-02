@@ -2,9 +2,10 @@ local colors = require("colors")
 local icons = require("icons")
 local settings = require("settings")
 
+local V = {}
 local popup_width = 250
 
-local volume_percent = sbar.add("item", "widgets.volume1", {
+V.volume_percent = sbar.add("item", "widgets.volume1", {
 	position = "right",
 	icon = { drawing = false },
 	label = {
@@ -14,7 +15,7 @@ local volume_percent = sbar.add("item", "widgets.volume1", {
 	},
 })
 
-local volume_icon = sbar.add("item", "widgets.volume2", {
+V.volume_icon = sbar.add("item", "widgets.volume2", {
 	position = "right",
 	padding_right = -1,
 	icon = {
@@ -38,10 +39,10 @@ local volume_icon = sbar.add("item", "widgets.volume2", {
 })
 
 local volume_bracket = sbar.add("bracket", "widgets.volume.bracket", {
-	volume_icon.name,
-	volume_percent.name,
+	V.volume_icon.name,
+	V.volume_percent.name,
 }, {
-	background = { color = colors.bg3 },
+	-- background = { color = colors.bg3 },
 	popup = { align = "center" },
 })
 
@@ -68,7 +69,7 @@ local volume_slider = sbar.add("slider", popup_width, {
 	click_script = 'osascript -e "set volume output volume $PERCENTAGE"',
 })
 
-volume_percent:subscribe("volume_change", function(env)
+V.volume_percent:subscribe("volume_change", function(env)
 	local volume = tonumber(env.INFO)
 	local icon = icons.volume._0
 	if volume > 60 then
@@ -86,8 +87,8 @@ volume_percent:subscribe("volume_change", function(env)
 		lead = "0"
 	end
 
-	volume_icon:set({ label = icon })
-	volume_percent:set({ label = lead .. volume .. "%" })
+	V.volume_icon:set({ label = icon })
+	V.volume_percent:set({ label = lead .. volume .. "%" })
 	volume_slider:set({ slider = { percentage = volume } })
 end)
 
@@ -148,8 +149,10 @@ local function volume_scroll(env)
 	sbar.exec('osascript -e "set volume output volume (output volume of (get volume settings) + ' .. delta .. ')"')
 end
 
-volume_icon:subscribe("mouse.clicked", volume_toggle_details)
-volume_icon:subscribe("mouse.scrolled", volume_scroll)
-volume_percent:subscribe("mouse.clicked", volume_toggle_details)
-volume_percent:subscribe("mouse.exited.global", volume_collapse_details)
-volume_percent:subscribe("mouse.scrolled", volume_scroll)
+V.volume_icon:subscribe("mouse.clicked", volume_toggle_details)
+V.volume_icon:subscribe("mouse.scrolled", volume_scroll)
+V.volume_percent:subscribe("mouse.clicked", volume_toggle_details)
+V.volume_percent:subscribe("mouse.exited.global", volume_collapse_details)
+V.volume_percent:subscribe("mouse.scrolled", volume_scroll)
+
+return V

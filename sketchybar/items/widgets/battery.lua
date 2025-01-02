@@ -2,7 +2,9 @@ local icons = require("icons")
 local colors = require("colors")
 local settings = require("settings")
 
-local battery = sbar.add("item", "widgets.battery", {
+local M = {}
+
+M.battery = sbar.add("item", "widgets.battery", {
 	position = "right",
 	icon = {
 		font = {
@@ -15,8 +17,8 @@ local battery = sbar.add("item", "widgets.battery", {
 	popup = { align = "center" },
 })
 
-local remaining_time = sbar.add("item", {
-	position = "popup." .. battery.name,
+M.remaining_time = sbar.add("item", {
+	position = "popup." .. M.battery.name,
 	icon = {
 		string = "Time remaining:",
 		width = 100,
@@ -29,7 +31,7 @@ local remaining_time = sbar.add("item", {
 	},
 })
 
-battery:subscribe({ "routine", "power_source_change", "system_woke" }, function()
+M.battery:subscribe({ "routine", "power_source_change", "system_woke" }, function()
 	sbar.exec("pmset -g batt", function(batt_info)
 		local icon = "!"
 		local label = "?"
@@ -66,7 +68,7 @@ battery:subscribe({ "routine", "power_source_change", "system_woke" }, function(
 			lead = "0"
 		end
 
-		battery:set({
+		M.battery:set({
 			icon = {
 				string = icon,
 				color = color,
@@ -76,27 +78,29 @@ battery:subscribe({ "routine", "power_source_change", "system_woke" }, function(
 	end)
 end)
 
-battery:subscribe("mouse.clicked", function(env)
-	local drawing = battery:query().popup.drawing
-	battery:set({ popup = { drawing = "toggle" } })
+M.battery:subscribe("mouse.clicked", function(env)
+	local drawing = M.battery:query().popup.drawing
+	M.battery:set({ popup = { drawing = "toggle" } })
 
 	if drawing == "off" then
 		sbar.exec("pmset -g batt", function(batt_info)
 			local found, _, remaining = batt_info:find(" (%d+:%d+) remaining")
 			local label = found and remaining .. "h" or "No estimate"
-			remaining_time:set({ label = label })
+			M.remaining_time:set({ label = label })
 		end)
 	end
 end)
 
-sbar.add("bracket", "widgets.battery.bracket", { battery.name }, {
-	background = {
-		color = colors.bg3,
-		-- color = colors.with_alpha(colors.bg1, colors.transparency),
-	},
-})
+-- sbar.add("bracket", "widgets.battery.bracket", { M.battery.name }, {
+-- 	background = {
+-- 		-- color = colors.bg3,
+-- 		-- color = colors.with_alpha(colors.bg1, colors.transparency),
+-- 	},
+-- })
+--
+-- sbar.add("item", "widgets.battery.padding", {
+-- 	position = "right",
+-- 	width = settings.group_paddings,
+-- })
 
-sbar.add("item", "widgets.battery.padding", {
-	position = "right",
-	width = settings.group_paddings,
-})
+return M
