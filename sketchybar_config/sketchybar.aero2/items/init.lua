@@ -1,8 +1,0 @@
-require("items.apple")
-require("items.calendar")
-require("items.messages")
-require("items.widgets")
--- require("items.spaces_minimal")
-require("items.spaces_aero_and_icons")
-require("items.front_apps")
-require("items.media")

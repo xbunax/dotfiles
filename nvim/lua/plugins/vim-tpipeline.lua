@@ -1,3 +1,0 @@
-return {
-    'vimpostor/vim-tpipeline',
-}

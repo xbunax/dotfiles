@@ -1,6 +1,0 @@
-require("items.widgets.calendar")
-require("items.widgets.battery")
-require("items.widgets.wechat")
-require("items.widgets.qq")
-require("items.widgets.volume")
-require("items.widgets.wifi")
