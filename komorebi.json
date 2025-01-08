@@ -3,10 +3,15 @@
   "app_specific_configuration_path": "$Env:USERPROFILE/applications.json",
   "window_hiding_behaviour": "Cloak",
   "cross_monitor_move_behaviour": "Insert",
-  "default_workspace_padding": 0,
-  "default_container_padding": 0,
+  "default_workspace_padding": 5,
+  "default_container_padding": 5,
+  "animation":{
+    "style":"ease-in-out-sine",
+    "enabled":true,
+    "fps":165,
+  },
   "border": true,
-  "border_width": 5,
+  "border_width": 3,
   "border_offset": -1,
   "theme": {
     "palette": "Base16",
@@ -15,7 +20,7 @@
     "bar_accent": "Base0D"
   },
   "stackbar": {
-    "height": 35,
+    "height": 30,
     "mode": "OnStack",
     "tabs": {
       "width": 300
@@ -44,19 +49,27 @@
         },
         {
           "name": "IV",
-          "layout": "BSP"
+          "layout": "BSP",
+          "workspace_padding": 5,
+          "container_padding": 5
         },
         {
           "name": "V",
-          "layout": "BSP"
+          "layout": "BSP",
+          "workspace_padding": 5,
+          "container_padding": 5
         },
         {
           "name": "VI",
-          "layout": "BSP"
+          "layout": "BSP",
+          "workspace_padding": 5,
+          "container_padding": 5
         },
         {
           "name": "VII",
-          "layout": "BSP"
+          "layout": "BSP",
+          "workspace_padding": 5,
+          "container_padding": 5
         }
       ]
     }
