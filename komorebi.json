@@ -6,9 +6,10 @@
   "default_workspace_padding": 5,
   "default_container_padding": 5,
   "animation":{
-    "style":"ease-in-out-sine",
+    "style":"EaseInOutExpo",
     "enabled":true,
     "fps":165,
+    "duration":450,
   },
   "border": true,
   "border_width": 3,
