@@ -1,0 +1,5 @@
+[plugin]
+deps = []
+
+# [flavor]
+# deps = [{ use = "Chromium-3-Oxide/everforest-medium", rev = "65bc09b" }]
