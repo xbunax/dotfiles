@@ -32,3 +32,7 @@ vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decr
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+vim.opt.spelllang = vim.opt.spelllang + "cjk"
+vim.api.nvim_set_hl(0, "SnacksDashboardHeader", { fg = "#FF007C" })
+vim.api.nvim_set_hl(0, "SnacksDashboardIcon", { fg = "#9B9B9B" })
+vim.api.nvim_set_hl(0, "SnacksDashboardDesc", { fg = "#A0CC77" })

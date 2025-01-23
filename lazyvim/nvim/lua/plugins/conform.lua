@@ -14,6 +14,8 @@ return {
         fish = { "fish_indent" },
         sh = { "shfmt" },
         zsh = { "shfmt" },
+        cpp = { "clang-format" },
+        python = { "black" },
       },
       formatters = {
         injected = { options = { ignore_errors = true } },
