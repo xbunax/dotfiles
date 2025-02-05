@@ -73,6 +73,7 @@ shift-alt-f = [
 alt-k = ['exec-and-forget open /Applications/Kitty.app']
 alt-z = ['exec-and-forget open -a Zotero']
 alt-i = ['exec-and-forget open -a iTerm']
+alt-g = ['exec-and-forget open -a Ghostty']
 alt-w = ['exec-and-forget open /Applications/WeChat.app']
 alt-q = ['exec-and-forget open /Applications/QQ.app']
 alt-a = ['exec-and-forget open /Applications/Arc.app']
@@ -125,6 +126,10 @@ shift-ctrl-b=[
 ]
 shift-ctrl-t=[
     'exec-and-forget ~/.config/aerospace/scripts/change_theme.sh'
+]
+
+shift-ctrl-w=[
+    'exec-and-forget ~/.config/aerospace/scripts/random_wallpapers.sh ~/.config/wallpapers'
 ]
 
 alt-slash = 'layout tiles horizontal vertical'
@@ -332,6 +337,10 @@ run = 'layout floating'
 
 [[on-window-detected]]
 if.app-id = "com.xingin.discover"
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = "com.hypergryph.arknights"
 run = 'layout floating'
 
 [[on-window-detected]]
