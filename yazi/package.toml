@@ -1,5 +1,6 @@
 [plugin]
-deps = []
+deps = [{ use = "yazi-rs/plugins#full-border", commit = "f131710" }]
+# deps = [{ use = "yazi-rs/plugins#smart-enter", commit = "62f0789" }]
 
-# [flavor]
-# deps = [{ use = "Chromium-3-Oxide/everforest-medium", rev = "65bc09b" }]
+[flavor]
+deps = [{ use = "Chromium-3-Oxide/everforest-medium", rev = "65bc09b" }]
