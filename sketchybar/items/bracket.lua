@@ -6,9 +6,9 @@ local cpu_and_temp = require("items.widgets.cpu_and_temp")
 local weather = require("items.weather")
 local workspaces = require("items.spaces_aero_dev")
 local apple = require("items.apple")
-local front_app = require("items.front_app")
 local cal = require("items.calendar")
-local media = require("items.media")
+-- local media = require("items.media")
+-- local front_app = require("items.front_app")
 
 local colors = require("colors")
 

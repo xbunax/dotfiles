@@ -73,13 +73,14 @@ M.weather_location = sbar.add("item", {
 		font = {
 			style = settings.font.style_map["Bold"],
 		},
-		align = "center",
+		align = "left",
 	},
 	label = {
 		string = location,
-		align = "left",
+		align = "right",
 	},
-	align = "center",
+	update_freq = 3600,
+	-- align = "center",
 })
 
 M.weather_cuurent_temp = sbar.add("item", {
@@ -90,13 +91,14 @@ M.weather_cuurent_temp = sbar.add("item", {
 		font = {
 			style = settings.font.style_map["Bold"],
 		},
-		align = "center",
+		align = "left",
 	},
 	label = {
-		align = "left",
+		align = "right",
 		font = { family = settings.font.family },
 	},
-	align = "center",
+	update_freq = 3600,
+	-- align = "center",
 })
 
 M.weather_icon:subscribe({ "routine", "forced", "system_woke" }, function()
@@ -157,14 +159,14 @@ M.weather_icon:subscribe("mouse.clicked", function(env)
 								width = 110,
 								icon = {
 									string = date .. ":",
-									align = "center",
+									align = "left",
 								},
 								label = {
 									font = { family = settings.font.family },
 									string = forecast_str,
-									align = "center",
+									align = "right",
 								},
-								align = "center",
+								-- align = "center",
 								drawing = "on",
 							})
 

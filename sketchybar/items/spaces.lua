@@ -9,28 +9,26 @@ for i = 1, 10, 1 do
 	local space = sbar.add("space", "space." .. i, {
 		space = i,
 		icon = {
-			font = { family = settings.font.numbers },
-			string = i,
-			padding_left = 10,
-			padding_right = 5,
 			color = colors.white,
 			highlight_color = colors.red,
+			drawing = false,
 		},
 		label = {
-			padding_right = 10,
 			color = colors.grey,
 			highlight_color = colors.white,
-			font = "sketchybar-app-font:Regular:16.0",
-			y_offset = -1,
+			drawing = false,
 		},
-		padding_right = 1,
-		padding_left = 1,
 		background = {
-			color = colors.bg1,
-			border_width = 1,
-			height = 26,
-			border_color = colors.black,
+			-- color = colors.with_alpha(colors.bg1, colors.transparency),
+			color = colors.bg3,
+			border_width = 0,
+			height = 28,
+			border_color = colors.bg3,
+			corner_radius = 9,
+			drawing = false,
 		},
+		padding_left = 6,
+		padding_right = 0,
 		popup = { background = { border_width = 5, border_color = colors.black } },
 	})
 
@@ -99,24 +97,33 @@ local space_window_observer = sbar.add("item", {
 })
 
 local spaces_indicator = sbar.add("item", {
-	padding_left = -3,
-	padding_right = 0,
 	icon = {
-		padding_left = 8,
-		padding_right = 9,
-		color = colors.grey,
+		color = colors.white,
+		-- color = colors.black,
+		-- highlight_color = colors.red,
+		highlight_color = colors.aerospace_icon_highlight_color,
+		drawing = false,
+		font = { family = settings.font.numbers },
 		string = icons.switch.on,
+		padding_left = 10,
+		padding_right = 5,
 	},
 	label = {
-		width = 0,
-		padding_left = 0,
-		padding_right = 8,
+		padding_right = 10,
+		-- color = colors.grey,
+		color = colors.aerospace_label_color,
+		highlight_color = colors.aerospace_label_highlight_color,
 		string = "Spaces",
-		color = colors.bg1,
+		font = "sketchybar-app-font:Regular:16.0",
+		y_offset = -1,
 	},
+	padding_right = 2,
+	padding_left = 2,
 	background = {
-		color = colors.with_alpha(colors.grey, 0.0),
-		border_color = colors.with_alpha(colors.bg1, 0.0),
+		-- color = colors.bg3,
+		border_width = 0,
+		height = 28,
+		border_color = colors.aerospace_border_color,
 	},
 })
 
@@ -175,3 +182,5 @@ end)
 spaces_indicator:subscribe("mouse.clicked", function(env)
 	sbar.trigger("swap_menus_and_spaces")
 end)
+
+return spaces

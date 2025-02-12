@@ -25,7 +25,7 @@ M.temp = sbar.add("graph", "widgets.temp", 42, {
 	},
 	--   icon = { string = icons.cpu },
 	label = {
-		string = "􀇬 ??󰔄",
+		string = icons.temperature._0 .. "  ??󰔄",
 		font = {
 			family = settings.font.numbers,
 			style = settings.font.style_map["Bold"],
@@ -53,7 +53,7 @@ M.cpu = sbar.add("graph", "widgets.cpu", 42, {
 	},
 	icon = { string = icons.cpu },
 	label = {
-		string = "cpu ??%",
+		string = icons.percent._0 .. "  ??%",
 		font = {
 			family = settings.font.numbers,
 			style = settings.font.style_map["Bold"],
@@ -73,6 +73,16 @@ local function updateTemperature()
 		M.temp:push({ temperature / 130. })
 
 		local color = colors.green
+
+		local label_icon = icons.temperature._0
+		--
+		if temperature > 66 then
+			label_icon = icons.temperature._66
+		elseif temperature > 33 then
+			label_icon = icons.temperature._33
+		else
+			label_icon = icons.temperature._0
+		end
 		if temperature > 50 then
 			if temperature < 70 then
 				color = colors.yellow
@@ -85,7 +95,7 @@ local function updateTemperature()
 
 		M.temp:set({
 			graph = { color = color },
-			label = "􀇬 " .. temperature .. "󰔄",
+			label = label_icon .. " " .. temperature .. "󰔄",
 		})
 	end)
 end
@@ -93,9 +103,26 @@ end
 M.cpu:subscribe("cpu_update", function(env)
 	--   -- Also available: env.user_load, env.sys_load
 	local load = tonumber(env.total_load)
+	print(load)
 	M.cpu:push({ load / 100. })
 
 	local color = colors.blue
+	local label_icon = icons.percent._0
+	--
+	if load > 80 then
+		label_icon = icons.percent._100
+		color = colors.orange
+	elseif load > 75 then
+		label_icon = icons.percent._75
+		color = colors.yellow
+	elseif load > 50 then
+		label_icon = icons.percent._50
+	elseif load > 25 then
+		label_icon = icons.percent._25
+	else
+		label_icon = icons.percent._0
+	end
+
 	if load > 30 then
 		if load < 60 then
 			color = colors.yellow
@@ -108,7 +135,7 @@ M.cpu:subscribe("cpu_update", function(env)
 
 	M.cpu:set({
 		graph = { color = color },
-		label = "cpu " .. env.total_load .. "%",
+		label = label_icon .. "  " .. env.total_load .. "%",
 	})
 	updateTemperature()
 end)
