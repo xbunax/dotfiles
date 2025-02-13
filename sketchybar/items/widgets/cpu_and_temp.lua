@@ -103,7 +103,7 @@ end
 M.cpu:subscribe("cpu_update", function(env)
 	--   -- Also available: env.user_load, env.sys_load
 	local load = tonumber(env.total_load)
-	print(load)
+	-- print(load)
 	M.cpu:push({ load / 100. })
 
 	local color = colors.blue
