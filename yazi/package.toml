@@ -1,6 +1,19 @@
-[plugin]
-deps = [{ use = "yazi-rs/plugins#full-border", commit = "f131710" }]
-# deps = [{ use = "yazi-rs/plugins#smart-enter", commit = "62f0789" }]
+[[plugin.deps]]
+use = "yazi-rs/plugins:full-border"
+rev = "8945e54"
+hash = "ae9e1d0c6bfd68cdebc98cc684c22b45"
 
-[flavor]
-deps = [{ use = "Chromium-3-Oxide/everforest-medium", rev = "65bc09b" }]
+[[plugin.deps]]
+use = "Reledia/glow"
+rev = "5ce76dc"
+hash = "52e5f5c602962e7cbf874da28f52ba45"
+
+[[plugin.deps]]
+use = "AnirudhG07/nbpreview"
+rev = "f8879b3"
+hash = "d378328e5d0a1b9fb9f04ab3aade4575"
+
+[[flavor.deps]]
+use = "Chromium-3-Oxide/everforest-medium"
+rev = "65bc09b"
+hash = "2bc39a2ccc968ba4d50ea060e0722967"

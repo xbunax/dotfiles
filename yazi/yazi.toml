@@ -56,7 +56,8 @@ play = [
 
 [open]
 prepend_rules = [
-	{ name = "*.tex", use = "edit" },]
+	{ name = "*.tex", use = "edit" },
+  ]
 rules = [
 	# Folder
 	{ name = "*/", use = [ "edit", "open", "reveal" ] },
@@ -88,6 +89,10 @@ image_bound      = [0, 0]
 suppress_preload = false
 
 [plugin]
+prepend_previewers = [
+  { name = "*.md", run = "glow" },
+  { name = "*.ipynb", run = "nbpreview" },
+]
 fetchers = [
 	# Mimetype
 	{ id = "mime", name = "*", run = "mime", if = "!mime", prio = "high" },
