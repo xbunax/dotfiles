@@ -142,31 +142,30 @@ zstyle ':fzf-tab:*' switch-group '<' '>'
 export DBUS_SESSION_BUS_ADDRESS="unix:path=$DBUS_LAUNCHD_SESSION_BUS_SOCKET"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 #### alias
-
 alias icat="kitten icat"
 alias vim="nvim"
-alias vzf='vim $(fzf)'
-alias cc='clear'
+alias vzf='lvim $(fzf)'
 alias openword='open -a /Applications/Microsoft\ Word.app'
-alias stj='ssh mozhu@10.30.13.120'
 alias vmcreate="orb create -a"
 alias vmstart="orb -m"
 alias vmstop="orb stop"
-alias xvim="arch -x86_64 nvim"
-alias ya="yazi"
+alias stj='ssh mozhu@10.30.13.120'
+# alias ya="yazi"
 alias lg=lazygit
 alias gcc=gcc-14
 alias lvim="lnvim"
 alias nnvim="noplug_nvim"
 alias vide="lvide"
+alias c="clear"
 alias leet="vim leetcode.nvim"
 alias chrome="Google\ Chrome"
+alias avim="NVIM_APPNAME=astronvim nvim"
+alias z="zoxide"
 
-## environment
+#### environment
 
 export PATH="/usr/local/opt/openjdk/bin:$PATH"
 # export PATH="$HOME/.local/bin:$PATH"
@@ -179,19 +178,15 @@ export PATH="/Applications/Google Chrome.app/Contents/MacOS:$PATH"
 export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/opt/homebrew/Cellar/mpv/0.37.0_1/lib/pkgconfig"
 export DISABLE_AUTO_TITLE='true'
 export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/opt/homebrew/opt/ncurses/lib/pkgconfig"
-# export LDFLAGS="-L/opt/homebrew/opt/ncurses/lib"
-# export CPPFLAGS="-I/opt/homebrew/opt/ncurses/include"
 export _ZO_ECHO=1
 export MTL_HUD_ENABLE=1
-# export MPLBACKEND='module://matplotlib-backend-kitty'
 export HELIX_RUNTIME=~/src/helix/runtime
-export LIBTOOL=$(which glibtool)
-export LIBTOOLIZE=$(which glibtoolize)
 export LDFLAGS="-L/opt/homebrew/lib"
 export CPPFLAGS="-I/opt/homebrew/include"
-# export XDG_DATA_HOME="~/Library/Application Support"
-# ln -s `which glibtoolize` /usr/local/bin/libtoolize
-# ln -s /opt/homebrew/lib/lib/libncursesw.6.dylib /usr/local/lib/libncursesw.dylib
+export LIBTOOL=$(which glibtool)
+export LIBTOOLIZE=$(which glibtoolize)
+export EDITOR=lnvim
+# ln -s $(which glibtoolize) /usr/local/bin/libtoolize
 
 function sync_nvim() {
   local server=$1
@@ -199,11 +194,11 @@ function sync_nvim() {
   rsync -av --progress --delete ~/.local/share/nvim/lazy/ $server:~/.local/share/nvim/lazy/
 }
 
-function ya() {
-  tmp="$(mktemp -t "yazi-cwd.XXXXX")"
+function y() {
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
   yazi "$@" --cwd-file="$tmp"
-  if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-    cd -- "$cwd"
+  if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+    builtin cd -- "$cwd"
   fi
   rm -f -- "$tmp"
 }
@@ -220,21 +215,28 @@ function lvide() {
   XDG_CONFIG_HOME=~/.config/lazyvim/ neovide "$@"
 }
 
-function set_proxy() {
-  get_wifi_name=$(networksetup -getairportnetwork en0 | awk -F': ' '{print $2}')
-  wifi_name=("TJ-WIFI" "Redmi_6D59_5G" "TJ-DORM-WIFI" "Redmi_5634_5G")
-  if [ "$get_wifi_name" = "${wifi_name[1]}" ]; then
-    proxy_ip=100.79.118.216
-  elif [ "$get_wifi_name" = "${wifi_name[2]}" ]; then
-    proxy_ip=192.168.31.26
-  elif [ "$get_wifi_name" = "${wifi_name[3]}" ]; then
-    proxy_ip=100.72.95.21
-  elif [ "$get_wifi_name" = "${wifi_name[4]}" ]; then
-    proxy_ip=192.168.31.26
-  fi
-  proxy_ip=127.0.0.1
-  export https_proxy=http://$proxy_ip:7891 http_proxy=http://$proxy_ip:7891 all_proxy=socks5://$proxy_ip:7891
-}
+# function set_proxy() {
+#   get_wifi_name=$(networksetup -getairportnetwork en0 | awk -F': ' '{print $2}')
+#   wifi_name=("TJ-WIFI" "Redmi_6D59_5G" "TJ-DORM-WIFI" "Redmi_5634_5G")
+#   if [ "$get_wifi_name" = "${wifi_name[1]}" ]; then
+#     proxy_ip=100.79.118.216
+#   elif [ "$get_wifi_name" = "${wifi_name[2]}" ]; then
+#     proxy_ip=192.168.31.26
+#   elif [ "$get_wifi_name" = "${wifi_name[3]}" ]; then
+#     proxy_ip=100.72.95.21
+#   elif [ "$get_wifi_name" = "${wifi_name[4]}" ]; then
+#     proxy_ip=192.168.31.26
+#   fi
+#   proxy_ip=127.0.0.1
+#   export https_proxy=http://$proxy_ip:7891 http_proxy=http://$proxy_ip:7891 all_proxy=socks5://$proxy_ip:7891
+# }
+
+if type brew &>/dev/null; then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+  autoload -Uz compinit
+  compinit
+fi
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2>/dev/null)"
@@ -251,6 +253,10 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 # export PKG_CONFIG_PATH="/opt/homebrew/opt/opencv@2/lib/pkgconfig"
+#
+
+set_proxy
+
 eval "$(starship init zsh)"
 eval "$(fzf --zsh)"
 eval "$(atuin init zsh)"
