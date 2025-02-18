@@ -36,22 +36,18 @@ return {
     dashboard.section.terminal.command = command
     dashboard.section.terminal.width = logo.width
     dashboard.section.terminal.height = logo.height
+    dashboard.section.buttons.val = {
+      dashboard.button("<leader>F", "  > Find file", ":lua LazyVim.pick()()<CR>"),
+      dashboard.button("r", "  > Recent file", ":lua LazyVim.pick('oldfiles')()<CR>"),
+      dashboard.button("s", "  > Settings", ":lua LazyVim.pick.config_files()()<CR>"),
+      dashboard.button("q", "  > Quit NVIM", ":qa<CR>"),
+    }
 
     dashboard.opts.layout = {
       { type = "padding", val = 3 },
       dashboard.section.terminal,
       { type = "padding", val = 3 },
-      {
-        type = "text",
-        val = "@jonlinkens",
-        opts = {
-          position = "center",
-          hl = "Number",
-        },
-      },
-      { type = "padding", val = 3 },
       dashboard.section.buttons,
-      dashboard.section.footer,
     }
     alpha.setup(dashboard.config)
   end,
