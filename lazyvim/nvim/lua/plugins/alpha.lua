@@ -37,9 +37,10 @@ return {
     dashboard.section.terminal.width = logo.width
     dashboard.section.terminal.height = logo.height
     dashboard.section.buttons.val = {
-      dashboard.button("<leader>F", "  > Find file", ":lua LazyVim.pick()()<CR>"),
-      dashboard.button("r", "  > Recent file", ":lua LazyVim.pick('oldfiles')()<CR>"),
+      dashboard.button("<leader>F", "  > Find file", ":lua Snacks.picker.smart() <CR>"),
+      dashboard.button("r", "  > Recent file", ":lua Snacks.picker.recent({ filter = { cwd = true }})<CR>"),
       dashboard.button("s", "  > Settings", ":lua LazyVim.pick.config_files()()<CR>"),
+      dashboard.button("l", "󰒲  > Lazy", ": Lazy<CR>"),
       dashboard.button("q", "  > Quit NVIM", ":qa<CR>"),
     }
 

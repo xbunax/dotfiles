@@ -1,0 +1,35 @@
+# theme = "GruvboxDark"
+# theme = rose-pine-dawn
+
+# green
+# palette = 2=#286983
+# palette = 10=#286983
+# # blue
+# palette = 4=#56949f
+# palette = 12=#56949f
+#
+# selection-background = #dfdad9
+# theme = rose-pine-dawn
+
+# green
+# palette = 2=#286983
+# palette = 10=#286983
+# # blue
+# palette = 4=#56949f
+# palette = 12=#56949f
+#
+# selection-background = #dfdad9
+
+
+font-family = "Cascadia Code"
+font-size = 13
+mouse-hide-while-typing = true
+window-decoration = true
+background-opacity = 0.8
+background-blur-radius = 20
+macos-titlebar-style = "hidden"
+window-padding-x = 10
+window-padding-y = 10
+custom-shader = ./ghostty-shaders/bloom.glsl
+# custom-shader=./ghostty-shaders/fireworks.glsl
+custom-shader-animation = true

@@ -9,6 +9,7 @@ return {
     scroll = { enabled = true },
     statuscolumn = { enabled = false }, -- we set this in options.lua
     toggle = { map = LazyVim.safe_keymap_set },
+    picker = { enabled = true },
     words = { enabled = true },
     dashboard = {
       enabled = false,
