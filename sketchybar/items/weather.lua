@@ -118,7 +118,7 @@ M.weather_icon:subscribe("mouse.clicked", function(env)
 	if drawing == "off" then
 		sbar.exec(weather_script, function(weather_condition)
 			local temp = weather_condition
-			M.weather_cuurent_temp:set({ label = { string = temp .. "󰔄" } })
+			M.weather_cuurent_temp:set({ label = { string = temp .. "°C" } })
 
 			sbar.exec(forecast_script, function(forecast_data)
 				if not forecast_data or forecast_data == "" then

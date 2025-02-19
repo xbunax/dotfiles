@@ -4,8 +4,8 @@ local wechat_and_qq = require("items.widgets.wechat_and_qq")
 local wifi = require("items.widgets.wifi")
 local cpu_and_temp = require("items.widgets.cpu_and_temp")
 local weather = require("items.weather")
--- local workspaces = require("items.spaces_aero_dev")
-local workspaces = require("items.spaces_flash_dev")
+local workspaces = require("items.spaces_aero_dev")
+-- local workspaces = require("items.spaces_flash_dev")
 local apple = require("items.apple")
 local cal = require("items.calendar")
 -- local media = require("items.media")
@@ -75,9 +75,9 @@ sbar.add("bracket", {
 		-- padding_left = 0,
 	},
 })
-sbar.add("bracket", {
-	apple.apple.name,
-}, { background = {
-	color = 0x90494d64,
-	height = 25,
-} })
+-- sbar.add("bracket", {
+-- 	apple.apple.name,
+-- }, { background = {
+-- 	color = 0x90494d64,
+-- 	height = 25,
+-- } })

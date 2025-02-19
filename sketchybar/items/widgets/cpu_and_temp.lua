@@ -25,7 +25,7 @@ M.temp = sbar.add("graph", "widgets.temp", 42, {
 	},
 	--   icon = { string = icons.cpu },
 	label = {
-		string = icons.temperature._0 .. "  ??󰔄",
+		string = icons.temperature._0 .. "  ??",
 		font = {
 			family = settings.font.numbers,
 			style = settings.font.style_map["Bold"],
@@ -68,7 +68,7 @@ M.cpu = sbar.add("graph", "widgets.cpu", 42, {
 })
 
 local function updateTemperature()
-	sbar.exec("/Users/xbunax/.local/bin/smctemp -c", function(output)
+	sbar.exec("~/.local/bin/smctemp/smctemp -c", function(output)
 		local temperature = tonumber(output)
 		M.temp:push({ temperature / 130. })
 
@@ -95,7 +95,7 @@ local function updateTemperature()
 
 		M.temp:set({
 			graph = { color = color },
-			label = label_icon .. " " .. temperature .. "󰔄",
+			label = label_icon .. " " .. temperature .. "°C",
 		})
 	end)
 end

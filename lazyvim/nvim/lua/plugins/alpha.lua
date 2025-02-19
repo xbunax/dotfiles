@@ -12,7 +12,7 @@ local LOGOS = {
   { filename = "ed2.txt", height = 28, width = 73, animate = true },
 }
 
-local DIRPATH = "/Users/xbunax/.config/lazyvim/nvim/lua/plugins/"
+local DIRPATH = "~/.config/lazyvim/nvim/lua/plugins/"
 
 return {
   "goolord/alpha-nvim",
