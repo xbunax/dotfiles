@@ -4,7 +4,7 @@ local settings = require("settings")
 local icons = require("icons")
 local app_icons = require("helpers.app_icons")
 
-local max_workspaces = 10
+-- local max_workspaces = 10
 local query_workspaces =
 	"aerospace list-workspaces --all --format '%{workspace}%{monitor-appkit-nsscreen-screens-id}' --json"
 local workspace_monitor = {}
@@ -35,6 +35,26 @@ sbar.add("item", {
 })
 
 local workspaces = {}
+local empty_workspaces = {}
+
+local function executeShellCommand(command)
+	local handle = io.popen(command)
+	local result = handle:read("*a") -- 读取所有输出
+	handle:close()
+
+	local outputTable = {}
+	for line in result:gmatch("[^\r\n]+") do
+		table.insert(outputTable, tonumber(line))
+	end
+
+	return outputTable
+end
+
+local empty_workspaces_command = "aerospace list-workspaces --empty --monitor all"
+empty_workspaces_list = executeShellCommand(empty_workspaces_command)
+local max_workspaces_command = "aerospace list-workspaces --count --all"
+local max_workspaces = executeShellCommand(max_workspaces_command)
+-- print("empty_workspaces_list: ", table.concat(max_workspaces, ", "))
 
 local function updateWindows(workspace_index)
 	local get_windows =
@@ -131,7 +151,104 @@ local function updateWorkspaceMonitor(workspace_index)
 	end)
 end
 
-for workspace_index = 1, max_workspaces do
+local function updateWorkspaceHover(workspaces, trigger)
+	local get_empty_workspaces = "aerospace list-workspaces --empty --monitor all --json"
+	sbar.exec(get_empty_workspaces, function(empty_workspaces)
+		if trigger == true then
+			for _, empty_workspace in ipairs(empty_workspaces) do
+				print(empty_workspace.workspace)
+				local index = tonumber(empty_workspace.workspace)
+				sbar.animate("sin", 15, function()
+					icon_line = " —"
+					workspaces[index]:set({
+						icon = { drawing = true },
+						label = {
+							string = icon_line,
+							drawing = true,
+							-- padding_right = 20,
+							font = "sketchybar-app-font:Regular:16.0",
+							y_offset = -1,
+						},
+						background = { drawing = true },
+						padding_right = 1,
+						padding_left = 1,
+					})
+				end)
+			end
+			return
+		elseif trigger == false then
+			for _, empty_workspace in ipairs(empty_workspaces) do
+				local index = tonumber(empty_workspace.workspace)
+				sbar.animate("sin", 15, function()
+					workspaces[index]:set({
+						icon = { drawing = false },
+						label = { drawing = false },
+						background = { drawing = false },
+						padding_right = 0,
+						padding_left = 0,
+					})
+					return
+				end)
+			end
+		end
+	end)
+end
+
+local function isInList(list, element)
+	for _, v in ipairs(list) do
+		if v == element then
+			return true
+		end
+	end
+	return false
+end
+
+local function updateWorkspaceHover(workspace_index, trigger)
+	-- local get_empty_workspaces = "aerospace list-workspaces --empty --monitor all --json"
+	-- local empty_workspaces_list = {}
+	--
+	-- sbar.exec(get_empty_workspaces, function(empty_workspaces)
+	-- 	-- 假设 empty_workspaces 已经是解析好的表
+	-- 	for _, empty_workspace in ipairs(empty_workspaces) do
+	-- 		local index = tonumber(empty_workspace.workspace)
+	-- 		if index then
+	-- 			empty_workspaces_list[#empty_workspaces_list + 1] = index
+	-- 		end
+	-- 	end
+
+	if trigger == true then
+		sbar.animate("sin", 15, function()
+			icon_line = " —"
+			workspaces[workspace_index]:set({
+				icon = { drawing = true },
+				label = {
+					string = icon_line,
+					drawing = true,
+					font = "sketchybar-app-font:Regular:16.0",
+					y_offset = -1,
+				},
+				background = { drawing = true },
+				padding_right = 1,
+				padding_left = 1,
+			})
+		end)
+	elseif trigger == false then
+		sbar.animate("sin", 15, function()
+			workspaces[workspace_index]:set({
+				icon = { drawing = false },
+				label = { drawing = false },
+				background = { drawing = false },
+				padding_right = 0,
+				padding_left = 0,
+			})
+			return
+		end)
+	end
+end
+-- 	end)
+-- end
+
+for workspace_index = 1, max_workspaces[1] do
 	local workspace = sbar.add("item", {
 		icon = {
 			color = colors.white,
@@ -180,6 +297,19 @@ for workspace_index = 1, max_workspaces do
 			})
 		end)
 	end)
+
+	workspace:subscribe("mouse.entered", function()
+		local command = "aerospace list-workspaces --empty --monitor all"
+		empty_workspaces_list = executeShellCommand(command)
+		for _, index_enter in ipairs(empty_workspaces_list) do
+			-- 	print(index_enter)
+			updateWorkspaceHover(index_enter, true)
+		end
+	end)
+	--
+	-- workspace:subscribe("mouse.exited", function()
+	-- 	updateWindows(workspace_index)
+	-- end)
 
 	workspace:subscribe("aerospace_focus_change", function()
 		updateWindows(workspace_index)

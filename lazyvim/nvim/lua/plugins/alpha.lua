@@ -49,6 +49,8 @@ return {
       dashboard.section.terminal,
       { type = "padding", val = 3 },
       dashboard.section.buttons,
+      -- { type = "padding", val = 3 },
+      -- dashboard.section.footer,
     }
     alpha.setup(dashboard.config)
   end,

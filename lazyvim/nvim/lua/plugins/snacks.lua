@@ -28,29 +28,44 @@ return {
  ]],
       },
     },
-    -- picker = {
-    --   win = {
-    --     input = {
-    --       keys = {
-    --         ["<a-c>"] = {
-    --           "toggle_cwd",
-    --           mode = { "n", "i" },
-    --         },
-    --       },
-    --     },
-    --   },
-    --   actions = {
-    --     ---@param p snacks.Picker
-    --     toggle_cwd = function(p)
-    --       local root = LazyVim.root({ buf = p.input.filter.current_buf, normalize = true })
-    --       local cwd = vim.fs.normalize((vim.uv or vim.loop).cwd() or ".")
-    --       local current = p:cwd()
-    --       p:set_cwd(current == root and cwd or root)
-    --       p:find()
-    --     end,
-    --   },
-    -- },
-    image = { enabled = true },
+    image = {
+      enabled = true,
+      doc = {
+        -- enable image viewer for documents
+        -- a treesitter parser must be available for the enabled languages.
+        enabled = true,
+        -- render the image inline in the buffer
+        -- if your env doesn't support unicode placeholders, this will be disabled
+        -- takes precedence over `opts.float` on supported terminals
+        inline = false,
+        -- render the image in a floating window
+        -- only used if `opts.inline` is disabled
+        float = true,
+        max_width = 80,
+        max_height = 40,
+        -- Set to `true`, to conceal the image text when rendering inline.
+        conceal = false, -- (experimental)
+      },
+      convert = {
+        notify = true, -- show a notification on error
+        math = {
+          font_size = "Large", -- see https://www.sascha-frank.com/latex-font-size.html
+          -- for latex documents, the doc packages are included automatically,
+          -- but you can add more packages here. Useful for markdown documents.
+          packages = { "amsmath", "amssymb", "amsfonts", "amscd", "mathtools" },
+        },
+        mermaid = function()
+          local theme = vim.o.background == "light" and "neutral" or "dark"
+          return { "-i", "{src}", "-o", "{file}", "-b", "transparent", "-t", theme, "-s", "{scale}" }
+        end,
+        magick = {
+          default = { "{src}[0]", "-scale", "1920x1080>" }, -- default for raster images
+          vector = { "-density", 192, "{src}[0]" }, -- used by vector images like svg
+          math = { "-density", 192, "{src}[0]", "-trim" },
+          pdf = { "-density", 192, "{src}[0]", "-background", "white", "-alpha", "remove", "-trim" },
+        },
+      },
+    },
   },
   -- stylua: ignore
   keys = {
@@ -59,6 +74,7 @@ return {
     { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
     -- { "<leader><space>", LazyVim.pick("files"), desc = "Find Files (Root Dir)" },
     { "<leader>n", function() Snacks.picker.notifications() end, desc = "Notification History" },
+    { "<leader>U", function() Snacks.picker.undo() end, desc = "Undo Tree" },
     -- find
     { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
     { "<leader>fB", function() Snacks.picker.buffers({ hidden = true, nofile = true }) end, desc = "Buffers (all)" },
