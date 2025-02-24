@@ -38,6 +38,10 @@ open = [
 	{ run = 'open "$@"', desc = "Open", for = "macos" },
 	{ run = 'start "" "%1"', orphan = true, desc = "Open", for = "windows" },
 ]
+
+openimage = [
+{run='kitten icat "$1"',block=true,for="unix"}
+]
 reveal = [
 	{ run = 'xdg-open "$(dirname "$1")"', desc = "Reveal", for = "linux" },
 	{ run = 'open -R "$1"', desc = "Reveal", for = "macos" },
@@ -49,7 +53,7 @@ extract = [
 	{ run = 'ya pub extract --list %*', desc = "Extract here", for = "windows" },
 ]
 play = [
-	{ run = 'mpv --force-window "$@"', orphan = true, for = "unix" },
+	{ run = 'mpv "$@" --vo=kitty --hwdec=auto --vo-kitty-width=1280 --vo-kitty-height=720',block=true, orphan = false, for = "unix" },
 	{ run = 'mpv --force-window %*', orphan = true, for = "windows" },
 	{ run = '''mediainfo "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show media info", for = "unix" },
 ]
@@ -57,6 +61,9 @@ play = [
 [open]
 prepend_rules = [
 	{ name = "*.tex", use = "edit" },
+	{ name = "*.mp4", use = "play" },
+	# { name = "*.pdf", use = "openpdf" },
+	# { name = "*.pdf", use = "openpdf" },
   ]
 rules = [
 	# Folder
@@ -92,6 +99,7 @@ suppress_preload = false
 prepend_previewers = [
   { name = "*.md", run = "glow" },
   { name = "*.ipynb", run = "nbpreview" },
+  { name = "*.mp4", run = "video" },
 ]
 fetchers = [
 	# Mimetype

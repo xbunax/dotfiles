@@ -11,6 +11,18 @@ keymap = [
 {on = "<C-t>", run = '''
   shell "osascript -e 'tell application \"System Events\" to set picture of every desktop to \"'\"$1\"'\"'"
 '''},
+{on = "<C-y>", run = '''
+  shell '/opt/homebrew/bin/kitten clipboard "$0"' --confirm
+'''},
+{on = "<C-o>", run = '''
+  shell 'open -R "$@"' --confirm
+'''},
+{on = "<C-i>", run = '''
+  shell 'tdf "$@"' --block --confirm
+'''},
+{on = "<C-v>", run = '''
+  shell 'mpv "$@" --vo=kitty --hwdec=auto --vo-kitty-width=1280 --vo-kitty-height=720 --loop=inf --profile=sw-fast' --block --confirm
+'''},
 	{ on = "<Esc>", run = "escape",             desc = "Exit visual mode, clear selected, or cancel search" },
 	{ on = "<C-[>", run = "escape",             desc = "Exit visual mode, clear selected, or cancel search" },
 	{ on = "q",     run = "quit",               desc = "Quit the process" },
