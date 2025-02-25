@@ -6,6 +6,8 @@ local M = {}
 M.forecast_items = {}
 local location_script = "curl -x '' -s 'https://ipinfo.io/json' | grep '\"city\"' | awk -F: '{print $2}' | tr -d '\", '"
 
+local popup_width = 110
+
 local function get_location()
 	local handle = io.popen(location_script)
 	local result = handle:read("*a") -- 读取命令输出
@@ -68,7 +70,7 @@ M.weather_icon = sbar.add("item", {
 M.weather_location = sbar.add("item", {
 	position = "popup." .. M.weather_icon.name,
 	icon = {
-		width = 110,
+		width = popup_width,
 		string = "Location 􀋑 :",
 		font = {
 			style = settings.font.style_map["Bold"],
@@ -86,7 +88,7 @@ M.weather_location = sbar.add("item", {
 M.weather_cuurent_temp = sbar.add("item", {
 	position = "popup." .. M.weather_icon.name,
 	icon = {
-		width = 110,
+		width = popup_width,
 		string = "Current 􂬮 :",
 		font = {
 			style = settings.font.style_map["Bold"],
@@ -111,14 +113,27 @@ M.weather_icon:subscribe({ "routine", "forced", "system_woke" }, function()
 	end)
 end)
 
-M.weather_icon:subscribe("mouse.clicked", function(env)
-	local drawing = M.weather_icon:query().popup.drawing
-	M.weather_icon:set({ popup = { drawing = "toggle" } })
+local function weather_collapse_details()
+	local drawing = M.weather_icon:query().popup.drawing == "on"
+	if not drawing then
+		return
+	end
+	M.weather_icon:set({ popup = { drawing = false } })
+	sbar.remove("/weather.item\\.*/")
+end
 
-	if drawing == "off" then
+M.weather_icon:subscribe("mouse.clicked", function(env)
+	-- local drawing = M.weather_icon:query().popup.drawing
+	-- M.weather_icon:set({ popup = { drawing = "toggle" } })
+
+	local counter = 0
+	local should_draw = M.weather_icon:query().popup.drawing == "off"
+	print(should_draw)
+	if should_draw then
+		M.weather_icon:set({ popup = { drawing = true } })
 		sbar.exec(weather_script, function(weather_condition)
 			local temp = weather_condition
-			M.weather_cuurent_temp:set({ label = { string = temp .. "°C" } })
+			M.weather_cuurent_temp:set({ label = { string = temp .. "󰔄" } })
 
 			sbar.exec(forecast_script, function(forecast_data)
 				if not forecast_data or forecast_data == "" then
@@ -133,55 +148,33 @@ M.weather_icon:subscribe("mouse.clicked", function(env)
 					table.insert(lines, line)
 				end
 
-				-- 获取当前日期
-				local current_date = os.date("%Y-%m-%d")
-
 				for _, l in ipairs(lines) do
 					local date, maxT, minT, desc = l:match("([^\t]+)\t+([^\t]+)\t+([^\t]+)\t+(.+)")
-					if date and maxT and minT and desc then
-						-- 删除早于当前日期的 item
-						for existing_date, item in pairs(M.forecast_items) do
-							if existing_date < current_date then
-								print(existing_date)
-								item:remove()
-								M.forecast_items[existing_date] = nil
-							end
-						end
 
-						-- 如果当日 item 没有创建过，才创建新的 item
-						if not M.forecast_items[date] then
-							local icon_str = map_condition_to_icon(desc)
-							local forecast_str = string.format("%s %s~%s°C", icon_str, maxT, minT)
+					local icon_str = map_condition_to_icon(desc)
+					local forecast_str = string.format("%s %s~%s°C", icon_str, maxT, minT)
 
-							-- 创建并记录 item
-							local item = sbar.add("item", {
-								position = "popup." .. M.weather_icon.name,
-								width = 110,
-								icon = {
-									string = date .. ":",
-									align = "left",
-								},
-								label = {
-									font = { family = settings.font.family },
-									string = forecast_str,
-									align = "right",
-								},
-								-- align = "center",
-								drawing = "on",
-							})
-
-							M.forecast_items[date] = item
-						else
-							local icon_str = map_condition_to_icon(desc)
-							local forecast_str = string.format("%s %s~%s°C", icon_str, maxT, minT)
-							M.forecast_items[date]:set({
-								label = { string = forecast_str },
-							})
-						end
-					end
+					local item = sbar.add("item", "weather.item" .. counter, {
+						position = "popup." .. M.weather_icon.name,
+						width = popup_width,
+						icon = {
+							string = date .. ":",
+							align = "left",
+						},
+						label = {
+							font = { family = settings.font.family },
+							string = forecast_str,
+							align = "right",
+						},
+						-- align = "center",
+						drawing = "on",
+					})
+					counter = counter + 1
 				end
 			end)
 		end)
+	else
+		weather_collapse_details()
 	end
 end)
 

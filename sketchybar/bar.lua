@@ -2,7 +2,7 @@ local colors = require("colors")
 
 -- Equivalent to the --bar domain
 sbar.bar({
-	topmost = "window",
+	-- topmost = "off",
 	height = 35,
 	notch_display_height = 33,
 	-- margin = 15,

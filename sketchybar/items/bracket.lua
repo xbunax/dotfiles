@@ -2,9 +2,12 @@ local battery = require("items.widgets.battery")
 local volume = require("items.widgets.volume")
 local wechat_and_qq = require("items.widgets.wechat_and_qq")
 local wifi = require("items.widgets.wifi")
+local bluetooth = require("items.widgets.bluetooth")
 local cpu_and_temp = require("items.widgets.cpu_and_temp")
 local weather = require("items.weather")
+-- local workspaces = require("items.spaces_yabai_dev")
 local workspaces = require("items.spaces_aero_dev")
+-- local workspaces = require("items.spaces")
 -- local workspaces = require("items.spaces_flash_dev")
 local apple = require("items.apple")
 local cal = require("items.calendar")
@@ -19,6 +22,7 @@ sbar.add("bracket", {
 	wifi.wifi.name,
 	wifi.wifi_up.name,
 	wifi.wifi_down.name,
+	bluetooth.bluetooth_icon.name,
 	volume.volume_icon.name,
 	volume.volume_percent.name,
 	wechat_and_qq.wechat.name,
@@ -37,6 +41,7 @@ sbar.add("bracket", {
 })
 
 sbar.add("bracket", {
+	bluetooth.bluetooth_icon.name,
 	volume.volume_icon.name,
 	volume.volume_percent.name,
 	wechat_and_qq.wechat.name,

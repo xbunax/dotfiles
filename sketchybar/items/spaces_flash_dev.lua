@@ -36,19 +36,25 @@ sbar.add("item", {
 local workspaces = {}
 
 local function updateWindows(workspace_index)
-	local get_windows = string.format(
-		"jq -c '.profiles[].workspaces[] | select(.name == \"%s\") | {apps: [.apps[].name]}' ~/.config/flashspace/profiles.json",
-		workspace_index
-	)
+	-- local get_windows = string.format(
+	-- 	"jq -c '.profiles[].workspaces[] | select(.name == \"%s\") | {apps: [.apps[].name]}' ~/.config/flashspace/profiles.json",
+	-- 	workspace_index
+	-- )
+	local get_windows = string.format("flashspace list-apps '%s'", workspace_index)
 	sbar.exec(get_windows, function(open_windows)
-		local apps = open_windows.apps or {}
+		local apps = {}
+		for app_name in string.gmatch(open_windows, "%S+") do
+			table.insert(apps, app_name)
+		end
+
+		local no_app = true
+		print(table.concat(apps, " "))
 
 		local icon_line = ""
-		local no_app = (#apps == 0)
 
 		-- 遍历应用名列表
 		for _, app_name in ipairs(apps) do
-			local lookup = app_icons[app_name]
+			local lookup = app_icons[tostring(app_name)]
 			local icon = lookup or app_icons["Default"]
 			icon_line = icon_line .. " " .. icon
 		end
@@ -130,7 +136,6 @@ local function updateWorkspaceMonitor(workspace_index)
 end
 
 for workspace_index = 1, max_workspaces do
-	print(workspace_index)
 	local workspace = sbar.add("item", {
 		icon = {
 			color = colors.white,
@@ -157,7 +162,7 @@ for workspace_index = 1, max_workspaces do
 			height = 28,
 			border_color = colors.aerospace_border_color,
 		},
-		-- click_script = "aerospace workspace " .. workspace_index,
+		click_script = "flashspace workspace --number " .. workspace_index,
 	})
 
 	workspaces[workspace_index] = workspace

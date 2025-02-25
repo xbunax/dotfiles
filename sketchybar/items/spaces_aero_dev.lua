@@ -298,14 +298,14 @@ for workspace_index = 1, max_workspaces[1] do
 		end)
 	end)
 
-	workspace:subscribe("mouse.entered", function()
-		local command = "aerospace list-workspaces --empty --monitor all"
-		empty_workspaces_list = executeShellCommand(command)
-		for _, index_enter in ipairs(empty_workspaces_list) do
-			-- 	print(index_enter)
-			updateWorkspaceHover(index_enter, true)
-		end
-	end)
+	-- workspace:subscribe("mouse.entered", function()
+	-- 	local command = "aerospace list-workspaces --empty --monitor all"
+	-- 	empty_workspaces_list = executeShellCommand(command)
+	-- 	for _, index_enter in ipairs(empty_workspaces_list) do
+	-- 		-- 	print(index_enter)
+	-- 		updateWorkspaceHover(index_enter, true)
+	-- 	end
+	-- end)
 	--
 	-- workspace:subscribe("mouse.exited", function()
 	-- 	updateWindows(workspace_index)
