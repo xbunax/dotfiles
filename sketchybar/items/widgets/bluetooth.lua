@@ -1,5 +1,6 @@
 local colors = require("colors")
 local icons = require("icons")
+local icons_map = require("helpers.app_icons")
 local settings = require("settings")
 
 local B = {}
@@ -75,11 +76,13 @@ local popup_width = 250
 local B = {}
 B.bluetooth_icon = sbar.add("item", {
 	position = "right",
-	padding_left = 5,
-	padding_right = -10,
+	padding_left = 0,
+	padding_right = -5,
 	icon = {
+		-- string = icons_map["Bluetooth"],
+		-- font = "sketchybar-app-font:Regular:19.0",
 		string = "󰂯",
-		font = { style = settings.font.style_map["Bold"], size = 15.0 },
+		font = { style = settings.font.style_map["Bold"], size = 16.0 },
 	},
 	popup = {
 		align = "center",
@@ -107,7 +110,9 @@ end
 
 local bluetooth_switch = sbar.add("item", {
 	position = "popup." .. bluetooth_bracket.name,
-	label = { string = "off   " .. "󰔡" .. "   on", size = 30 },
+	-- height = 0,
+	icon = { string = "Bluetooth Switch:" },
+	label = { string = "􁏮" },
 	width = popup_width,
 	align = "center",
 	popup = {
@@ -119,10 +124,42 @@ local bluetooth_switch = sbar.add("item", {
 bluetooth_switch:subscribe("mouse.clicked", function()
 	sbar.exec("blueutil -p", function(bluetooth_state)
 		if tonumber(bluetooth_state) == 1 then
-			bluetooth_switch:set({ label = { string = "off   " .. "󰔡" .. "   on" } })
+			bluetooth_switch:set({ label = { string = "􁏯" } })
+			sbar.exec("blueutil -p 0")
 		else
-			bluetooth_switch:set({ label = { string = "off   " .. "󰨙" .. "   on" } })
+			bluetooth_switch:set({ label = { string = "􁏮" } })
+			sbar.exec("blueutil -p 1")
 		end
+	end)
+end)
+
+bluetooth_switch:subscribe("mouse.entered", function(env)
+	sbar.animate("tanh", 30, function()
+		bluetooth_switch:set({
+			label = {
+				color = colors.white,
+				width = "dynamic",
+				background = {
+					color = { alpha = 0.2 },
+					border_color = { alpha = 0.2 },
+				},
+			},
+		})
+	end)
+end)
+
+bluetooth_switch:subscribe("mouse.exited", function(env)
+	sbar.animate("tanh", 30, function()
+		bluetooth_switch:set({
+			label = {
+				color = colors.grey,
+				width = "dynamic",
+				background = {
+					color = { alpha = 0.0 },
+					border_color = { alpha = 0.0 },
+				},
+			},
+		})
 	end)
 end)
 
@@ -147,15 +184,14 @@ local function bluetooth_deivce_list()
 				end
 
 				for i, device in ipairs(paired_bluetooth) do
-					local color = colors.grey
+					local color_set = colors.grey
 					if isInList(connected_devices_list, device.address) then
-						print(true)
-						color = colors.white
+						color_set = colors.white
 					end
 					-- print(device.address)
 					sbar.add("item", "bluetooth.device." .. i, {
 						position = "popup." .. bluetooth_bracket.name,
-						label = { string = device.name, color = color },
+						label = { string = device.name, color = color_set },
 						width = popup_width,
 						align = "center",
 						click_script = "if [ $(blueutil --is-connected "
@@ -181,8 +217,5 @@ local function bluetooth_deivce_list()
 end
 
 B.bluetooth_icon:subscribe("mouse.clicked", bluetooth_deivce_list)
-B.bluetooth_icon:subscribe("mouse.clicked", bluetooth_deivce_list)
--- B.bluetooth_icon:subscribe("mouse.clicked", bluetooth_deivce_list)
--- B.bluetooth_icon:subscribe("mouse.clicked", bluetooth_deivce_list)
 
 return B

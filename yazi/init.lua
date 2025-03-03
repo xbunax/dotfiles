@@ -2,7 +2,7 @@ require("full-border"):setup({
 	-- Available values: ui.Border.PLAIN, ui.Border.ROUNDED
 	type = ui.Border.ROUNDED,
 })
-
+require("starship"):setup()
 function Linemode:size_and_mtime()
 	local year = os.date("%Y")
 	local time = (self._file.cha.mtime or 0) // 1
@@ -15,4 +15,8 @@ function Linemode:size_and_mtime()
 
 	local size = self._file:size()
 	return ui.Line(string.format(" %s %s ", size and ya.readable_size(size) or "-", time))
+end
+
+if os.getenv("NVIM") then
+	require("toggle-pane"):entry("min-preview")
 end

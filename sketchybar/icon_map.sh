@@ -93,6 +93,9 @@ function __icon_map() {
    "Blender")
         icon_result=":blender:"
         ;;
+   "Bluetooth")
+        icon_result=":bluetooth:"
+        ;;
    "BluOS Controller")
         icon_result=":bluos_controller:"
         ;;

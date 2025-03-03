@@ -1,13 +1,7 @@
 {
   "extras": [
-    "lazyvim.plugins.extras.coding.luasnip",
-    "lazyvim.plugins.extras.dap.core",
-    "lazyvim.plugins.extras.dap.nlua",
-    "lazyvim.plugins.extras.formatting.black",
-    "lazyvim.plugins.extras.formatting.prettier",
-    "lazyvim.plugins.extras.lang.clangd"
+
   ],
-  "install_version": 7,
   "news": {
     "NEWS.md": "10960"
   },

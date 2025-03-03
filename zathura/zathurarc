@@ -1,0 +1,13 @@
+
+set window-title-basename false
+set guioptions ""
+set adjust-open "width"
+set window-title-basename true
+# set show-v-scrollbar true
+map e scroll half-up
+map w scroll half-down
+set incremental-search false 
+# set smooth-scroll "true"
+# set show-scrollbars "true"
+# include catppuccin-mocha
+include gruvbox-dark-soft

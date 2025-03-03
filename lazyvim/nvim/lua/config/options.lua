@@ -36,4 +36,4 @@ vim.opt.spelllang = vim.opt.spelllang + "cjk"
 vim.api.nvim_set_hl(0, "SnacksDashboardHeader", { fg = "#FF007C" })
 vim.api.nvim_set_hl(0, "SnacksDashboardIcon", { fg = "#9B9B9B" })
 vim.api.nvim_set_hl(0, "SnacksDashboardDesc", { fg = "#A0CC77" })
--- vim.g.lazyvim_picker = "snacks"
+vim.g.lazyvim_picker = "snacks"

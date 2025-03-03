@@ -41,6 +41,7 @@ M.wechat:subscribe({ "routine", "power_source_change", "system_woke" }, function
 				},
 				label = { drawing = false },
 			})
+			sbar.exec("sketchybar --trigger wechat_notify_trigger POPUP=false")
 		else
 			M.wechat:set({
 				icon = {
@@ -49,6 +50,7 @@ M.wechat:subscribe({ "routine", "power_source_change", "system_woke" }, function
 				},
 				label = { string = notify_num .. label, drawing = true },
 			})
+			sbar.exec("sketchybar --trigger wechat_notify_trigger POPUP=true")
 		end
 	end)
 end)

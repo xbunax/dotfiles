@@ -1,8 +1,95 @@
 -- local image = require("snacks.image.image")
+
+vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
+vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
+vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
+vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
+vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
+vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
+vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
+
+--  vim.cmd [[hi SnacksNormal guibg=#293128]]
+local highlight = {
+  "RainbowRed",
+  "RainbowYellow",
+  "RainbowBlue",
+  "RainbowOrange",
+  "RainbowGreen",
+  "RainbowViolet",
+  "RainbowCyan",
+}
+vim.g.rainbow_delimiters = { highlight = highlight }
+
+--dashboard animate
+math.randomseed(os.time())
+
+local function getRandomObject(array)
+  local randomIndex = math.random(1, #array)
+  return array[randomIndex]
+end
+
+local LOGOS = {
+  -- { filename = "champloo.txt", height = 18, width = 61, animate = true },
+  -- { filename = "thousand_sunny.txt", height = 33, width = 68, animate = false },
+  { filename = "test.txt", height = 28, width = 73, animate = true },
+  -- { filename = "ed2.txt", height = 28, width = 73, animate = true },
+}
+
+local DIRPATH = "~/.config/lazyvim/nvim/lua/plugins/"
+
+local logo = getRandomObject(LOGOS)
+
+local command
+if logo.animate then
+  command = "sh " .. DIRPATH .. "show.sh " .. DIRPATH .. "/" .. logo.filename
+else
+  command = "cat " .. DIRPATH .. "/" .. logo.filename
+end
+
 return {
   "snacks.nvim",
   opts = {
-    indent = { enabled = false },
+
+    indent = {
+      enabled = true,
+      filter = function(buf)
+        return vim.g.snacks_indent ~= false
+          and vim.b[buf].snacks_indent ~= false
+          and vim.bo[buf].buftype == ""
+          and (
+            not vim.tbl_contains({
+              "lazy",
+              "help",
+              "markdown",
+            }, vim.bo[buf].filetype)
+          )
+        --  vim.bo[buf].buftype ~= "markdown"
+      end,
+      only_scope = false,
+      scope = {
+        enabled = true, -- enable highlighting the current scope
+        priority = 200,
+        char = "│",
+        underline = true, -- underline the start of the scope
+        only_current = false, -- only show scope in the current window
+        hl = highlight,
+      },
+      hl = highlight,
+      chunk = {
+        enabled = true,
+        only_current = false,
+        priority = 200,
+        hl = highlight,
+        char = {
+          corner_top = "╭",
+          corner_bottom = "╰",
+          horizontal = "─",
+          vertical = "│",
+          arrow = ">",
+        },
+      },
+      blank = { hl = highlight },
+    },
     input = { enabled = true },
     notifier = { enabled = true },
     scope = { enabled = true },
@@ -12,20 +99,39 @@ return {
     picker = { enabled = true },
     words = { enabled = true },
     dashboard = {
-      enabled = false,
+      enabled = true,
+      width = 70,
+      sections = {
+        {
+          section = "terminal",
+          cmd = command,
+          height = logo.height,
+          -- width = logo.width,
+          padding = 1,
+        },
+        {
+          pane = 2,
+          { section = "keys", gap = 1, padding = 1 },
+          { section = "startup" },
+        },
+      },
       preset = {
-        header = [[
-                                                                         
-                                                                       
-         ████ ██████           █████      ██                     
-        ███████████             █████                             
-        █████████ ███████████████████ ███   ███████████   
-       █████████  ███    █████████████ █████ ██████████████   
-      █████████ ██████████ █████████ █████ █████ ████ █████   
-    ███████████ ███    ███ █████████ █████ █████ ████ █████  
-   ██████  █████████████████████ ████ █████ █████ ████ ██████ 
-                                                                         
- ]],
+        keys = {
+          { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
+          { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
+          { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
+          { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+          {
+            icon = " ",
+            key = "c",
+            desc = "Config",
+            action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
+          },
+          { icon = " ", key = "s", desc = "Restore Session", section = "session" },
+          { icon = "", key = "p", desc = "Projects", action = ":lua Snacks.picker.projects()" },
+          { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
+          { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+        },
       },
     },
     image = {
@@ -119,5 +225,13 @@ return {
     { "<leader>su", function() Snacks.picker.undo() end, desc = "Undotree" },
     -- ui
     { "<leader>uC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
+    -- LSP
+    { "gd", function() Snacks.picker.lsp_definitions() end, desc = "Picker Goto Definition" },
+    { "gD", function() Snacks.picker.lsp_declarations() end, desc = "Picker Goto Declaration" },
+    { "gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "Picker References" },
+    { "gI", function() Snacks.picker.lsp_implementations() end, desc = "Picker Goto Implementation" },
+    { "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Picker Goto T[y]pe Definition" },
+    { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
+    { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
   },
 }

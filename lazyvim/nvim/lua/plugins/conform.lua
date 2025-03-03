@@ -10,12 +10,13 @@ return {
       },
       formatters_by_ft = {
         lua = { "stylua" },
-        typst = { "typstfmt" },
+        typst = { "typstyle" },
         fish = { "fish_indent" },
         sh = { "shfmt" },
         zsh = { "shfmt" },
         cpp = { "clang-format" },
         python = { "black" },
+        markdown = { "prettier" },
       },
       formatters = {
         injected = { options = { ignore_errors = true } },

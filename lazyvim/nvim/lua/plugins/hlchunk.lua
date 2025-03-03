@@ -1,11 +1,19 @@
 return {
 
   "shellRaining/hlchunk.nvim",
-  event = { "BufReadPre", "BufNewFile" },
+  -- lazy = true,
+  -- event = { "BufReadPre", "BufNewFile" },
+  ft = { "lua", "c", "c++" },
+  enabled = function()
+    return vim.bo.filetype ~= "markdown" -- 仅在非Markdown文件时启用插件
+  end,
   config = function()
     require("hlchunk").setup({
       chunk = {
         enable = true,
+        exclude_filetypes = {
+          markdown = true,
+        },
         chars = {
           horizontal_line = "─",
           vertical_line = "│",

@@ -28,3 +28,19 @@ augroup my_highlight
   autocmd FileType markdown highlight clear SpellRare
 augroup END
 ]])
+
+-- vim.api.nvim_create_autocmd("CmdlineLeave", {
+--   pattern = "*", -- 可以用 '*' 来匹配所有命令
+--   callback = function()
+--     local cmd = vim.fn.getcmdline() -- 获取当前的命令行
+--     -- 这里可以根据需要来检测具体的命令
+--     if cmd == "TypstPreview" then
+--       -- 运行 shell 命令
+--       local handle = io.popen("kitty @ launch --hold --type=os-window zsh -c 'awrit http://127.0.0.1:9090'")
+--       local result = handle:read("*a")
+--       handle:close()
+--       print("ok")
+--       -- print(result) -- 打印 shell 命令的输出
+--     end
+--   end,
+-- })

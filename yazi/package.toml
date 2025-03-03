@@ -13,6 +13,26 @@ use = "AnirudhG07/nbpreview"
 rev = "f8879b3"
 hash = "d378328e5d0a1b9fb9f04ab3aade4575"
 
+[[plugin.deps]]
+use = "boydaihungst/mediainfo"
+rev = "f565c5a"
+hash = "15d0dbb4e9ba84eb1f2dbb8e9e249bf6"
+
+[[plugin.deps]]
+use = "boydaihungst/restore"
+rev = "a7a6e5e"
+hash = "4d6e6cc76c8ce08b5f6f344aa9413034"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:toggle-pane"
+rev = "5186af7"
+hash = "2391805528b59d562a51f9b33f4a8236"
+
+[[plugin.deps]]
+use = "Rolv-Apneseth/starship"
+rev = "6c639b4"
+hash = "5614c46d5de76623c283d415bfac8025"
+
 [[flavor.deps]]
 use = "Chromium-3-Oxide/everforest-medium"
 rev = "65bc09b"

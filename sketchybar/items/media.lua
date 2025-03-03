@@ -1,9 +1,13 @@
 local icons = require("icons")
 local colors = require("colors")
 
-local whitelist = { ["Spotify"] = true, ["Music"] = true }
+local whitelist = { ["Spotify"] = true, ["Music"] = true, ["Cider"] = true }
 
 local M = {}
+
+sbar.add("item", {
+	width = 5,
+})
 
 M.media_cover = sbar.add("item", {
 	position = "left",
@@ -24,6 +28,8 @@ M.media_cover = sbar.add("item", {
 		align = "center",
 		horizontal = true,
 	},
+	padding_right = -2,
+	padding_left = -0.5,
 })
 
 M.media_artist = sbar.add("item", {
@@ -89,8 +95,18 @@ local function animate_detail(detail)
 	sbar.animate("tanh", 30, function()
 		M.media_artist:set({ label = { width = detail and "dynamic" or 0 } })
 		M.media_title:set({ label = { width = detail and "dynamic" or 0 } })
+		return
 	end)
 end
+
+M.media_bracket = sbar.add("bracket", { M.media_cover.name, M.media_artist.name, M.media_title.name }, {
+	background = {
+		-- padding_right = -20,
+		padding_left = 0,
+		color = colors.bg3,
+		border_width = 0,
+	},
+})
 
 M.media_cover:subscribe("media_change", function(env)
 	if whitelist[env.INFO.app] then

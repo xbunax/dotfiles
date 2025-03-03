@@ -39,9 +39,13 @@ open = [
 	{ run = 'start "" "%1"', orphan = true, desc = "Open", for = "windows" },
 ]
 
-openimage = [
-{run='kitten icat "$1"',block=true,for="unix"}
+previewRAW = [
+{run='kitten icat "$1"',block=false,for="unix"}
 ]
+zathuraOpener=[
+{ run='zathura "$@"',block=false,orphan = true,desc="pdf openner"}
+]
+
 reveal = [
 	{ run = 'xdg-open "$(dirname "$1")"', desc = "Reveal", for = "linux" },
 	{ run = 'open -R "$1"', desc = "Reveal", for = "macos" },
@@ -61,7 +65,9 @@ play = [
 [open]
 prepend_rules = [
 	{ name = "*.tex", use = "edit" },
+	{ name = "*.toml", use = "edit" },
 	{ name = "*.mp4", use = "play" },
+{name="*.pdf",use="zathuraOpener"},
 	# { name = "*.pdf", use = "openpdf" },
 	# { name = "*.pdf", use = "openpdf" },
   ]
@@ -109,10 +115,12 @@ fetchers = [
 ]
 preloaders = [
 	# Image
-	{ mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
-	{ mime = "image/*", run = "image" },
+    { mime = "{audio,video,image}/*", run = "mediainfo" },
+     { mime = "application/subrip", run = "mediainfo" },
+	# { mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
+	# { mime = "image/*", run = "image" },
 	# Video
-	{ mime = "video/*", run = "video" },
+	# { mime = "video/*", run = "video" },
 	# PDF
 	{ mime = "application/pdf", run = "pdf" },
 	# Font
@@ -123,14 +131,17 @@ previewers = [
 	{ name = "*/", run = "folder", sync = true },
 	# Code
 	{ mime = "text/*", run = "code" },
+# {mine="*.NEF",run="previewRAW"},
 	{ mime = "*/{xml,javascript,x-wine-extension-ini}", run = "code" },
 	# JSON
 	{ mime = "application/{json,x-ndjson}", run = "json" },
 	# Image
-	{ mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
-	{ mime = "image/*", run = "image" },
-	# Video
-	{ mime = "video/*", run = "video" },
+    { mime = "{audio,video,image}/*", run = "mediainfo"},
+     { mime = "application/subrip", run = "mediainfo" },
+	# { mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
+	# { mime = "image/*", run = "image" },
+	# # Video
+	# { mime = "video/*", run = "video" },
 	# PDF
 	{ mime = "application/pdf", run = "pdf" },
 	# Archive

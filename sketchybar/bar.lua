@@ -4,6 +4,8 @@ local colors = require("colors")
 sbar.bar({
 	-- topmost = "off",
 	height = 35,
+	-- notch_offset = 10,
+	-- y_offset = -10,
 	notch_display_height = 33,
 	-- margin = 15,
 	-- corner_radius = 30,

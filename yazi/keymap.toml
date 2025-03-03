@@ -5,6 +5,7 @@
 [manager]
 
 keymap = [
+{on   = "T", run  = "plugin toggle-pane max-preview",desc = "Maximize or restore the preview pane"},
 {on = "<C-p>",run = '''
   shell 'qlmanage -p "$@"' --confirm
 '''},
@@ -23,6 +24,7 @@ keymap = [
 {on = "<C-v>", run = '''
   shell 'mpv "$@" --vo=kitty --hwdec=auto --vo-kitty-width=1280 --vo-kitty-height=720 --loop=inf --profile=sw-fast' --block --confirm
 '''},
+   { on = ["U"], run = "plugin restore", desc = "Restore last deleted files/folders" },
 	{ on = "<Esc>", run = "escape",             desc = "Exit visual mode, clear selected, or cancel search" },
 	{ on = "<C-[>", run = "escape",             desc = "Exit visual mode, clear selected, or cancel search" },
 	{ on = "q",     run = "quit",               desc = "Quit the process" },
@@ -69,9 +71,10 @@ keymap = [
 	{ on = "v", run = "visual_mode",         desc = "Enter visual mode (selection mode)" },
 	{ on = "V", run = "visual_mode --unset", desc = "Enter visual mode (unset mode)" },
 
-	# Seeking
-	{ on = "K", run = "seek -5", desc = "Seek up 5 units in the preview" },
-	{ on = "J", run = "seek 5",  desc = "Seek down 5 units in the preview" },
+  {on =["J"],run=["leave","arrow 1","enter"],desc="next parent dir"},
+  {on =["K"],run=["leave","arrow -1","enter"],desc="previous parent dir"},
+	# { on = "K", run = "seek -5", desc = "Seek up 5 units in the preview" },
+	# { on = "J", run = "seek 5",  desc = "Seek down 5 units in the preview" },
 
 	# Spotting
 	{ on = "<Tab>", run = "spot", desc = "Spot hovered file" },
