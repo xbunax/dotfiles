@@ -42,8 +42,8 @@ open = [
 previewRAW = [
 {run='kitten icat "$1"',block=false,for="unix"}
 ]
-zathuraOpener=[
-{ run='zathura "$@"',block=false,orphan = true,desc="pdf openner"}
+sioyekOpener=[
+{ run='sioyek "$@"',block=false,orphan = true,desc="pdf openner"}
 ]
 
 reveal = [
@@ -67,7 +67,7 @@ prepend_rules = [
 	{ name = "*.tex", use = "edit" },
 	{ name = "*.toml", use = "edit" },
 	{ name = "*.mp4", use = "play" },
-{name="*.pdf",use="zathuraOpener"},
+{name="*.pdf",use="sioyekOpener"},
 	# { name = "*.pdf", use = "openpdf" },
 	# { name = "*.pdf", use = "openpdf" },
   ]
