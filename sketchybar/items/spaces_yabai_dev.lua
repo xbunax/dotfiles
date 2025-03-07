@@ -5,57 +5,62 @@ local app_icons = require("helpers.app_icons")
 
 local workspaces = {}
 
+sbar.add("item", {
+	width = 5,
+})
+
 for i = 1, 10, 1 do
 	local workspace = sbar.add("space", "space." .. i, {
 		space = i,
 		icon = {
 			font = { family = settings.font.numbers },
 			string = i,
-			padding_left = 15,
-			padding_right = 8,
+			padding_left = 10,
+			padding_right = 5,
 			color = colors.white,
-			highlight_color = colors.red,
+			highlight_color = colors.aerospace_icon_highlight_color,
 		},
 		label = {
-			padding_right = 20,
-			color = colors.grey,
-			highlight_color = colors.white,
+			padding_right = 10,
+			color = colors.aerospace_label_color,
+			highlight_color = colors.aerospace_label_highlight_color,
 			font = "sketchybar-app-font:Regular:16.0",
 			y_offset = -1,
 		},
 		padding_right = 1,
 		padding_left = 1,
 		background = {
-			color = colors.bg1,
-			border_width = 1,
-			height = 26,
-			border_color = colors.black,
+			color = colors.transparent,
+			-- color = colors.,
+			border_width = 0,
+			height = 28,
+			border_color = colors.aerospace_border_color,
 		},
-		popup = { background = { border_width = 5, border_color = colors.black } },
+		popup = { background = { color = colors.bg3, border_width = 5, border_color = colors.black } },
 	})
 
 	workspaces[i] = workspace
 
 	-- Single item bracket for space items to achieve double border on highlight
-	local space_bracket = sbar.add("bracket", { workspace.name }, {
-		background = {
-			color = colors.transparent,
-			border_color = colors.bg2,
-			height = 28,
-			border_width = 2,
-		},
-	})
+	-- local space_bracket = sbar.add("bracket", { workspace.name }, {
+	-- 	background = {
+	-- 		color = colors.transparent,
+	-- 		border_color = colors.bg2,
+	-- 		height = 28,
+	-- 		border_width = 2,
+	-- 	},
+	-- })
 
 	-- Padding space
 	sbar.add("space", "space.padding." .. i, {
 		space = i,
 		script = "",
-		width = settings.group_paddings,
+		width = 0,
 	})
 
 	local space_popup = sbar.add("item", {
 		position = "popup." .. workspace.name,
-		padding_left = 5,
+		padding_left = 0,
 		padding_right = 0,
 		background = {
 			drawing = true,
@@ -72,11 +77,14 @@ for i = 1, 10, 1 do
 		workspace:set({
 			icon = { highlight = selected },
 			label = { highlight = selected },
-			background = { border_color = selected and colors.black or colors.bg2 },
+			background = {
+				border_width = selected and 1 or 0,
+			},
+			blur_radius = 20,
 		})
-		space_bracket:set({
-			background = { border_color = selected and colors.grey or colors.bg2 },
-		})
+		-- space_bracket:set({
+		-- 	background = { border_color = selected and colors.grey or colors.bg2 },
+		-- })
 	end)
 
 	workspace:subscribe("mouse.clicked", function(env)
@@ -138,42 +146,5 @@ space_window_observer:subscribe("space_windows_change", function(env)
 		workspaces[env.INFO.space]:set({ label = icon_line })
 	end)
 end)
-
--- spaces_indicator:subscribe("swap_menus_and_spaces", function(env)
--- 	local currently_on = spaces_indicator:query().icon.value == icons.switch.on
--- 	spaces_indicator:set({
--- 		icon = currently_on and icons.switch.off or icons.switch.on,
--- 	})
--- end)
-
--- spaces_indicator:subscribe("mouse.entered", function(env)
--- 	sbar.animate("tanh", 30, function()
--- 		spaces_indicator:set({
--- 			background = {
--- 				color = { alpha = 1.0 },
--- 				border_color = { alpha = 1.0 },
--- 			},
--- 			icon = { color = colors.bg1 },
--- 			label = { width = "dynamic" },
--- 		})
--- 	end)
--- end)
---
--- spaces_indicator:subscribe("mouse.exited", function(env)
--- 	sbar.animate("tanh", 30, function()
--- 		spaces_indicator:set({
--- 			background = {
--- 				color = { alpha = 0.0 },
--- 				border_color = { alpha = 0.0 },
--- 			},
--- 			icon = { color = colors.grey },
--- 			label = { width = 0 },
--- 		})
--- 	end)
--- end)
---
--- spaces_indicator:subscribe("mouse.clicked", function(env)
--- 	sbar.trigger("swap_menus_and_spaces")
--- end)
 
 return workspaces

@@ -1,7 +1,7 @@
 require("items.apple")
--- require("items.spaces_yabai_dev") --aerospace
+-- require("items.spaces_yabai_dev") --yabai
 require("items.spaces_aero_dev") --aerospace
--- require("items.spaces_flash_dev") --aerospace
+-- require("items.spaces_flash_dev") --flash
 require("items.front_app")
 require("items.media")
 -- require("items.menus")

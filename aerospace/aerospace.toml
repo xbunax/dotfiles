@@ -9,7 +9,7 @@ exec-on-workspace-change = [
   # '~/.config/aerospace/scripts/pin_window.sh $AEROSPACE_PREV_WORKSPACE $AEROSPACE_FOCUSED_WORKSPACE',
 ]
 after-startup-command = [
-  'exec-and-forget ~/.config/aerospace/scripts/bsp_tiling.sh',
+  # 'exec-and-forget ~/.config/aerospace/scripts/bsp_tiling.sh',
 ]
 
 on-focus-changed = [
@@ -19,7 +19,7 @@ on-focus-changed = [
 
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
-start-at-login = true
+start-at-login = false
 
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
@@ -81,33 +81,18 @@ alt-f = ['exec-and-forget open -a Finder']
 alt-s = ['exec-and-forget open -a Spotify']
 alt-c = ['exec-and-forget open -a Visual\ Studio\ Code']
 
-cmd-shift-backspace = [
-  'exec-and-forget $(brew --prefix)/bin/sketchybar --trigger request_bg REQUEST_BG=false',
-]
-cmd-shift-w = [
-  'exec-and-forget $(brew --prefix)/bin/sketchybar --trigger request_bg REQUEST_BG=true',
-]
 
-cmd-shift-down = [
-  'exec-and-forget $(brew --prefix)/bin/sketchybar --trigger cycle_bg CYCLE=next',
-]
+### tmux 
+#
 
-cmd-shift-up = [
-  'exec-and-forget $(brew --prefix)/bin/sketchybar --trigger cycle_bg CYCLE=prev',
-]
-
-cmd-shift-right = [
-  'exec-and-forget $(brew --prefix)/bin/sketchybar --trigger select_bg SELECT=true',
-]
-
-
-cmd-shift-left = [
-  'exec-and-forget $(brew --prefix)/bin/sketchybar --trigger select_bg SELECT=false',
-]
-
-cmd-shift-enter = [
-  'exec-and-forget $(brew --prefix)/bin/sketchybar --trigger select_bg SELECT=true',
-]
+ctrl-1 = ['exec-and-forget tmux select-window -t:1']
+ctrl-2 = ['exec-and-forget tmux select-window -t:2']
+ctrl-3 = ['exec-and-forget tmux select-window -t:3']
+ctrl-4 = ['exec-and-forget tmux select-window -t:4']
+ctrl-5 = ['exec-and-forget tmux select-window -t:5']
+ctrl-7 = ['exec-and-forget tmux select-window -t:7']
+ctrl-8 = ['exec-and-forget tmux select-window -t:8']
+ctrl-9 = ['exec-and-forget tmux select-window -t:9']
 
 shift-ctrl-s=[
     'exec-and-forget $(brew --prefix)/bin/aerospace list-windows --all --format "%{window-id}%{workspace}%{app-bundle-id}" --json > ~/.config/aerospace/scripts/layout.json && osascript -e "display notification \"layout save\" with title \"success\""'
@@ -117,16 +102,6 @@ shift-ctrl-r=[
     'exec-and-forget ~/.config/aerospace/scripts/recovery_layout.sh'
 ]
 
-shift-ctrl-c=[
-    'exec-and-forget ~/.config/aerospace/scripts/custom_bar_themes light || ~/.config/aerospace/scripts/custom_bar_themes dark'
-]
-
-shift-ctrl-b=[
-    'exec-and-forget ~/.config/aerospace/scripts/custom_bar_themes blur || ~/.config/aerospace/scripts/custom_bar_themes black'
-]
-shift-ctrl-t=[
-    'exec-and-forget ~/.config/aerospace/scripts/change_theme.sh'
-]
 
 shift-ctrl-w=[
     'exec-and-forget ~/.config/aerospace/scripts/random_wallpapers.sh ~/.config/wallpapers'
@@ -208,6 +183,7 @@ alt-shift-tab = 'focus-monitor --wrap-around next'
 
 cmd-shift-s = 'mode service'
 cmd-shift-d = 'mode RDP'
+cmd-shift-b = 'mode SBAR'
 
 [workspace-to-monitor-force-assignment]
 1 = 'main' # Monitor sequence number from left to right. 1-based indexing
@@ -248,6 +224,50 @@ cmd-shift-h = ['join-with left', 'mode main']
 cmd-shift-j = ['join-with down', 'mode main']
 cmd-shift-k = ['join-with up', 'mode main']
 cmd-shift-l = ['join-with right', 'mode main']
+
+[mode.SBAR.binding]
+cmd-shift-r=[
+  'exec-and-forget $(brew --prefix)/bin/sketchybar --reload','mode main' 
+]
+
+cmd-shift-backspace = [
+  'exec-and-forget $(brew --prefix)/bin/sketchybar --trigger request_bg REQUEST_BG=false',
+]
+cmd-shift-w = [
+  'exec-and-forget $(brew --prefix)/bin/sketchybar --trigger request_bg REQUEST_BG=true',
+]
+
+cmd-shift-down = [
+  'exec-and-forget $(brew --prefix)/bin/sketchybar --trigger cycle_bg CYCLE=next',
+]
+
+cmd-shift-up = [
+  'exec-and-forget $(brew --prefix)/bin/sketchybar --trigger cycle_bg CYCLE=prev',
+]
+
+cmd-shift-right = [
+  'exec-and-forget $(brew --prefix)/bin/sketchybar --trigger select_bg SELECT=true',
+]
+
+
+cmd-shift-left = [
+  'exec-and-forget $(brew --prefix)/bin/sketchybar --trigger select_bg SELECT=false',
+]
+
+cmd-shift-enter = [
+  'exec-and-forget $(brew --prefix)/bin/sketchybar --trigger select_bg SELECT=true',
+]
+
+shift-ctrl-c=[
+    'exec-and-forget ~/.config/aerospace/scripts/custom_bar_themes light || ~/.config/aerospace/scripts/custom_bar_themes dark'
+]
+
+shift-ctrl-b=[
+    'exec-and-forget ~/.config/aerospace/scripts/custom_bar_themes blur || ~/.config/aerospace/scripts/custom_bar_themes black'
+]
+shift-ctrl-t=[
+    'exec-and-forget ~/.config/aerospace/scripts/change_theme.sh'
+]
 
 [mode.RDP.binding]
 shift-cmd-q = ['reload-config', 'mode main']
@@ -349,7 +369,7 @@ run = ['layout floating', 'move-node-to-workspace 5']
 
 [[on-window-detected]]
 if.app-id = 'company.thebrowser.Browser'
-if.during-aerospace-startup = true
+# if.during-aerospace-startup = true
 run = 'move-node-to-workspace 1'
 
 # [[on-window-detected]]
@@ -371,9 +391,15 @@ run = 'move-node-to-workspace 3'
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.VSCode'
-if.during-aerospace-startup = true
 run = 'move-node-to-workspace 4'
 
+[[on-window-detected]]
+if.app-id = 'info.sioyek.sioyek'
+run = 'move-node-to-workspace 5'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.mail'
+run = 'move-node-to-workspace 1'
 # [[on-window-detected]]
 # if.window-title-regex-substring = '(不背|Zotero|Margin)'
 # run = ['move-node-to-workspace 3']
