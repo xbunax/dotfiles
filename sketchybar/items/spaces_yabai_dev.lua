@@ -41,22 +41,12 @@ for i = 1, 10, 1 do
 
 	workspaces[i] = workspace
 
-	-- Single item bracket for space items to achieve double border on highlight
-	-- local space_bracket = sbar.add("bracket", { workspace.name }, {
-	-- 	background = {
-	-- 		color = colors.transparent,
-	-- 		border_color = colors.bg2,
-	-- 		height = 28,
-	-- 		border_width = 2,
-	-- 	},
-	-- })
-
 	-- Padding space
-	sbar.add("space", "space.padding." .. i, {
-		space = i,
-		script = "",
-		width = 0,
-	})
+	-- sbar.add("space", "space.padding." .. i, {
+	-- 	space = i,
+	-- 	script = "",
+	-- 	width = 0,
+	-- })
 
 	local space_popup = sbar.add("item", {
 		position = "popup." .. workspace.name,
@@ -74,17 +64,42 @@ for i = 1, 10, 1 do
 	workspace:subscribe("space_change", function(env)
 		local selected = env.SELECTED == "true"
 		local color = selected and colors.grey or colors.bg2
+		sbar.exec("yabai -m query --windows --space " .. i .. " | jq -c '.[].\"app\"'", function(apps)
+			if apps == "" and selected ~= true then
+				workspace:set({
+					icon = { highlight = selected, drawing = false },
+					label = { highlight = selected, drawing = false },
+					background = {
+						border_width = 0,
+					},
+				})
+				return
+			elseif apps == "" and selected then
+				local icon_line = " —"
+				workspace:set({
+					icon = { drawing = true },
+					label = {
+						string = icon_line,
+						drawing = true,
+						-- padding_right = 20,
+						font = "sketchybar-app-font:Regular:16.0",
+						y_offset = -1,
+					},
+					background = { drawing = true },
+					padding_right = 1,
+					padding_left = 1,
+				})
+			end
+		end)
 		workspace:set({
-			icon = { highlight = selected },
-			label = { highlight = selected },
+			icon = { highlight = selected, drawing = true },
+			label = { highlight = selected, drawing = true },
 			background = {
 				border_width = selected and 1 or 0,
+				drawing = true,
 			},
 			blur_radius = 20,
 		})
-		-- space_bracket:set({
-		-- 	background = { border_color = selected and colors.grey or colors.bg2 },
-		-- })
 	end)
 
 	workspace:subscribe("mouse.clicked", function(env)
@@ -106,28 +121,6 @@ local space_window_observer = sbar.add("item", {
 	drawing = false,
 	updates = true,
 })
-
--- local spaces_indicator = sbar.add("item", {
--- 	padding_left = -3,
--- 	padding_right = 0,
--- 	icon = {
--- 		padding_left = 8,
--- 		padding_right = 9,
--- 		color = colors.grey,
--- 		string = icons.switch.on,
--- 	},
--- 	label = {
--- 		width = 0,
--- 		padding_left = 0,
--- 		padding_right = 8,
--- 		string = "Spaces",
--- 		color = colors.bg1,
--- 	},
--- 	background = {
--- 		color = colors.with_alpha(colors.grey, 0.0),
--- 		border_color = colors.with_alpha(colors.bg1, 0.0),
--- 	},
--- })
 
 space_window_observer:subscribe("space_windows_change", function(env)
 	local icon_line = ""

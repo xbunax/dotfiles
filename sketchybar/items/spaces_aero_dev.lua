@@ -216,7 +216,7 @@ for workspace_index = 1, max_workspaces[1] do
 		padding_right = 2,
 		padding_left = 2,
 		background = {
-			-- color = colors.bg3,
+			color = colors.transparent,
 			border_width = 0,
 			height = 28,
 			border_color = colors.aerospace_border_color,
@@ -253,11 +253,11 @@ for workspace_index = 1, max_workspaces[1] do
 		end)
 	end)
 
-	workspace:subscribe("mouse.exited", function()
+	workspace:subscribe({ "mouse.exited", "mouse.exited.global" }, function()
 		sbar.animate("tanh", 30, function()
 			workspace:set({
 				background = {
-					color = { color = colors.bg3, alpha = 0 },
+					color = { color = colors.transparent, alpha = 0 },
 					height = 28,
 					border_color = colors.aerospace_border_color,
 				},
