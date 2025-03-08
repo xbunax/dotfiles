@@ -85,14 +85,14 @@ alt-c = ['exec-and-forget open -a Visual\ Studio\ Code']
 ### tmux 
 #
 
-ctrl-1 = ['exec-and-forget tmux select-window -t:1']
-ctrl-2 = ['exec-and-forget tmux select-window -t:2']
-ctrl-3 = ['exec-and-forget tmux select-window -t:3']
-ctrl-4 = ['exec-and-forget tmux select-window -t:4']
-ctrl-5 = ['exec-and-forget tmux select-window -t:5']
-ctrl-7 = ['exec-and-forget tmux select-window -t:7']
-ctrl-8 = ['exec-and-forget tmux select-window -t:8']
-ctrl-9 = ['exec-and-forget tmux select-window -t:9']
+ctrl-1 = ['exec-and-forget /opt/homebrew/bin/tmux select-window -t:1']
+ctrl-2 = ['exec-and-forget /opt/homebrew/bin/tmux select-window -t:2']
+ctrl-3 = ['exec-and-forget /opt/homebrew/bin/tmux select-window -t:3']
+ctrl-4 = ['exec-and-forget /opt/homebrew/bin/tmux select-window -t:4']
+ctrl-5 = ['exec-and-forget /opt/homebrew/bin/tmux select-window -t:5']
+ctrl-7 = ['exec-and-forget /opt/homebrew/bin/tmux select-window -t:7']
+ctrl-8 = ['exec-and-forget /opt/homebrew/bin/tmux select-window -t:8']
+ctrl-9 = ['exec-and-forget /opt/homebrew/bin/tmux select-window -t:9']
 
 shift-ctrl-s=[
     'exec-and-forget $(brew --prefix)/bin/aerospace list-windows --all --format "%{window-id}%{workspace}%{app-bundle-id}" --json > ~/.config/aerospace/scripts/layout.json && osascript -e "display notification \"layout save\" with title \"success\""'
@@ -181,9 +181,9 @@ alt-cmd-c = ['move-workspace-to-monitor --wrap-around next']
 alt-tab = 'workspace-back-and-forth'
 alt-shift-tab = 'focus-monitor --wrap-around next'
 
-cmd-shift-s = 'mode service'
-cmd-shift-d = 'mode RDP'
-cmd-shift-b = 'mode SBAR'
+cmd-shift-s = ['mode service','exec-and-forget $(brew --prefix)/bin/popup_bar --trigger aerospace_mode_trigger MODE=service']
+cmd-shift-d = ['mode RDP','exec-and-forget $(brew --prefix)/bin/popup_bar --trigger aerospace_mode_trigger MODE=RDP']
+cmd-shift-b = ['mode SBAR','exec-and-forget /opt/homebrew/bin/popup_bar --trigger aerospace_mode_trigger MODE=SBAR']
 
 [workspace-to-monitor-force-assignment]
 1 = 'main' # Monitor sequence number from left to right. 1-based indexing
@@ -201,10 +201,11 @@ cmd-shift-b = 'mode SBAR'
 alt-t = [
     'exec-and-forget ~/.config/aerospace/scripts/center_window.sh',
     'move-mouse window-force-center',
-    'mode main'
+    'mode main',
+    'exec-and-forget $(brew --prefix)/bin/popup_bar --trigger aerospace_mode_trigger MODE=main'
 ]
 alt-shift-semicolon = 'mode service'
-esc = 'mode main'
+esc = ['mode main','exec-and-forget $(brew --prefix)/bin/popup_bar --trigger aerospace_mode_trigger MODE=main']
 
 h = 'exec-and-forget ~/.config/aerospace/scripts/move-floating.sh -32 0'
 j = 'exec-and-forget ~/.config/aerospace/scripts/move-floating.sh 0 32'
@@ -217,8 +218,8 @@ shift-k = 'exec-and-forget ~/.config/aerospace/scripts/resize-floating-centered.
 shift-l = 'exec-and-forget ~/.config/aerospace/scripts/resize-floating-centered.sh 128 0'
 
 [mode.service.binding]
-esc = ['reload-config', 'mode main']
-backspace = ['close-all-windows-but-current', 'mode main']
+esc = ['reload-config', 'mode main','exec-and-forget $(brew --prefix)/bin/popup_bar --trigger aerospace_mode_trigger MODE=main']
+backspace = ['close-all-windows-but-current', 'mode main','exec-and-forget $(brew --prefix)/bin/popup_bar --trigger aerospace_mode_trigger MODE=main']
 
 cmd-shift-h = ['join-with left', 'mode main']
 cmd-shift-j = ['join-with down', 'mode main']
@@ -226,6 +227,9 @@ cmd-shift-k = ['join-with up', 'mode main']
 cmd-shift-l = ['join-with right', 'mode main']
 
 [mode.SBAR.binding]
+
+esc = ['mode main','exec-and-forget $(brew --prefix)/bin/popup_bar --trigger aerospace_mode_trigger MODE=main']
+
 cmd-shift-r=[
   'exec-and-forget $(brew --prefix)/bin/sketchybar --reload','mode main' 
 ]
@@ -270,7 +274,7 @@ shift-ctrl-t=[
 ]
 
 [mode.RDP.binding]
-shift-cmd-q = ['reload-config', 'mode main']
+shift-cmd-q = ['mode main','exec-and-forget $(brew --prefix)/bin/popup_bar --trigger aerospace_mode_trigger MODE=main']
 
 
 

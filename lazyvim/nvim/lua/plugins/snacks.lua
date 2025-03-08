@@ -50,6 +50,9 @@ return {
   "snacks.nvim",
   opts = {
 
+    terminal = {
+      enabled = true,
+    },
     indent = {
       enabled = true,
       filter = function(buf)
@@ -233,5 +236,7 @@ return {
     { "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Picker Goto T[y]pe Definition" },
     { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
     { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
+    -- Terminal 
+    {"ctrl/",function() Snacks.terminal.toggle() end,desc="Toggle terminal"},
   },
 }

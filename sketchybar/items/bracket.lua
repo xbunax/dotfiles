@@ -5,8 +5,8 @@ local wifi = require("items.widgets.wifi")
 local bluetooth = require("items.widgets.bluetooth")
 local cpu_and_temp = require("items.widgets.cpu_and_temp")
 local weather = require("items.weather")
-local workspaces = require("items.spaces_yabai_dev")
--- local workspaces = require("items.spaces_aero_dev")
+-- local workspaces = require("items.spaces_yabai_dev")
+local workspaces = require("items.spaces_aero_dev")
 -- local workspaces = require("items.spaces")
 -- local workspaces = require("items.spaces_flash_dev")
 local apple = require("items.apple")
@@ -76,7 +76,7 @@ sbar.add("bracket", {
 		border_width = 1,
 		height = 30,
 		corner_radius = 10,
-		padding_right = 200,
+		-- padding_right = 200,
 		-- padding_left = 0,
 	},
 })

@@ -90,16 +90,16 @@ for i = 1, 10, 1 do
 					padding_left = 1,
 				})
 			end
+			workspace:set({
+				icon = { highlight = selected, drawing = true },
+				label = { highlight = selected, drawing = true },
+				background = {
+					border_width = selected and 1 or 0,
+					drawing = true,
+				},
+				blur_radius = 20,
+			})
 		end)
-		workspace:set({
-			icon = { highlight = selected, drawing = true },
-			label = { highlight = selected, drawing = true },
-			background = {
-				border_width = selected and 1 or 0,
-				drawing = true,
-			},
-			blur_radius = 20,
-		})
 	end)
 
 	workspace:subscribe("mouse.clicked", function(env)
@@ -139,5 +139,4 @@ space_window_observer:subscribe("space_windows_change", function(env)
 		workspaces[env.INFO.space]:set({ label = icon_line })
 	end)
 end)
-
 return workspaces

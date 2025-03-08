@@ -4,6 +4,7 @@ return {
   { "lewis6991/gitsigns.nvim", enabled = false },
   { "nvim-neo-tree/neo-tree.nvim", enabled = false },
   { "fgheng/winbar.nvim", enabled = false },
+  { "akinsho/toggleterm.nvim", enabled = false },
   -- { "akinsho/bufferline.nvim", enabled = false },
   { "echasnovski/mini.comment", enabled = false },
   { "sphamba/smear-cursor.nvim", enabled = false },

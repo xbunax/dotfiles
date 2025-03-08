@@ -8,7 +8,7 @@ yabai -m signal --add event=window_focused action="sketchybar --trigger window_f
 
 # .. more yabai startup stuff
 yabai -m config external_bar all:35:0
-yabai -m config window_placement first_child
+yabai -m config window_placement second_child
 yabai -m config layout bsp
 yabai -m config mouse_follows_focus on
 yabai -m config focus_follows_mouse off
@@ -29,10 +29,10 @@ yabai -m config menubar_opacity 0.0
 # yabai -m config window_topmost off
 # yabai -m config window_shadow float
 
-yabai -m config top_padding 5
-yabai -m config bottom_padding 8
-yabai -m config left_padding 8
-yabai -m config right_padding 8
+yabai -m config top_padding 3
+yabai -m config bottom_padding 5
+yabai -m config left_padding 5
+yabai -m config right_padding 5
 yabai -m config window_gap 8
 # Exclude problematic apps from being managed:
 yabai -m rule --add app="^(LuLu|Calculator|Software Update|Dictionary|VLC|System Preferences|System Settings|zoom.us|Photo Booth|Archive Utility|Python|App Store|Steam|Alfred|Activity Monitor)$" manage=off
@@ -47,6 +47,8 @@ yabai -m rule --add label="Shadowrocket" app="^Shadowrocket$" title="^Shadowrock
 yabai -m rule --add label="Select file to save to" app="^Inkscape$" title="Select file to save to" manage=off
 # yabai -m rule --add app="^System Preferences$" manage=off
 yabai -m rule --add app="(QQ|Wechat)" space=^2
+yabai -m rule --add app="Arc" space=^1
+yabai -m rule --add app="Kitty" space=^3
 
 otherApp='^(IINA|Tencent Lemon|Clash Verge|360安全云盘|arknights|音乐|MotionPro| discover |ChatGPT|PlayCover|访达|Calendar|日历|地图|System Preferences|朋友圈|小程序|Downie 4|Shadowrocket| |照片|Epson iProjection|系统设置|1Password 7|Android Studio|印象笔记|MATLAB|CrossOver)$'
 yabai -m rule --add app="${otherApp}" manage=off
