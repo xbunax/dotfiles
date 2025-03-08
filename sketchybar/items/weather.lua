@@ -6,7 +6,7 @@ local M = {}
 M.forecast_items = {}
 local location_script = "curl -x '' -s 'https://ipinfo.io/json' | grep '\"city\"' | awk -F: '{print $2}' | tr -d '\", '"
 
-local popup_width = 110
+local popup_width = 200
 
 local function get_location()
 	local handle = io.popen(location_script)
@@ -70,7 +70,7 @@ M.weather_icon = sbar.add("item", {
 M.weather_location = sbar.add("item", {
 	position = "popup." .. M.weather_icon.name,
 	icon = {
-		width = popup_width,
+		width = popup_width / 2,
 		string = "Location 􀋑 :",
 		font = {
 			style = settings.font.style_map["Bold"],
@@ -78,6 +78,7 @@ M.weather_location = sbar.add("item", {
 		align = "left",
 	},
 	label = {
+		width = popup_width / 2,
 		string = location,
 		align = "right",
 	},
@@ -88,14 +89,15 @@ M.weather_location = sbar.add("item", {
 M.weather_cuurent_temp = sbar.add("item", {
 	position = "popup." .. M.weather_icon.name,
 	icon = {
-		width = popup_width,
-		string = "Current 􂬮 :",
+		width = popup_width / 2,
+		string = "Current 􂬮:",
 		font = {
 			style = settings.font.style_map["Bold"],
 		},
 		align = "left",
 	},
 	label = {
+		width = popup_width / 2,
 		align = "right",
 		font = { family = settings.font.family },
 	},
@@ -156,8 +158,8 @@ M.weather_icon:subscribe("mouse.clicked", function(env)
 
 					local item = sbar.add("item", "weather.item" .. counter, {
 						position = "popup." .. M.weather_icon.name,
-						width = popup_width,
 						icon = {
+							width = popup_width / 2,
 							string = date .. ":",
 							align = "left",
 						},
@@ -165,6 +167,7 @@ M.weather_icon:subscribe("mouse.clicked", function(env)
 							font = { family = settings.font.family },
 							string = forecast_str,
 							align = "right",
+							width = popup_width / 2,
 						},
 						-- align = "center",
 						drawing = "on",

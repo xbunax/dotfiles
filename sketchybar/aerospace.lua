@@ -7,10 +7,10 @@ local socket = require("posix.sys.socket")
 local unistd = require("posix.unistd")
 
 local json = cjson.new()
-local username = os.execute("id -un")
+-- local username = os.execute("id -un")
 
 local DEFAULT_CONFIG = {
-	SOCKET_PATH = string.format("/tmp/bobko.aerospace-%s.sock", username),
+	SOCKET_PATH = "/tmp/bobko.aerospace-july.sock",
 	MAX_BUFFER_SIZE = 2048,
 	EXTENDED_BUFFER_SIZE = 4096,
 }

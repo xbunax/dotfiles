@@ -10,7 +10,6 @@ sbar.add("item", {
 M.front_app = sbar.add("item", "front_app", {
 	display = "active",
 	position = "left",
-	notch_offset = 10,
 	y_offset = 20,
 	icon = { drawing = false },
 	label = {

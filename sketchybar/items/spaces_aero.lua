@@ -19,7 +19,7 @@ local ANIM_DURATION_SHORT = 10
 local ANIM_DURATION_MEDIUM = 20
 local ANIM_DURATION_LONG = 30
 
-sbar.exec("killall sb_events >/dev/null; $CONFIG_DIR/bridge/events/bin/sb_events")
+-- sbar.exec("killall sb_events >/dev/null; $CONFIG_DIR/bridge/events/bin/sb_events")
 
 local function animateSpaceIcon(space, color, iconStr, labelStr, shouldDraw, animate, d)
 	if not d then
@@ -59,7 +59,7 @@ local function getIconForApp(appName)
 end
 
 local function updateAllIcons(focusedWorkspace, animate, d, filter)
-	local allWindows = aerospace:list_all_windows()
+	local allWindows = aerospace:list_windows(focusedWorkspace)
 	local windowsByWorkspace = {}
 	for _, window in ipairs(allWindows) do
 		local ws = window.workspace
@@ -101,14 +101,15 @@ local function updateAllIcons(focusedWorkspace, animate, d, filter)
 				spaceIcon = focusedWorkspace
 			else
 				spaceColor = colors.white
-				spaceIcon = icons.space_icon.not_active
+				spaceIcon = focusedWorkspace
+				-- spaceIcon = icons.space_icon.not_active
 			end
 		else
-			spaceColor = colors.red
+			spaceColor = colors.aerospace_label_highlight_color
 			if isSelected then
-				spaceIcon = icons.space_icon.active
+				spaceIcon = focusedWorkspace
 			else
-				spaceIcon = icons.space_icon.not_active_has_apps
+				spaceIcon = focusedWorkspace
 			end
 		end
 
@@ -142,7 +143,7 @@ local function addWorkspace(workspaceName, monitorId)
 		local space = sbar.add("item", spaceId, {
 			position = "left",
 			icon = {
-				font = { family = settings.fonts.numbers },
+				font = { family = settings.font.numbers },
 				string = workspaceName,
 				padding_left = 8,
 				padding_right = 5,
@@ -273,19 +274,19 @@ space_window_observer:subscribe({ "system_woke", "reload_aerospace" }, function(
 	sbar.aerospace:reconnect()
 end)
 
-local function switchToggle()
-	isShowingMenu = not isShowingMenu
+-- local function switchToggle()
+-- 	isShowingMenu = not isShowingMenu
+--
+-- 	sbar.trigger(constants.events.SWAP_MENU_AND_SPACES, { isShowingMenu = isShowingMenu })
+-- end
 
-	sbar.trigger(constants.events.SWAP_MENU_AND_SPACES, { isShowingMenu = isShowingMenu })
-end
+-- swapWatcher:subscribe(constants.events.SWAP_MENU_AND_SPACES, function(env)
+-- 	isShowingMenu = env.isShowingMenu ~= "off"
+-- 	updateAll(false, true)
+-- end)
 
-swapWatcher:subscribe(constants.events.SWAP_MENU_AND_SPACES, function(env)
-	isShowingMenu = env.isShowingMenu ~= "off"
-	updateAll(false, true)
-end)
-
-swapWatcher:subscribe(constants.events.AEROSPACE_SWITCH, function(env)
-	switchToggle()
-end)
+-- swapWatcher:subscribe(constants.events.AEROSPACE_SWITCH, function(env)
+-- 	switchToggle()
+-- end)
 
 return spaces
