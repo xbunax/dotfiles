@@ -13,6 +13,7 @@ local popup_width = 250
 M.wifi_up = sbar.add("item", "widgets.wifi1", {
 	position = "right",
 	padding_left = -5,
+	padding_right = -3,
 	width = 0,
 	icon = {
 		padding_right = 0,
@@ -37,6 +38,7 @@ M.wifi_up = sbar.add("item", "widgets.wifi1", {
 M.wifi_down = sbar.add("item", "widgets.wifi2", {
 	position = "right",
 	padding_left = -5,
+	padding_right = -3,
 	icon = {
 		padding_right = 0,
 		font = {
@@ -59,6 +61,7 @@ M.wifi_down = sbar.add("item", "widgets.wifi2", {
 
 M.wifi = sbar.add("item", "widgets.wifi.padding", {
 	position = "right",
+	padding_left = 2,
 	label = { drawing = false },
 })
 

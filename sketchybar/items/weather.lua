@@ -5,6 +5,8 @@ local settings = require("settings")
 local M = {}
 M.forecast_items = {}
 local location_script = "curl -x '' -s 'https://ipinfo.io/json' | grep '\"city\"' | awk -F: '{print $2}' | tr -d '\", '"
+local cache_dir = os.getenv("HOME") .. "/.cache/weather/"
+os.execute("mkdir -p " .. cache_dir) -- 确保缓存目录存在
 
 local popup_width = 200
 
@@ -37,15 +39,41 @@ local function map_condition_to_icon(cond)
 	return "?"
 end
 local location = get_location()
+
+local function read_cache()
+	local file = io.open(cache_file, "r")
+	if not file then
+		return nil
+	end
+
+	local content = file:read("*a")
+	file:close()
+
+	local first_line = content:match("([^\n]+)")
+	local cache_date = first_line and first_line:match("^([^\t]+)")
+
+	return content, cache_date
+end
+
+local function write_cache(data)
+	local file = io.open(cache_file, "w")
+	if file then
+		file:write(data)
+		file:close()
+	end
+end
+
 local forecast_script = string.format(
 	[[
-  curl -s 'wttr.in/%s?format=j1' \
-  | jq -r '
-      .weather[:5][] 
-      | [.date, .maxtempC, .mintempC, .hourly[0].weatherDesc[0].value] 
-      | @tsv
-    '
-]],
+    CACHE_FILE="%swttr_cache_$(date +%%Y%%m%%d).txt"
+    if [ ! -f "${CACHE_FILE}" ]; then
+        curl -s 'wttr.in/%s?format=j1' \
+        | jq -r '.weather[:5][] | [.date, .maxtempC, .mintempC, .hourly[0].weatherDesc[0].value] | @tsv' \
+        > "${CACHE_FILE}"
+    fi
+    cat "${CACHE_FILE}"
+    ]],
+	cache_dir, -- 传入缓存目录路径
 	location
 )
 local weather_script = string.format("curl 'wttr.in/%s?format=j1' | jq -r '.current_condition[].temp_C'", location)
@@ -130,7 +158,6 @@ M.weather_icon:subscribe("mouse.clicked", function(env)
 
 	local counter = 0
 	local should_draw = M.weather_icon:query().popup.drawing == "off"
-	print(should_draw)
 	if should_draw then
 		M.weather_icon:set({ popup = { drawing = true } })
 		sbar.exec(weather_script, function(weather_condition)

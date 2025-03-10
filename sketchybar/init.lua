@@ -1,13 +1,13 @@
 -- init.lua
-local Aerospace = require("aerospace")
-local aerospace = Aerospace.new() -- it finds socket on its own
-while not aerospace:is_initialized() do
-	os.execute("sleep 0.1") -- wait for connection, not the best workaround, i am not a lua professional
-end
+-- local Aerospace = require("aerospace")
+-- local aerospace = Aerospace.new() -- it finds socket on its own
+-- while not aerospace:is_initialized() do
+-- 	os.execute("sleep 0.1") -- wait for connection, not the best workaround, i am not a lua professional
+-- end
 -- require("install.sbar")
 -- Require the sketchybar module
 sbar = require("sketchybar")
-sbar.aerospace = aerospace
+-- sbar.aerospace = aerospace
 -- Set the bar name, if you are using another bar instance than sketchybar
 -- sbar.set_bar_name("bottom_bar")
 

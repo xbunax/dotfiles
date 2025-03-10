@@ -32,13 +32,12 @@ M.temp = sbar.add("graph", "widgets.temp", 42, {
 			size = 9.0,
 		},
 		align = "right",
-		padding_right = 0,
 		-- padding_left = 2,
 		width = 0,
 		y_offset = 4,
 	},
 	blur_radius = colors.blur_radius,
-	padding_right = settings.paddings + 6,
+	padding_right = -3,
 })
 
 M.cpu = sbar.add("graph", "widgets.cpu", 42, {

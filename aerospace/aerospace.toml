@@ -1,5 +1,5 @@
 after-login-command = [
- # 'exec-and-forget ~/.config/aerospace/scripts/pin_window.sh $AEROSPACE_PREV_WORKSPACE $AEROSPACE_FOCUSED_WORKSPACE',
+  # 'exec-and-forget ~/.config/aerospace/scripts/pin_window.sh $AEROSPACE_PREV_WORKSPACE $AEROSPACE_FOCUSED_WORKSPACE',
 ]
 
 exec-on-workspace-change = [
@@ -19,7 +19,7 @@ on-focus-changed = [
 
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
-start-at-login = false
+start-at-login = true
 
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
@@ -57,15 +57,12 @@ XDG_CONFIG_HOME = '${HOME}/.config'
 
 [mode.main.binding]
 
-alt-t=[
+alt-t = [
   'exec-and-forget ~/.config/aerospace/scripts/center_window.sh',
   'move-mouse window-force-center',
 ]
 
-shift-alt-f = [
-  'layout floating tiling',
-  'mode main',
-] 
+shift-alt-f = ['layout floating tiling', 'mode main']
 
 
 # You can uncomment this line to open up terminal with alt + enter shortcut
@@ -94,17 +91,17 @@ ctrl-7 = ['exec-and-forget /opt/homebrew/bin/tmux select-window -t:7']
 ctrl-8 = ['exec-and-forget /opt/homebrew/bin/tmux select-window -t:8']
 ctrl-9 = ['exec-and-forget /opt/homebrew/bin/tmux select-window -t:9']
 
-shift-ctrl-s=[
-    'exec-and-forget $(brew --prefix)/bin/aerospace list-windows --all --format "%{window-id}%{workspace}%{app-bundle-id}" --json > ~/.config/aerospace/scripts/layout.json && osascript -e "display notification \"layout save\" with title \"success\""'
+shift-ctrl-s = [
+  'exec-and-forget $(brew --prefix)/bin/aerospace list-windows --all --format "%{window-id}%{workspace}%{app-bundle-id}" --json > ~/.config/aerospace/scripts/layout.json && osascript -e "display notification \"layout save\" with title \"success\""',
 ]
 
-shift-ctrl-r=[
-    'exec-and-forget ~/.config/aerospace/scripts/recovery_layout.sh'
+shift-ctrl-r = [
+  'exec-and-forget ~/.config/aerospace/scripts/recovery_layout.sh',
 ]
 
 
-shift-ctrl-w=[
-    'exec-and-forget ~/.config/aerospace/scripts/random_wallpapers.sh ~/.config/wallpapers'
+shift-ctrl-w = [
+  'exec-and-forget ~/.config/aerospace/scripts/random_wallpapers.sh ~/.config/wallpapers',
 ]
 
 alt-slash = 'layout tiles horizontal vertical'
@@ -120,7 +117,7 @@ shift-alt-h = 'focus --boundaries all-monitors-outer-frame --boundaries-action w
 shift-alt-j = 'focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors down'
 shift-alt-k = 'focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors up'
 shift-alt-l = 'focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors right'
-shift-alt-c='focus right --boundaries-action wrap-around-the-workspace'
+shift-alt-c = 'focus right --boundaries-action wrap-around-the-workspace'
 # alt-shift-h = ['focus left']
 # alt-shift-j = ['focus down']
 # alt-shift-k = ['focus up']
@@ -131,7 +128,6 @@ cmd-shift-h = ['move left']
 cmd-shift-j = ['move down']
 cmd-shift-k = ['move up']
 cmd-shift-l = ['move right']
-
 
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
@@ -151,16 +147,36 @@ alt-9 = 'workspace 9'
 alt-0 = 'workspace 10'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-ctrl-cmd-1 = ['exec-and-forget ~/.config/aerospace/scripts/switch_workspaces.sh 1']
-ctrl-cmd-2 = ['exec-and-forget ~/.config/aerospace/scripts/switch_workspaces.sh 2']
-ctrl-cmd-3 = ['exec-and-forget ~/.config/aerospace/scripts/switch_workspaces.sh 3']
-ctrl-cmd-4 = ['exec-and-forget ~/.config/aerospace/scripts/switch_workspaces.sh 4']
-ctrl-cmd-5 = ['exec-and-forget ~/.config/aerospace/scripts/switch_workspaces.sh 5']
-ctrl-cmd-6 = ['exec-and-forget ~/.config/aerospace/scripts/switch_workspaces.sh 6']
-ctrl-cmd-7 = ['exec-and-forget ~/.config/aerospace/scripts/switch_workspaces.sh 7']
-ctrl-cmd-8 = ['exec-and-forget ~/.config/aerospace/scripts/switch_workspaces.sh 8']
-ctrl-cmd-9 = ['exec-and-forget ~/.config/aerospace/scripts/switch_workspaces.sh 9']
-ctrl-cmd-0 = ['exec-and-forget ~/.config/aerospace/scripts/switch_workspaces.sh 10']
+ctrl-cmd-1 = [
+  'exec-and-forget ~/.config/aerospace/scripts/switch_workspaces.sh 1',
+]
+ctrl-cmd-2 = [
+  'exec-and-forget ~/.config/aerospace/scripts/switch_workspaces.sh 2',
+]
+ctrl-cmd-3 = [
+  'exec-and-forget ~/.config/aerospace/scripts/switch_workspaces.sh 3',
+]
+ctrl-cmd-4 = [
+  'exec-and-forget ~/.config/aerospace/scripts/switch_workspaces.sh 4',
+]
+ctrl-cmd-5 = [
+  'exec-and-forget ~/.config/aerospace/scripts/switch_workspaces.sh 5',
+]
+ctrl-cmd-6 = [
+  'exec-and-forget ~/.config/aerospace/scripts/switch_workspaces.sh 6',
+]
+ctrl-cmd-7 = [
+  'exec-and-forget ~/.config/aerospace/scripts/switch_workspaces.sh 7',
+]
+ctrl-cmd-8 = [
+  'exec-and-forget ~/.config/aerospace/scripts/switch_workspaces.sh 8',
+]
+ctrl-cmd-9 = [
+  'exec-and-forget ~/.config/aerospace/scripts/switch_workspaces.sh 9',
+]
+ctrl-cmd-0 = [
+  'exec-and-forget ~/.config/aerospace/scripts/switch_workspaces.sh 10',
+]
 
 
 alt-cmd-1 = ['move-node-to-workspace 1', 'workspace 1']
@@ -181,9 +197,18 @@ alt-cmd-c = ['move-workspace-to-monitor --wrap-around next']
 alt-tab = 'workspace-back-and-forth'
 alt-shift-tab = 'focus-monitor --wrap-around next'
 
-cmd-shift-s = ['mode service','exec-and-forget $(brew --prefix)/bin/popup_bar --trigger aerospace_mode_trigger MODE=service']
-cmd-shift-d = ['mode RDP','exec-and-forget $(brew --prefix)/bin/popup_bar --trigger aerospace_mode_trigger MODE=RDP']
-cmd-shift-b = ['mode SBAR','exec-and-forget /opt/homebrew/bin/popup_bar --trigger aerospace_mode_trigger MODE=SBAR']
+cmd-shift-s = [
+  'mode service',
+  'exec-and-forget $(brew --prefix)/bin/popup_bar --trigger aerospace_mode_trigger MODE=service',
+]
+cmd-shift-d = [
+  'mode RDP',
+  'exec-and-forget $(brew --prefix)/bin/popup_bar --trigger aerospace_mode_trigger MODE=RDP',
+]
+cmd-shift-b = [
+  'mode SBAR',
+  'exec-and-forget /opt/homebrew/bin/popup_bar --trigger aerospace_mode_trigger MODE=SBAR',
+]
 
 [workspace-to-monitor-force-assignment]
 1 = 'main' # Monitor sequence number from left to right. 1-based indexing
@@ -195,17 +220,23 @@ cmd-shift-b = ['mode SBAR','exec-and-forget /opt/homebrew/bin/popup_bar --trigge
 # 7 = 'main'                # Main monitor
 # 8 = 'main'                # Main monitor
 # 9 = ['secondary', 'main'] # Main monitor
-10 = ['secondary','main']          # Non-main monitor in case when there are only two monitors
+10 = [
+  'secondary',
+  'main',
+] # Non-main monitor in case when there are only two monitors
 
 [mode.floating.binding]
 alt-t = [
-    'exec-and-forget ~/.config/aerospace/scripts/center_window.sh',
-    'move-mouse window-force-center',
-    'mode main',
-    'exec-and-forget $(brew --prefix)/bin/popup_bar --trigger aerospace_mode_trigger MODE=main'
+  'exec-and-forget ~/.config/aerospace/scripts/center_window.sh',
+  'move-mouse window-force-center',
+  'mode main',
+  'exec-and-forget $(brew --prefix)/bin/popup_bar --trigger aerospace_mode_trigger MODE=main',
 ]
 alt-shift-semicolon = 'mode service'
-esc = ['mode main','exec-and-forget $(brew --prefix)/bin/popup_bar --trigger aerospace_mode_trigger MODE=main']
+esc = [
+  'mode main',
+  'exec-and-forget $(brew --prefix)/bin/popup_bar --trigger aerospace_mode_trigger MODE=main',
+]
 
 h = 'exec-and-forget ~/.config/aerospace/scripts/move-floating.sh -32 0'
 j = 'exec-and-forget ~/.config/aerospace/scripts/move-floating.sh 0 32'
@@ -218,8 +249,16 @@ shift-k = 'exec-and-forget ~/.config/aerospace/scripts/resize-floating-centered.
 shift-l = 'exec-and-forget ~/.config/aerospace/scripts/resize-floating-centered.sh 128 0'
 
 [mode.service.binding]
-esc = ['reload-config', 'mode main','exec-and-forget $(brew --prefix)/bin/popup_bar --trigger aerospace_mode_trigger MODE=main']
-backspace = ['close-all-windows-but-current', 'mode main','exec-and-forget $(brew --prefix)/bin/popup_bar --trigger aerospace_mode_trigger MODE=main']
+esc = [
+  'reload-config',
+  'mode main',
+  'exec-and-forget $(brew --prefix)/bin/popup_bar --trigger aerospace_mode_trigger MODE=main',
+]
+backspace = [
+  'close-all-windows-but-current',
+  'mode main',
+  'exec-and-forget $(brew --prefix)/bin/popup_bar --trigger aerospace_mode_trigger MODE=main',
+]
 
 cmd-shift-h = ['join-with left', 'mode main']
 cmd-shift-j = ['join-with down', 'mode main']
@@ -228,10 +267,22 @@ cmd-shift-l = ['join-with right', 'mode main']
 
 [mode.SBAR.binding]
 
-esc = ['mode main','exec-and-forget $(brew --prefix)/bin/popup_bar --trigger aerospace_mode_trigger MODE=main']
+esc = [
+  'mode main',
+  'exec-and-forget $(brew --prefix)/bin/popup_bar --trigger aerospace_mode_trigger MODE=main',
+]
 
-cmd-shift-r=[
-  'exec-and-forget $(brew --prefix)/bin/sketchybar --reload','mode main' 
+cmd-shift-o = [
+  'exec-and-forget $(brew --prefix)/bin/sketchybar --trigger cava_toggle drawing=false ',
+]
+
+cmd-shift-s = [
+  'exec-and-forget $(brew --prefix)/bin/sketchybar --trigger cava_toggle drawing=true ',
+]
+
+cmd-shift-r = [
+  'exec-and-forget $(brew --prefix)/bin/sketchybar --reload',
+  'mode main',
 ]
 
 cmd-shift-backspace = [
@@ -262,21 +313,20 @@ cmd-shift-enter = [
   'exec-and-forget $(brew --prefix)/bin/sketchybar --trigger select_bg SELECT=true',
 ]
 
-shift-ctrl-c=[
-    'exec-and-forget ~/.config/aerospace/scripts/custom_bar_themes light || ~/.config/aerospace/scripts/custom_bar_themes dark'
+shift-ctrl-c = [
+  'exec-and-forget ~/.config/aerospace/scripts/custom_bar_themes light || ~/.config/aerospace/scripts/custom_bar_themes dark',
 ]
 
-shift-ctrl-b=[
-    'exec-and-forget ~/.config/aerospace/scripts/custom_bar_themes blur || ~/.config/aerospace/scripts/custom_bar_themes black'
+shift-ctrl-b = [
+  'exec-and-forget ~/.config/aerospace/scripts/custom_bar_themes blur || ~/.config/aerospace/scripts/custom_bar_themes black',
 ]
-shift-ctrl-t=[
-    'exec-and-forget ~/.config/aerospace/scripts/change_theme.sh'
-]
+shift-ctrl-t = ['exec-and-forget ~/.config/aerospace/scripts/change_theme.sh']
 
 [mode.RDP.binding]
-shift-cmd-q = ['mode main','exec-and-forget $(brew --prefix)/bin/popup_bar --trigger aerospace_mode_trigger MODE=main']
-
-
+shift-cmd-q = [
+  'mode main',
+  'exec-and-forget $(brew --prefix)/bin/popup_bar --trigger aerospace_mode_trigger MODE=main',
+]
 
 
 [[on-window-detected]]

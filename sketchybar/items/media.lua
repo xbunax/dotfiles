@@ -64,6 +64,7 @@ M.media_title = sbar.add("item", {
 		y_offset = -5,
 	},
 })
+
 sbar.add("item", {
 	position = "popup." .. M.media_cover.name,
 	icon = { string = icons.media.back },
