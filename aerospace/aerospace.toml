@@ -80,8 +80,6 @@ alt-c = ['exec-and-forget open -a Visual\ Studio\ Code']
 
 
 ### tmux 
-#
-
 ctrl-1 = ['exec-and-forget /opt/homebrew/bin/tmux select-window -t:1']
 ctrl-2 = ['exec-and-forget /opt/homebrew/bin/tmux select-window -t:2']
 ctrl-3 = ['exec-and-forget /opt/homebrew/bin/tmux select-window -t:3']
@@ -272,18 +270,13 @@ esc = [
   'exec-and-forget $(brew --prefix)/bin/popup_bar --trigger aerospace_mode_trigger MODE=main',
 ]
 
-cmd-shift-o = [
-  'exec-and-forget $(brew --prefix)/bin/sketchybar --trigger cava_toggle drawing=false ',
-]
+# cmd-shift-o = [
+#   'exec-and-forget $(brew --prefix)/bin/sketchybar --trigger cava_toggle drawing=false ',
+# ]
 
-cmd-shift-s = [
-  'exec-and-forget $(brew --prefix)/bin/sketchybar --trigger cava_toggle drawing=true ',
-]
+cmd-shift-s = ['exec-and-forget ~/.config/aerospace/scripts/cava_toggle.sh']
 
-cmd-shift-r = [
-  'exec-and-forget $(brew --prefix)/bin/sketchybar --reload',
-  'mode main',
-]
+cmd-shift-r = ['exec-and-forget brew services restart sketchybar', 'mode main']
 
 cmd-shift-backspace = [
   'exec-and-forget $(brew --prefix)/bin/sketchybar --trigger request_bg REQUEST_BG=false',
