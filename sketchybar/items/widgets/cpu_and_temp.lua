@@ -25,13 +25,14 @@ M.temp = sbar.add("graph", "widgets.temp", 42, {
 	},
 	--   icon = { string = icons.cpu },
 	label = {
-		string = icons.temperature._0 .. "  ??",
+		string = icons.temperature._0 .. " ??",
 		font = {
 			family = settings.font.numbers,
 			style = settings.font.style_map["Bold"],
 			size = 9.0,
 		},
 		align = "right",
+		padding_right = 1,
 		-- padding_left = 2,
 		width = 0,
 		y_offset = 4,
@@ -59,11 +60,11 @@ M.cpu = sbar.add("graph", "widgets.cpu", 42, {
 			size = 9.0,
 		},
 		align = "right",
-		padding_right = 0,
+		padding_right = 1,
 		width = 0,
 		y_offset = 4,
 	},
-	padding_right = -6,
+	padding_right = -3,
 })
 
 local function updateTemperature()

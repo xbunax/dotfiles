@@ -1,7 +1,14 @@
 local icons = require("icons")
 local colors = require("colors")
 
-local whitelist = { ["Spotify"] = true, ["Music"] = true, ["Cider"] = true, ["Arc"] = true, ["spotify_player"] = true }
+local whitelist = {
+	["Spotify"] = true,
+	["Music"] = true,
+	["Cider"] = true,
+	["Arc"] = true,
+	["spotify_player"] = true,
+	["Zen Browser"] = true,
+}
 local devicelist = { ["WH-1000XM5\n"] = false }
 
 local M = {}
@@ -35,6 +42,7 @@ M.cava_media_cover = sbar.add("item", {
 	},
 	padding_right = -2,
 	padding_left = -0.5,
+	display = "active",
 })
 
 M.cava = sbar.add("item", "media_cava", {
@@ -49,6 +57,7 @@ M.cava = sbar.add("item", "media_cava", {
 	update_freq = 0,
 	y_offset = -5,
 	script = "~/.config/sketchybar/helpers/cava.sh",
+	display = "active",
 })
 
 --
@@ -67,6 +76,8 @@ M.media_artist = sbar.add("item", {
 		max_chars = 18,
 		y_offset = 6,
 	},
+	scroll_texts = true,
+	display = "active",
 })
 
 M.media_title = sbar.add("item", {
@@ -83,6 +94,8 @@ M.media_title = sbar.add("item", {
 		max_chars = 16,
 		y_offset = -5,
 	},
+	scroll_texts = true,
+	display = "active",
 })
 
 M.media_control_previous = sbar.add("item", {
@@ -146,41 +159,38 @@ end
 M.cava_watcher:subscribe({ "media_change" }, function(env)
 	if whitelist[env.INFO.app] then
 		local drawing = (env.INFO.state == "playing")
-		sbar.animate("tanh", 30, function()
-			M.cava_media_cover:set({ drawing = drawing })
-			M.media_title:set({ label = { string = env.INFO.title } })
-			M.media_artist:set({ label = env.INFO.artist })
-			if interupt == 1 then
-				print("interupt" .. interupt)
-				M.cava:set({
-					label = { drawing = drawing },
-					drawing = drawing,
-				})
-				M.media_title:set({ drawing = false })
-				M.media_artist:set({ drawing = false })
-			else
-				M.cava:set({
-					label = { drawing = false },
-					drawing = false,
-				})
-				M.media_title:set({ drawing = true, label = { string = env.INFO.title } })
-				M.media_artist:set({ drawing = true, label = env.INFO.artist })
-
-				M.cava_bracket:set({
-					drawing = true,
-				})
-				if drawing then
-					animate_detail(true)
-					inter = inter + 1
-					sbar.delay(5, animate_detail)
-				else
-					M.cava_media_cover:set({ popup = { drawing = false } })
-				end
-			end
-			M.cava_bracket:set({
+		M.cava_media_cover:set({ drawing = drawing })
+		M.media_title:set({ label = { string = env.INFO.title } })
+		M.media_artist:set({ label = env.INFO.artist })
+		if interupt == 1 then
+			M.cava:set({
+				label = { drawing = drawing },
 				drawing = drawing,
 			})
-		end)
+			M.media_title:set({ drawing = false })
+			M.media_artist:set({ drawing = false })
+		else
+			M.cava:set({
+				label = { drawing = false },
+				drawing = false,
+			})
+			M.media_title:set({ drawing = true, label = { string = env.INFO.title } })
+			M.media_artist:set({ drawing = true, label = env.INFO.artist })
+
+			M.cava_bracket:set({
+				drawing = true,
+			})
+			if drawing then
+				animate_detail(true)
+				inter = inter + 1
+				sbar.delay(5, animate_detail)
+			else
+				M.cava_media_cover:set({ popup = { drawing = false } })
+			end
+		end
+		M.cava_bracket:set({
+			drawing = drawing,
+		})
 	end
 end)
 

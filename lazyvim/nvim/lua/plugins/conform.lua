@@ -17,6 +17,7 @@ return {
         cpp = { "clang-format" },
         python = { "black" },
         markdown = { "prettier" },
+        toml = { "taplo" },
       },
       formatters = {
         injected = { options = { ignore_errors = true } },

@@ -15,6 +15,7 @@ return {
   { "nvim-tree/nvim-tree.lua", enabled = false },
   { "debugloop/telescope-undo.nvim", enabled = false },
   { "Bekaboo/dropbar.nvim", enabled = false },
+  { "OXY2DEV/markview.nvim", enabled = false },
   -- { "saghen/blink.cmp", enabled = false },
   -- { "sphamba/smear-cursor.nvim", enabled = false },
   { "huggingface/llm.nvim", enabled = false },

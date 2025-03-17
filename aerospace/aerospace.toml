@@ -9,6 +9,7 @@ exec-on-workspace-change = [
   # '~/.config/aerospace/scripts/pin_window.sh $AEROSPACE_PREV_WORKSPACE $AEROSPACE_FOCUSED_WORKSPACE',
 ]
 after-startup-command = [
+  'exec-and-forget skhd --stop-service',
   # 'exec-and-forget ~/.config/aerospace/scripts/bsp_tiling.sh',
 ]
 
@@ -408,6 +409,10 @@ run = 'layout floating'
 
 [[on-window-detected]]
 if.app-id = "com.hypergryph.arknights"
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = "com.liguangming.Shadowrocket"
 run = 'layout floating'
 
 [[on-window-detected]]

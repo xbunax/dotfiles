@@ -1,6 +1,4 @@
 export FZF_COMPLETION_TRIGGER='\'
-# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# disable sort when completing `git checkout`
 zstyle ':completion:*:git-checkout:*' sort false
 # set descriptions format to enable group support
 zstyle ':completion:*:descriptions' format '[%d]'
