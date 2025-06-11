@@ -1,6 +1,5 @@
-require("plugins")
-require("options")
-require("lsp")
-require("keymaps")
-require("autorun")
-
+require("config.lazy")
+require("customs.options")
+require("customs.keymaps")
+require("customs.colorscheme")
+require("customs.LSP")
