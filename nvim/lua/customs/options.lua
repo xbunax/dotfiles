@@ -25,9 +25,6 @@ vim.opt.hlsearch = false -- do not highlight matches
 vim.opt.ignorecase = true -- ignore case in searches by default
 vim.opt.smartcase = true -- but make it case sensitive if an uppercase is entered
 
--- color
-vim.opt.termguicolors = true
-
 -- UFO folding
 vim.o.foldcolumn = "1" -- '0' is not bad
 vim.o.foldexpr = "v:lua.vim.lsp.foldexpr()"

@@ -1,9 +1,0 @@
-return {
-    dir = "/Users/hb37096/Documents/code/code-position",
-    name = "code-position",
-    build = ":UpdateRemotePlugins",
-    dependencies = { "neovim/nvim-lspconfig" },
-    config = function()
-        require("code-position").setup()
-    end,
-}
