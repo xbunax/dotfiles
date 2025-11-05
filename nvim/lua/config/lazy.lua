@@ -29,6 +29,7 @@ require("lazy").setup({
 		{ import = "plugins.Languages" },
 		{ import = "plugins.Snacks" },
 		{ import = "plugins.Coding" },
+		{ import = "plugins.Others" },
 		-- { import = "plugins.LSP" },
 	},
 	-- Configure any other settings here. See the documentation for more details.

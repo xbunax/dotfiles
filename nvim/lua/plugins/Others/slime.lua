@@ -5,3 +5,4 @@ return {
     vim.g.slime_python_ipython = 1
   end,
 }
+

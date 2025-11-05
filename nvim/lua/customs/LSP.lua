@@ -1,5 +1,6 @@
 -- LSP, qi dong!
 vim.lsp.enable("lua_ls")
+vim.lsp.enable("bashls")
 -- vim.lsp.enable 'clangd'
 vim.lsp.enable("pylsp")
 -- vim.lsp.enable 'ruff'
@@ -28,16 +29,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			require("snacks").picker.lsp_references()
 		end, { buffer = event.buf, desc = "LSP: Goto References" })
 
-		vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, { buffer = event.buf, desc = "Lsp Action" })
-		vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { buffer = event.buf, desc = "LSP: Rename" })
+		vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = event.buf, desc = "Lsp Action" })
+		vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { buffer = event.buf, desc = "LSP: Rename" })
 
 		-- Diagnostics
-		vim.keymap.set("n", "<leader>ld", function()
+		vim.keymap.set("n", "<leader>cd", function()
 			vim.diagnostic.open_float({ source = true })
 		end, { buffer = event.buf, desc = "LSP: Show Diagnostic" })
 		vim.keymap.set(
 			"n",
-			"<leader>td",
+			"<leader>ctd",
 			(function()
 				local diag_status = 1 -- 1 is show; 0 is hide
 				return function()
@@ -53,7 +54,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 						diag_status = 1
 						vim.diagnostic.config({
 							underline = true,
-							virtual_text = true,
+							virtual_text = false, -- 保持关闭，让 tiny-inline-diagnostic 处理
 							signs = true,
 							update_in_insert = true,
 						})

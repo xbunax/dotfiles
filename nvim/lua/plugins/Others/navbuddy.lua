@@ -9,6 +9,13 @@ return {
     -- keys = { "NN" },
     -- lazy = true,
     opts = { lsp = { auto_attach = true } },
+    keys={
+		{
+			"<leader>cs",
+            ":Navbuddy<CR>",
+			desc = "Navbuddy",
+		},
+    }
     -- config = function()
     --     -- vim.api.nvim_set_keymap("n", "nb", ":Navbuddy<CR>", { noremap = true, silent = true })
     --     -- vim.api.nvim_set_keymap('n', 'NN', '<cmd>Navbuddy<CR>', { noremap = true, silent = true })

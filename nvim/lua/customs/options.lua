@@ -2,12 +2,14 @@
 vim.opt.clipboard = "unnamedplus" -- use system clipboard
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.mouse = "a" -- allow the mouse to be used in Nvim
+vim.opt.mousemoveevent = true
 
 -- Tab
 vim.opt.tabstop = 4 -- number of visual spaces per TAB
 vim.opt.softtabstop = 4 -- number of spacesin tab when editing
 vim.opt.shiftwidth = 4 -- insert 4 spaces on a tab
 vim.opt.expandtab = true -- tabs are spaces, mainly because of python
+vim.opt.termguicolors = true
 
 -- UI config
 vim.opt.number = true -- show absolute number
@@ -28,6 +30,7 @@ vim.opt.termguicolors = true
 
 -- UFO folding
 vim.o.foldcolumn = "1" -- '0' is not bad
+vim.o.foldexpr = "v:lua.vim.lsp.foldexpr()"
 vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
@@ -63,3 +66,20 @@ vim.cmd("set cursorline")
 vim.cmd([[let g:tpipeline_autoembed = 0]])
 -- vim.cmd([[let g:tpipeline_statusline = '%!tpipeline#stl#line()']])
 -- vim.cmd([[let g:tpipeline_statusline = '%f']])
+
+-- Neovide
+vim.g.neovide_padding_top = 0
+vim.g.neovide_padding_bottom = 0
+vim.g.neovide_padding_right = 0
+vim.g.neovide_padding_left = 0
+-- Helper function for transparency formatting
+local alpha = function()
+	return string.format("%x", math.floor(255 * vim.g.transparency or 0.8))
+end
+-- g:neovide_opacity should be 0 if you want to unify transparency of content and title bar.
+vim.g.neovide_opacity = 0.2
+vim.g.transparency = 0.8
+vim.g.neovide_background_color = "#0f1117" .. alpha()
+vim.g.neovide_show_border = true
+vim.g.neovide_window_blurred = true
+
