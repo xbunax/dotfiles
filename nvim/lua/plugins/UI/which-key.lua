@@ -10,7 +10,7 @@ return {
 				mode = { "n", "v" },
 				{ "<leader><tab>", group = "tabs" },
 				{ "<leader>c", group = "code" },
-				{ "<leader>d", group = "debug" },
+				{ "<leader>d", group = "LineDiff" },
 				{ "<leader>dp", group = "profiler" },
 				{ "<leader>f", group = "file/find" },
 				{ "<leader>g", group = "git" },
