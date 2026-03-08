@@ -4,8 +4,15 @@ brew install lua
 brew install switchaudio-osx
 brew install nowplaying-cli
 
+brew tap narugit/tap
+brew install narugit/tap/smctemp
+
+brew install blueutil
+
 brew tap FelixKratz/formulae
 brew install sketchybar
+
+
 
 # Fonts
 brew install --cask sf-symbols

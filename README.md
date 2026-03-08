@@ -6,6 +6,15 @@
 
 https://github.com/user-attachments/assets/97114107-e184-4b33-9b84-43ebf3232bfb
 
+## Quick Start
+
+### Install sketchybar config
+
+```
+curl -L https://github.com/xbunax/dotfiles/raw/refs/heads/main/install_sketchybar.sh | sh
+```
+
+
 ## Keymap
 
 ### Aerospace
