@@ -1,0 +1,12 @@
+{
+  "$schema": "https://pi.dev/schemas/settings.schema.json",
+  "theme": "gruvbox",
+  "packages": [
+    "npm:pi-cc-extensions",
+    "npm:pi-vim@0.14.2",
+    "npm:pi-web-access@0.40.0",
+    "npm:@juicesharp/rpiv-ask-user-question@2.13.8"
+  ],
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-6-sol"
+}

@@ -1,0 +1,19 @@
+# Only explicitly reviewed Pi configuration is allowed into this public repo.
+*
+!.gitignore
+!README.md
+!agent/
+agent/*
+!agent/settings.example.json
+!agent/keybindings.json
+!agent/ccline.json
+!agent/themes/
+agent/themes/*
+!agent/themes/gruvbox.json
+!agent/extensions/
+agent/extensions/*
+!agent/extensions/plan-mode/
+agent/extensions/plan-mode/*
+!agent/extensions/plan-mode/README.md
+!agent/extensions/plan-mode/index.ts
+!agent/extensions/plan-mode/utils.ts

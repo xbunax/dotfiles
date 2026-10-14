@@ -1,0 +1,7 @@
+{
+  "enabled": true,
+  "binary": null,
+  "theme": null,
+  "intervalMs": 30000,
+  "timeoutMs": 2000
+}
