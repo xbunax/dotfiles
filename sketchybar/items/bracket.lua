@@ -5,6 +5,7 @@ local volume = require("items.widgets.volume")
 local wifi = require("items.widgets.wifi")
 local bluetooth = require("items.widgets.bluetooth")
 local cpu_and_temp = require("items.widgets.cpu_and_temp")
+local usage = require("items.widgets.usage")
 local weather = require("items.weather")
 -- local workspaces = require("items.spaces_aero")
 -- local workspaces = require("items.spaces_yabai_dev")
@@ -47,6 +48,7 @@ sbar.add("bracket", {
 -- 右侧内层嵌套子胶囊（bt/vol/dt/cal/weather：信息控制类）
 -- 稍深一点，形成视觉层次感
 sbar.add("bracket", {
+	usage.usage.name,
 	bluetooth.bluetooth_icon.name,
 	volume.volume_icon.name,
 	volume.volume_percent.name,

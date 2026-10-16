@@ -1,5 +1,6 @@
 -- require("items.widgets.control_center")
 require("items.widgets.wechat_and_qq")
+require("items.widgets.usage")
 -- require("items.widgets.dingtalk")
 require("items.widgets.bluetooth")
 require("items.widgets.volume")
