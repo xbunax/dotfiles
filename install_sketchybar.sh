@@ -60,10 +60,7 @@ config="$stage/dotfiles/sketchybar"
 [ -x "$config/sketchybarrc" ] || fail 'The repository is missing an executable sketchybar/sketchybarrc.'
 make -C "$config/helpers"
 
-sbarlua_commit=dba9cc421b868c918d5c23c408544a28aadf2f2f
-git init -q "$stage/SbarLua"
-git -C "$stage/SbarLua" fetch --depth 1 https://github.com/FelixKratz/SbarLua.git "$sbarlua_commit"
-git -C "$stage/SbarLua" checkout --quiet --detach FETCH_HEAD
+git clone --depth 1 https://github.com/FelixKratz/SbarLua.git "$stage/SbarLua"
 make -C "$stage/SbarLua"
 module="$stage/SbarLua/bin/sketchybar.so"
 SBAR_MODULE="$module" lua -e 'assert(package.loadlib(os.getenv("SBAR_MODULE"), "luaopen_sketchybar"))'
