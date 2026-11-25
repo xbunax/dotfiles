@@ -1,5 +1,5 @@
 #!/usr/bin/env lua
 
--- Load the sketchybar-package and prepare the helper binaries
+-- Load the SbarLua module installed by install_sketchybar.sh.
 require("helpers")
 require("init")

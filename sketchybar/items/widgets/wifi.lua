@@ -5,7 +5,7 @@ local settings = require("settings")
 -- Execute the event provider binary which provides the event "network_update"
 -- for the network interface "en0", which is fired every 2.0 seconds.
 sbar.exec(
-	"killall network_load >/dev/null; $CONFIG_DIR/helpers/event_providers/network_load/bin/network_load en0 network_update 2.0"
+	'killall network_load >/dev/null 2>&1; "$CONFIG_DIR/helpers/event_providers/network_load/bin/network_load" en0 network_update 2.0'
 )
 local M = {}
 local popup_width = 250

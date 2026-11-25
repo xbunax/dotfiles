@@ -21,7 +21,7 @@ M.apple = sbar.add("item", {
 	},
 	padding_left = 3,
 	padding_right = 0,
-	click_script = "$CONFIG_DIR/helpers/menus/bin/menus -s 0",
+	click_script = '"$CONFIG_DIR/helpers/menus/bin/menus" -s 0',
 })
 
 return M

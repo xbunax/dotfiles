@@ -4,7 +4,7 @@ local settings = require("settings")
 
 -- Execute the event provider binary which provides the event "cpu_update" for
 -- the cpu load data, which is fired every 2.0 seconds.
-sbar.exec("killall cpu_load >/dev/null; $CONFIG_DIR/helpers/event_providers/cpu_load/bin/cpu_load cpu_update 2.0")
+sbar.exec('killall cpu_load >/dev/null 2>&1; "$CONFIG_DIR/helpers/event_providers/cpu_load/bin/cpu_load" cpu_update 2.0')
 
 -- To get the SOC temperature, the command is
 -- /Applications/Stats.app/Contents/Resources/smc list -t | grep "Tp2a" | awk '{print $2}'

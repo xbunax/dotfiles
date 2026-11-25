@@ -10,9 +10,17 @@ https://github.com/user-attachments/assets/97114107-e184-4b33-9b84-43ebf3232bfb
 
 ### Install sketchybar config
 
+On macOS, install [Homebrew](https://brew.sh/) and Xcode Command Line Tools (`xcode-select --install`) first. Run as your desktop user, not with `sudo`:
+
+```sh
+curl -fsSLo /tmp/install_sketchybar.sh https://raw.githubusercontent.com/xbunax/dotfiles/main/install_sketchybar.sh
+sh /tmp/install_sketchybar.sh
 ```
-curl -L https://github.com/xbunax/dotfiles/raw/refs/heads/main/install_sketchybar.sh | sh
-```
+
+The installer installs SketchyBar, Lua/SbarLua, Rift, `jq`, Python 3, SwitchAudioSource, `blueutil`, `smctemp`, `nowplaying-cli`, and the SF Pro, SF Mono, SF Symbols and SketchyBar app fonts. It builds the native helpers before replacing the config and saves the previous config in a unique `sketchybar-backup.*` directory. Add `--no-start` to install without restarting SketchyBar. The default location is `~/.config/sketchybar`; if you use a custom `XDG_CONFIG_HOME`, SketchyBar's launch environment must use the same value.
+
+- **Rift workspaces:** grant Rift Accessibility permission, then run `rift service install && rift service start` if it isn't already running. Check with `rift-cli query displays`. The installer doesn't change your window manager configuration or start Rift automatically.
+- **Optional widgets:** add images to `~/.config/wallpapers` and allow Automation access when prompted. QQ/WeChat indicators require the respective apps; Codex usage needs an existing `codex login`.
 
 
 ## Keymap
